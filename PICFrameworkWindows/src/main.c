@@ -77,7 +77,7 @@
 #endif //about:startpage --I commented this
 
 void main(void) {
-    char c;
+    char c;     //Is this even used?
     signed char length;
     unsigned char msgtype;
     unsigned char last_reg_recvd;
@@ -86,6 +86,8 @@ void main(void) {
     unsigned char msgbuffer[MSGLEN + 1];
     unsigned char i;
     uart_thread_struct uthread_data; // info for uart_lthread
+
+    //Timer values
     timer1_thread_struct t1thread_data; // info for timer1_lthread
     timer0_thread_struct t0thread_data; // info for timer0_lthread
 
@@ -115,13 +117,12 @@ void main(void) {
     LATB = 0x0;
 
     // how to set up PORTA for input (for the V4 board with the PIC2680)
-    /*
+    
             PORTA = 0x0;	// clear the port
             LATA = 0x0;		// clear the output latch
             ADCON1 = 0x0F;	// turn off the A2D function on these pins
             // Only for 40-pin version of this chip CMCON = 0x07;	// turn the comparator off
             TRISA = 0x0F;	// set RA3-RA0 to inputs
-     */
 
     // initialize Timers
     //OpenTimer0(TIMER_INT_ON & T0_16BIT & T0_SOURCE_INT & T0_PS_1_128);
@@ -143,6 +144,7 @@ void main(void) {
     IPR1bits.SSPIP = 1;
 
     // configure the hardware i2c device as a slave (0x9E -> 0x4F) or (0x9A -> 0x4D)
+    //This gets shifted over one bit because of the address being 7 bits and 1 bit being the acknowledge bit
 #if 1
     // Note that the temperature sensor Address bits (A0, A1, A2) are also the
     // least significant bits of LATB -- take care when changing them
@@ -205,6 +207,9 @@ void main(void) {
             }
         } else {
             switch (msgtype) {
+//                case: MSGT_ADC: {
+//
+//                };
                 case MSGT_TIMER0:
                 {
                     timer0_lthread(&t0thread_data, msgtype, length, msgbuffer);
@@ -231,12 +236,12 @@ void main(void) {
                     switch (last_reg_recvd) {
                         case 0xaa:
                         {
-                            length = 2;
-                            msgbuffer[0] = 0x55;
-                            msgbuffer[1] = 0xAA;
+                            //length = 2;
+                            //msgbuffer[0] = 0x55;
+                            //msgbuffer[1] = 0xAA;
                             break;
                         }
-                        case 0xa8:
+                        /*case 0xa8:
                         {
                             length = 1;
                             msgbuffer[0] = 0x3A;
@@ -247,9 +252,9 @@ void main(void) {
                             length = 1;
                             msgbuffer[0] = 0xA3;
                             break;
-                        }
+                        }*/
                     };
-                    start_i2c_slave_reply(length, msgbuffer);
+                    //start_i2c_slave_reply(length, msgbuffer);
                     break;
                 };
                 default:

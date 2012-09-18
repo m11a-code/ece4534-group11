@@ -46,6 +46,8 @@ void timer1_int_handler() {
 }
 
 void adc_int_handler() {
-    int value = ReadADC();
+    unsigned int value = ReadADC();
+    //value = 0x105;
+    value = value>>2;
     ToMainLow_sendmsg(sizeof(value),MSGT_I2C_DATA,(void *) &value);
 }

@@ -1,5 +1,5 @@
 
-# 1 "../src/main.c"
+# 1 "../src/messages.c"
 
 # 44 "/Applications/microchip/xc8/v1.10/include/pic18f2680.h"
 extern volatile unsigned char RXF6SIDH @ 0xD60;
@@ -18652,69 +18652,6 @@ extern void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern void _delay3(unsigned char);
 
-# 7 "/Applications/microchip/xc8/v1.10/include/stdarg.h"
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 23 "/Applications/microchip/xc8/v1.10/include/stdio.h"
-extern int errno;
-
-# 54
-struct __prbuf
-{
-char * ptr;
-void (* func)(char);
-};
-
-# 17 "/Applications/microchip/xc8/v1.10/include/conio.h"
-extern int errno;
-
-
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-# 31
-extern char * cgets(char *);
-extern void cputs(const char *);
-
-# 99 "/Applications/microchip/xc8/v1.10/include/stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-
-
-# 191
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...);
-extern int sscanf(const char *, const char *, ...);
-extern int vprintf(const char *, va_list);
-extern int vsprintf(char *, const char *, va_list);
-extern int vscanf(const char *, va_list ap);
-extern int vsscanf(const char *, const char *, va_list);
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-
 # 12 "../src/interrupts.h"
 void enable_interrupts(void);
 
@@ -18768,253 +18705,260 @@ signed char FromMainLow_recvmsg(unsigned char,unsigned char *,void *);
 signed char FromMainHigh_sendmsg(unsigned char,unsigned char,void *);
 signed char FromMainHigh_recvmsg(unsigned char,unsigned char *,void *);
 
-# 10 "../src/my_uart.h"
-typedef struct __uart_comm {
-unsigned char buffer[4];
-unsigned char buflen;
-} uart_comm;
+# 22 "/Applications/microchip/xc8/v1.10/include/string.h"
+extern void * memcpy(void *, const void *, size_t);
+extern void * memmove(void *, const void *, size_t);
+extern void * memset(void *, int, size_t);
 
-void init_uart_recv(uart_comm *);
-void uart_recv_int_handler(void);
-
-# 7 "../src/my_i2c.h"
-typedef struct __i2c_comm {
-unsigned char buffer[10];
-unsigned char buflen;
-unsigned char event_count;
-unsigned char status;
-unsigned char error_code;
-unsigned char error_count;
-unsigned char outbuffer[10];
-unsigned char outbuflen;
-unsigned char outbufind;
-unsigned char slave_addr;
-} i2c_comm;
-
-# 32
-void init_i2c(i2c_comm *);
-void i2c_int_handler(void);
-void start_i2c_slave_reply(unsigned char,unsigned char *);
-void i2c_configure_slave(unsigned char);
-void i2c_configure_master(unsigned char);
-unsigned char i2c_master_send(unsigned char,unsigned char *);
-unsigned char i2c_master_recv(unsigned char);
-
-# 1 "../src/uart_thread.h"
-typedef struct __uart_thread_struct {
-
-int data;
-} uart_thread_struct;
-
-int uart_lthread(uart_thread_struct *,int,int,unsigned char*);
-
-# 1 "../src/timer1_thread.h"
-typedef struct __timer1_thread_struct {
-
-unsigned int timerval;
-} timer1_thread_struct;
-
-void init_timer1_lthread(timer1_thread_struct *);
-int timer1_lthread(timer1_thread_struct *,int,int,unsigned char*);
-
-# 1 "../src/timer0_thread.h"
-typedef struct __timer0_thread_struct {
-
-int data;
-} timer0_thread_struct;
-
-int timer0_lthread(timer0_thread_struct *,int,int,unsigned char*);
+# 35
+extern char * strcat(char *, const char *);
+extern char * strcpy(char *, const char *);
+extern char * strncat(char *, const char *, size_t);
+extern char * strncpy(char *, const char *, size_t);
+extern char * strdup(const char *);
+extern char * strtok(char *, const char *);
 
 
-# 48 "../src/main.c"
-#pragma config OSC = IRCIO67
-#pragma config FCMEN = OFF
-#pragma config IESO = OFF
+extern int memcmp(const void *, const void *, size_t);
+extern int strcmp(const char *, const char *);
+extern int stricmp(const char *, const char *);
+extern int strncmp(const char *, const char *, size_t);
+extern int strnicmp(const char *, const char *, size_t);
+extern void * memchr(const void *, int, size_t);
+extern size_t strcspn(const char *, const char *);
+extern char * strpbrk(const char *, const char *);
+extern size_t strspn(const char *, const char *);
+extern char * strstr(const char *, const char *);
+extern char * stristr(const char *, const char *);
+extern char * strerror(int);
+extern size_t strlen(const char *);
+extern char * strchr(const char *, int);
+extern char * strichr(const char *, int);
+extern char * strrchr(const char *, int);
+extern char * strrichr(const char *, int);
 
+# 18 "/Applications/microchip/xc8/v1.10/include/delays.h"
+void Delay10TCYx(unsigned char);
 
-#pragma config PWRT = OFF
-#pragma config BOREN = OFF
-#pragma config BORV = 3
+# 24
+void Delay100TCYx(unsigned char);
 
+# 30
+void Delay1KTCYx(unsigned char);
 
-#pragma config WDT = OFF
-#pragma config WDTPS = 32768
+# 36
+void Delay10KTCYx(unsigned char);
 
-
-#pragma config PBADEN = OFF
-#pragma config LPT1OSC = OFF
-#pragma config MCLRE = ON
-
-
-#pragma config STVREN = OFF
-#pragma config LVP = OFF
-#pragma config BBSIZ = 1024
-
-# 79
-void main(void) {
-char c;
-signed char length;
-unsigned char msgtype;
-unsigned char last_reg_recvd;
-uart_comm uc;
-i2c_comm ic;
-unsigned char msgbuffer[10 + 1];
+# 14 "../src/messages.c"
+void init_queue(msg_queue *qptr) {
 unsigned char i;
-uart_thread_struct uthread_data;
+
+qptr->cur_write_ind = 0;
+qptr->cur_read_ind = 0;
+for (i = 0; i < 4; i++) {
+qptr->queue[i].full = 0;
+}
+}
+
+signed char send_msg(msg_queue *qptr, unsigned char length, unsigned char msgtype, void *data) {
+unsigned char slot;
+
+msg *qmsg;
+size_t tlength = length;
+
+# 38
+slot = qptr->cur_write_ind;
+qmsg = &(qptr->queue[slot]);
+
+if (qmsg->full != 0) {
+return (-1);
+}
 
 
-timer1_thread_struct t1thread_data;
-timer0_thread_struct t0thread_data;
+qmsg->length = length;
+qmsg->msgtype = msgtype;
+
+# 55
+memcpy(qmsg->data, data, tlength);
+qptr->cur_write_ind = (qptr->cur_write_ind + 1) % 4;
 
 
-OSCCON = 0xFC;
+qmsg->full = 1;
+return (1);
+}
 
-OSCTUNEbits.PLLEN = 1;
-
-# 104
-init_uart_recv(&uc);
-
-
-init_i2c(&ic);
-
-
-init_timer1_lthread(&t1thread_data);
-
-
-init_queues();
-
-
-TRISB = 0x0;
-LATB = 0x0;
-
-
-
-PORTA = 0x0;
-LATA = 0x0;
-ADCON1 = 0x0F;
-
-TRISA = 0x0F;
-
-
-
-OpenTimer1(0b11111111 & 0b11111111 & 0b11111111 & 0b11111101 & 0b11110111 & 0b11111111);
-
-
-
-enable_interrupts();
+signed char recv_msg(msg_queue *qptr, unsigned char maxlength, unsigned char *msgtype, void *data) {
+unsigned char slot;
 
 
 
-
-IPR1bits.TMR1IP = 0;
-
-IPR1bits.ADIP = 0;
-
-IPR1bits.RCIP = 0;
-
-IPR1bits.SSPIP = 1;
-
-# 154
-i2c_configure_slave(0x9E);
-
-# 167
-PIE1bits.SSPIE = 1;
+msg *qmsg;
+size_t tlength;
 
 
-OpenUSART(0b01111111 & 0b11111111 & 0b11111110 & 0b11111101 &
-0b11111111 & 0b11101111, 0x19);
+slot = qptr->cur_read_ind;
+qmsg = &(qptr->queue[slot]);
+if (qmsg->full == 1) {
 
-# 191
+if (qmsg->length > maxlength) {
+return (-3);
+}
+
+tlength = qmsg->length;
+memcpy(data, qmsg->data, tlength);
+
+# 87
+qptr->cur_read_ind = (qptr->cur_read_ind + 1) % 4;
+
+(*msgtype) = qmsg->msgtype;
+
+qmsg->full = 0;
+return (tlength);
+} else {
+return (-4);
+}
+}
+
+# 101
+static msg_queue ToMainLow_MQ;
+
+signed char ToMainLow_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
+
+# 109
+return (send_msg(&ToMainLow_MQ, length, msgtype, data));
+}
+
+signed char ToMainLow_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
+
+# 118
+return (recv_msg(&ToMainLow_MQ, maxlength, msgtype, data));
+}
+
+# 124
+static msg_queue ToMainHigh_MQ;
+
+signed char ToMainHigh_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
+
+# 132
+return (send_msg(&ToMainHigh_MQ, length, msgtype, data));
+}
+
+signed char ToMainHigh_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
+
+# 141
+return (recv_msg(&ToMainHigh_MQ, maxlength, msgtype, data));
+}
+
+# 148
+static msg_queue FromMainLow_MQ;
+
+signed char FromMainLow_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
+
+# 156
+return (send_msg(&FromMainLow_MQ, length, msgtype, data));
+}
+
+signed char FromMainLow_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
+
+# 165
+return (recv_msg(&FromMainLow_MQ, maxlength, msgtype, data));
+}
+
+# 172
+static msg_queue FromMainHigh_MQ;
+
+signed char FromMainHigh_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
+
+# 180
+return (send_msg(&FromMainHigh_MQ, length, msgtype, data));
+}
+
+signed char FromMainHigh_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
+
+# 189
+return (recv_msg(&FromMainHigh_MQ, maxlength, msgtype, data));
+}
+
+static unsigned char MQ_Main_Willing_to_block;
+
+void init_queues() {
+MQ_Main_Willing_to_block = 0;
+init_queue(&ToMainLow_MQ);
+init_queue(&ToMainHigh_MQ);
+init_queue(&FromMainLow_MQ);
+init_queue(&FromMainHigh_MQ);
+}
+
+void enter_sleep_mode(void) {
+
+OSCCONbits.IDLEN = 1;
+
+
+# 212
+#asm
+    SLEEP
+
+# 214
+#endasm 
+
+ }
+
+
+
+unsigned char check_msg(msg_queue *qptr) {
+return (qptr->queue[qptr->cur_read_ind].full);
+}
+
+
+
+void SleepIfOkay() {
+
+if (MQ_Main_Willing_to_block == 0) {
+return;
+}
+
+
+if (in_low_int()) {
+return;
+}
+
+
+if (!in_high_int()) {
+return;
+}
+
+
+
+
+if (check_msg(&ToMainHigh_MQ)) {
+return;
+}
+if (check_msg(&ToMainLow_MQ)) {
+return;
+}
+enter_sleep_mode();
+}
+
+
+
+void block_on_To_msgqueues() {
+if (!in_main()) {
+return;
+}
+LATBbits.LATB3 = 1;
+MQ_Main_Willing_to_block = 1;
 while (1) {
-
-
-
-block_on_To_msgqueues();
-
-# 202
-length = ToMainHigh_recvmsg(10, &msgtype, (void *) msgbuffer);
-if (length < 0) {
-
-if (length != -4) {
-
+if (check_msg(&ToMainHigh_MQ)) {
+MQ_Main_Willing_to_block = 0;
+LATBbits.LATB3 = 0;
+return;
 }
-} else {
-switch (msgtype) {
-
-
-
-case 10:
-{
-timer0_lthread(&t0thread_data, msgtype, length, msgbuffer);
-break;
-};
-case 40:
-
-case 41:
-{
-
-
-last_reg_recvd = msgbuffer[0];
-break;
-};
-case 42:
-{
-
-# 236
-switch (last_reg_recvd) {
-case 0xaa:
-{
-
-
-
-break;
+if (check_msg(&ToMainLow_MQ)) {
+MQ_Main_Willing_to_block = 0;
+LATBbits.LATB3 = 0;
+return;
 }
-
-# 256
-};
-
-break;
-};
-default:
-{
-
-break;
-};
-};
+Delay1KTCYx(10);
+LATBbits.LATB3 = !LATBbits.LATB3;
 }
-
-
-length = ToMainLow_recvmsg(10, &msgtype, (void *) msgbuffer);
-if (length < 0) {
-
-if (length != -4) {
-
-}
-} else {
-switch (msgtype) {
-case 11:
-{
-timer1_lthread(&t1thread_data, msgtype, length, msgbuffer);
-break;
-};
-case 40:
-{
-
-start_i2c_slave_reply(length, msgbuffer);
-};
-case 30:
-case 31:
-{
-uart_lthread(&uthread_data, msgtype, length, msgbuffer);
-break;
-};
-default:
-{
-
-break;
-};
-};
-}
-}
-
 }

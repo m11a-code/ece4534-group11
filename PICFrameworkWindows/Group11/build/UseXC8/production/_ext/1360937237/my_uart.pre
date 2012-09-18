@@ -1,5 +1,5 @@
 
-# 1 "../src/main.c"
+# 1 "../src/my_uart.c"
 
 # 44 "/Applications/microchip/xc8/v1.10/include/pic18f2680.h"
 extern volatile unsigned char RXF6SIDH @ 0xD60;
@@ -18652,81 +18652,6 @@ extern void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern void _delay3(unsigned char);
 
-# 7 "/Applications/microchip/xc8/v1.10/include/stdarg.h"
-typedef void * va_list[1];
-
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 23 "/Applications/microchip/xc8/v1.10/include/stdio.h"
-extern int errno;
-
-# 54
-struct __prbuf
-{
-char * ptr;
-void (* func)(char);
-};
-
-# 17 "/Applications/microchip/xc8/v1.10/include/conio.h"
-extern int errno;
-
-
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-# 31
-extern char * cgets(char *);
-extern void cputs(const char *);
-
-# 99 "/Applications/microchip/xc8/v1.10/include/stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-
-
-# 191
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...);
-extern int sscanf(const char *, const char *, ...);
-extern int vprintf(const char *, va_list);
-extern int vsprintf(char *, const char *, va_list);
-extern int vscanf(const char *, va_list ap);
-extern int vsscanf(const char *, const char *, va_list);
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-
-# 12 "../src/interrupts.h"
-void enable_interrupts(void);
-
-int in_high_int(void);
-
-int low_int_active(void);
-
-int in_low_int(void);
-
-
-int in_main(void);
-
 # 10 "../src/messages.h"
 typedef struct __msg {
 unsigned char full;
@@ -18777,244 +18702,29 @@ unsigned char buflen;
 void init_uart_recv(uart_comm *);
 void uart_recv_int_handler(void);
 
-# 7 "../src/my_i2c.h"
-typedef struct __i2c_comm {
-unsigned char buffer[10];
-unsigned char buflen;
-unsigned char event_count;
-unsigned char status;
-unsigned char error_code;
-unsigned char error_count;
-unsigned char outbuffer[10];
-unsigned char outbuflen;
-unsigned char outbufind;
-unsigned char slave_addr;
-} i2c_comm;
+# 9 "../src/my_uart.c"
+static uart_comm *uc_ptr;
 
-# 32
-void init_i2c(i2c_comm *);
-void i2c_int_handler(void);
-void start_i2c_slave_reply(unsigned char,unsigned char *);
-void i2c_configure_slave(unsigned char);
-void i2c_configure_master(unsigned char);
-unsigned char i2c_master_send(unsigned char,unsigned char *);
-unsigned char i2c_master_recv(unsigned char);
+void uart_recv_int_handler() {
+if ((PIR1bits.RCIF)) {
+uc_ptr->buffer[uc_ptr->buflen] = ReadUSART();
+uc_ptr->buflen++;
 
-# 1 "../src/uart_thread.h"
-typedef struct __uart_thread_struct {
-
-int data;
-} uart_thread_struct;
-
-int uart_lthread(uart_thread_struct *,int,int,unsigned char*);
-
-# 1 "../src/timer1_thread.h"
-typedef struct __timer1_thread_struct {
-
-unsigned int timerval;
-} timer1_thread_struct;
-
-void init_timer1_lthread(timer1_thread_struct *);
-int timer1_lthread(timer1_thread_struct *,int,int,unsigned char*);
-
-# 1 "../src/timer0_thread.h"
-typedef struct __timer0_thread_struct {
-
-int data;
-} timer0_thread_struct;
-
-int timer0_lthread(timer0_thread_struct *,int,int,unsigned char*);
-
-
-# 48 "../src/main.c"
-#pragma config OSC = IRCIO67
-#pragma config FCMEN = OFF
-#pragma config IESO = OFF
-
-
-#pragma config PWRT = OFF
-#pragma config BOREN = OFF
-#pragma config BORV = 3
-
-
-#pragma config WDT = OFF
-#pragma config WDTPS = 32768
-
-
-#pragma config PBADEN = OFF
-#pragma config LPT1OSC = OFF
-#pragma config MCLRE = ON
-
-
-#pragma config STVREN = OFF
-#pragma config LVP = OFF
-#pragma config BBSIZ = 1024
-
-# 79
-void main(void) {
-char c;
-signed char length;
-unsigned char msgtype;
-unsigned char last_reg_recvd;
-uart_comm uc;
-i2c_comm ic;
-unsigned char msgbuffer[10 + 1];
-unsigned char i;
-uart_thread_struct uthread_data;
-
-
-timer1_thread_struct t1thread_data;
-timer0_thread_struct t0thread_data;
-
-
-OSCCON = 0xFC;
-
-OSCTUNEbits.PLLEN = 1;
-
-# 104
-init_uart_recv(&uc);
-
-
-init_i2c(&ic);
-
-
-init_timer1_lthread(&t1thread_data);
-
-
-init_queues();
-
-
-TRISB = 0x0;
-LATB = 0x0;
-
-
-
-PORTA = 0x0;
-LATA = 0x0;
-ADCON1 = 0x0F;
-
-TRISA = 0x0F;
-
-
-
-OpenTimer1(0b11111111 & 0b11111111 & 0b11111111 & 0b11111101 & 0b11110111 & 0b11111111);
-
-
-
-enable_interrupts();
-
-
-
-
-IPR1bits.TMR1IP = 0;
-
-IPR1bits.ADIP = 0;
-
-IPR1bits.RCIP = 0;
-
-IPR1bits.SSPIP = 1;
-
-# 154
-i2c_configure_slave(0x9E);
-
-# 167
-PIE1bits.SSPIE = 1;
-
-
-OpenUSART(0b01111111 & 0b11111111 & 0b11111110 & 0b11111101 &
-0b11111111 & 0b11101111, 0x19);
-
-# 191
-while (1) {
-
-
-
-block_on_To_msgqueues();
-
-# 202
-length = ToMainHigh_recvmsg(10, &msgtype, (void *) msgbuffer);
-if (length < 0) {
-
-if (length != -4) {
-
+if (uc_ptr->buflen == 4) {
+ToMainLow_sendmsg(uc_ptr->buflen, 31, (void *) uc_ptr->buffer);
+uc_ptr->buflen = 0;
 }
-} else {
-switch (msgtype) {
-
-
-
-case 10:
-{
-timer0_lthread(&t0thread_data, msgtype, length, msgbuffer);
-break;
-};
-case 40:
-
-case 41:
-{
-
-
-last_reg_recvd = msgbuffer[0];
-break;
-};
-case 42:
-{
-
-# 236
-switch (last_reg_recvd) {
-case 0xaa:
-{
-
-
-
-break;
 }
-
-# 256
-};
-
-break;
-};
-default:
-{
-
-break;
-};
-};
-}
+if (USART_Status.OVERRUN_ERROR == 1) {
 
 
-length = ToMainLow_recvmsg(10, &msgtype, (void *) msgbuffer);
-if (length < 0) {
-
-if (length != -4) {
-
-}
-} else {
-switch (msgtype) {
-case 11:
-{
-timer1_lthread(&t1thread_data, msgtype, length, msgbuffer);
-break;
-};
-case 40:
-{
-
-start_i2c_slave_reply(length, msgbuffer);
-};
-case 30:
-case 31:
-{
-uart_lthread(&uthread_data, msgtype, length, msgbuffer);
-break;
-};
-default:
-{
-
-break;
-};
-};
+RCSTAbits.CREN = 0;
+RCSTAbits.CREN = 1;
+ToMainLow_sendmsg(0, 30, (void *) 0);
 }
 }
 
+void init_uart_recv(uart_comm *uc) {
+uc_ptr = uc;
+uc_ptr->buflen = 0;
 }

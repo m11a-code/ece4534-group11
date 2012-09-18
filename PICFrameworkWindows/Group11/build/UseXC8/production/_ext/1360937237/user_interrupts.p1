@@ -599,60 +599,42 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TXB2SIDL `Vuc ~T0 @X0 0 e@3874 ]
 "20431
 [v _TXB2SIDH `Vuc ~T0 @X0 0 e@3873 ]
-[s S2003 :1 `uc 1 ]
-[n S2003 . NOT_BOR ]
-[s S2004 :1 `uc 1 :1 `uc 1 ]
-[n S2004 . . NOT_POR ]
-[s S2005 :2 `uc 1 :1 `uc 1 ]
-[n S2005 . . NOT_PD ]
-[s S2006 :3 `uc 1 :1 `uc 1 ]
-[n S2006 . . NOT_TO ]
-[s S2007 :4 `uc 1 :1 `uc 1 ]
-[n S2007 . . NOT_RI ]
-[s S2008 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2008 . nBOR nPOR nPD nTO nRI . SBOREN IPEN ]
-[s S2009 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2009 . BOR POR PD TO RI ]
-[u S2002 `S2003 1 `S2004 1 `S2005 1 `S2006 1 `S2007 1 `S2008 1 `S2009 1 ]
-[n S2002 . . . . . . . . ]
-"32638
-[v _RCONbits `VS2002 ~T0 @X0 0 e@4048 ]
-[s S2043 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2043 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
-[s S2044 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2044 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE GIE ]
-[s S2045 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2045 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE GIEL GIEH ]
-[s S2046 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2046 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
-[s S2047 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2047 . . GIEL GIEH ]
-[u S2042 `S2043 1 `S2044 1 `S2045 1 `S2046 1 `S2047 1 ]
-[n S2042 . . . . . . ]
-"33645
-[v _INTCONbits `VS2042 ~T0 @X0 0 e@4082 ]
-[s S1856 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1856 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF ]
-[s S1857 :5 `uc 1 :1 `uc 1 ]
-[n S1857 . . RC1IF ]
-[s S1858 :4 `uc 1 :1 `uc 1 ]
-[n S1858 . . TX1IF ]
-[u S1855 `S1856 1 `S1857 1 `S1858 1 ]
-[n S1855 . . . . ]
-"30007
-[v _PIR1bits `VS1855 ~T0 @X0 0 e@3998 ]
-"33 ../src/my_i2c.h
-[v _i2c_int_handler `(v ~T0 @X0 0 ef ]
-"10 ../src/user_interrupts.h
-[v _timer0_int_handler `(v ~T0 @X0 0 ef ]
-"47 ../src/messages.h
-[v _SleepIfOkay `(v ~T0 @X0 0 ef ]
-"12 ../src/user_interrupts.h
-[v _timer1_int_handler `(v ~T0 @X0 0 ef ]
-"15
-[v _adc_int_handler `(v ~T0 @X0 0 ef ]
-"16 ../src/my_uart.h
-[v _uart_recv_int_handler `(v ~T0 @X0 0 ef ]
+[s S1811 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1811 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
+[s S1812 :1 `uc 1 ]
+[n S1812 . LB0 ]
+[s S1813 :1 `uc 1 :1 `uc 1 ]
+[n S1813 . . LB1 ]
+[s S1814 :2 `uc 1 :1 `uc 1 ]
+[n S1814 . . LB2 ]
+[s S1815 :3 `uc 1 :1 `uc 1 ]
+[n S1815 . . LB3 ]
+[s S1816 :4 `uc 1 :1 `uc 1 ]
+[n S1816 . . LB4 ]
+[s S1817 :5 `uc 1 :1 `uc 1 ]
+[n S1817 . . LB5 ]
+[s S1818 :6 `uc 1 :1 `uc 1 ]
+[n S1818 . . LB6 ]
+[s S1819 :7 `uc 1 :1 `uc 1 ]
+[n S1819 . . LB7 ]
+[u S1810 `S1811 1 `S1812 1 `S1813 1 `S1814 1 `S1815 1 `S1816 1 `S1817 1 `S1818 1 `S1819 1 ]
+[n S1810 . . . . . . . . . . ]
+"28960
+[v _LATBbits `VS1810 ~T0 @X0 0 e@3978 ]
+"121 /Applications/microchip/xc8/v1.10/include/plib/timers.h
+[v _WriteTimer0 `(v ~T0 @X0 0 ef1`ui ]
+"79 ../src/messages.h
+[v _FromMainHigh_recvmsg `(c ~T0 @X0 0 ef3`uc`*uc`*v ]
+"64
+[v _ToMainHigh_sendmsg `(c ~T0 @X0 0 ef3`uc`uc`*v ]
+"238 /Applications/microchip/xc8/v1.10/include/plib/timers.h
+[v _ReadTimer1 `(ui ~T0 @X0 0 ef ]
+"57 ../src/messages.h
+[v _ToMainLow_sendmsg `(c ~T0 @X0 0 ef3`uc`uc`*v ]
+"239 /Applications/microchip/xc8/v1.10/include/plib/timers.h
+[v _WriteTimer1 `(v ~T0 @X0 0 ef1`ui ]
+"1994 /Applications/microchip/xc8/v1.10/include/plib/adc.h
+[v _ReadADC `(i ~T0 @X0 0 ef ]
 [s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2 . SID3 SID4 SID5 SID6 SID7 SID8 SID9 SID10 ]
 [s S3 :7 `uc 1 :1 `uc 1 ]
@@ -4869,28 +4851,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1800 . . . . . . . . . . ]
 "28828
 [v _LATAbits `VS1800 ~T0 @X0 0 e@3977 ]
-[s S1811 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1811 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
-[s S1812 :1 `uc 1 ]
-[n S1812 . LB0 ]
-[s S1813 :1 `uc 1 :1 `uc 1 ]
-[n S1813 . . LB1 ]
-[s S1814 :2 `uc 1 :1 `uc 1 ]
-[n S1814 . . LB2 ]
-[s S1815 :3 `uc 1 :1 `uc 1 ]
-[n S1815 . . LB3 ]
-[s S1816 :4 `uc 1 :1 `uc 1 ]
-[n S1816 . . LB4 ]
-[s S1817 :5 `uc 1 :1 `uc 1 ]
-[n S1817 . . LB5 ]
-[s S1818 :6 `uc 1 :1 `uc 1 ]
-[n S1818 . . LB6 ]
-[s S1819 :7 `uc 1 :1 `uc 1 ]
-[n S1819 . . LB7 ]
-[u S1810 `S1811 1 `S1812 1 `S1813 1 `S1814 1 `S1815 1 `S1816 1 `S1817 1 `S1818 1 `S1819 1 ]
-[n S1810 . . . . . . . . . . ]
-"28960
-[v _LATBbits `VS1810 ~T0 @X0 0 e@3978 ]
 [s S1821 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1821 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
 [s S1822 :1 `uc 1 ]
@@ -4985,6 +4945,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1851 . . . . ]
 "29934
 [v _PIE1bits `VS1851 ~T0 @X0 0 e@3997 ]
+[s S1856 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1856 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF ]
+[s S1857 :5 `uc 1 :1 `uc 1 ]
+[n S1857 . . RC1IF ]
+[s S1858 :4 `uc 1 :1 `uc 1 ]
+[n S1858 . . TX1IF ]
+[u S1855 `S1856 1 `S1857 1 `S1858 1 ]
+[n S1855 . . . . ]
+"30007
+[v _PIR1bits `VS1855 ~T0 @X0 0 e@3998 ]
 [s S1860 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1860 . TMR1IP TMR2IP CCP1IP SSPIP TXIP RCIP ADIP ]
 [s S1861 :4 `uc 1 :1 `uc 1 ]
@@ -5385,6 +5355,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR1L `Vuc ~T0 @X0 0 e@4046 ]
 "32589
 [v _TMR1H `Vuc ~T0 @X0 0 e@4047 ]
+[s S2003 :1 `uc 1 ]
+[n S2003 . NOT_BOR ]
+[s S2004 :1 `uc 1 :1 `uc 1 ]
+[n S2004 . . NOT_POR ]
+[s S2005 :2 `uc 1 :1 `uc 1 ]
+[n S2005 . . NOT_PD ]
+[s S2006 :3 `uc 1 :1 `uc 1 ]
+[n S2006 . . NOT_TO ]
+[s S2007 :4 `uc 1 :1 `uc 1 ]
+[n S2007 . . NOT_RI ]
+[s S2008 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2008 . nBOR nPOR nPD nTO nRI . SBOREN IPEN ]
+[s S2009 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2009 . BOR POR PD TO RI ]
+[u S2002 `S2003 1 `S2004 1 `S2005 1 `S2006 1 `S2007 1 `S2008 1 `S2009 1 ]
+[n S2002 . . . . . . . . ]
+"32638
+[v _RCONbits `VS2002 ~T0 @X0 0 e@4048 ]
 [s S2011 :1 `uc 1 ]
 [n S2011 . SWDTEN ]
 [s S2012 :1 `uc 1 ]
@@ -5525,6 +5513,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S2038 . . . . ]
 "33544
 [v _INTCON2bits `VS2038 ~T0 @X0 0 e@4081 ]
+[s S2043 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2043 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
+[s S2044 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2044 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE GIE ]
+[s S2045 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2045 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE GIEL GIEH ]
+[s S2046 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2046 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
+[s S2047 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2047 . . GIEL GIEH ]
+[u S2042 `S2043 1 `S2044 1 `S2045 1 `S2046 1 `S2047 1 ]
+[n S2042 . . . . . . ]
+"33645
+[v _INTCONbits `VS2042 ~T0 @X0 0 e@4082 ]
 "33729
 [v _PROD `Vus ~T0 @X0 0 e@4083 ]
 "33735
@@ -25430,11 +25432,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 144: extern void _delay(unsigned long);
 [; ;pic18.h: 146: extern void _delaywdt(unsigned long);
 [; ;pic18.h: 148: extern void _delay3(unsigned char);
-[; ;interrupts.h: 12: void enable_interrupts(void);
-[; ;interrupts.h: 14: int in_high_int(void);
-[; ;interrupts.h: 16: int low_int_active(void);
-[; ;interrupts.h: 18: int in_low_int(void);
-[; ;interrupts.h: 21: int in_main(void);
 [; ;user_interrupts.h: 10: void timer0_int_handler(void);
 [; ;user_interrupts.h: 12: void timer1_int_handler(void);
 [; ;user_interrupts.h: 15: void adc_int_handler(void);
@@ -25485,223 +25482,87 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;my_i2c.h: 36: void i2c_configure_master(unsigned char);
 [; ;my_i2c.h: 37: unsigned char i2c_master_send(unsigned char,unsigned char *);
 [; ;my_i2c.h: 38: unsigned char i2c_master_recv(unsigned char);
-"14 ../src/interrupts.c
-[v _enable_interrupts `(v ~T0 @X0 1 ef ]
+[; ;debug.h: 24: void sendValsToPins(char, char, char);
+"17 ../src/user_interrupts.c
+[v _timer0_int_handler `(v ~T0 @X0 1 ef ]
 {
-[; ;interrupts.c: 14: void enable_interrupts() {
-[e :U _enable_interrupts ]
+[; ;user_interrupts.c: 17: void timer0_int_handler() {
+[e :U _timer0_int_handler ]
 [f ]
-[; ;interrupts.c: 17: RCONbits.IPEN = 1;
-"17
-[e = . . _RCONbits 5 7 -> -> 1 `i `uc ]
-[; ;interrupts.c: 18: INTCONbits.GIEH = 1;
 "18
-[e = . . _INTCONbits 2 7 -> -> 1 `i `uc ]
-[; ;interrupts.c: 19: INTCONbits.GIEL = 1;
+[v _val `ui ~T0 @X0 1 a ]
 "19
-[e = . . _INTCONbits 2 6 -> -> 1 `i `uc ]
-[; ;interrupts.c: 20: }
-"20
+[v _length `i ~T0 @X0 1 a ]
+[v _msgtype `i ~T0 @X0 1 a ]
+[; ;user_interrupts.c: 18: unsigned int val;
+[; ;user_interrupts.c: 19: int length, msgtype;
+[; ;user_interrupts.c: 22: LATBbits.LATB0 = !LATBbits.LATB0;
+"22
+[e = . . _LATBbits 0 0 -> -> ! != -> . . _LATBbits 0 0 `i -> -> -> 0 `i `Vuc `i `i `uc ]
+[; ;user_interrupts.c: 24: WriteTimer0(0);
+"24
+[e ( _WriteTimer0 (1 -> -> 0 `i `ui ]
+[; ;user_interrupts.c: 26: length = FromMainHigh_recvmsg(sizeof(val), (unsigned char *)(unsigned int)&msgtype, (void *) &val);
+"26
+[e = _length -> ( _FromMainHigh_recvmsg (3 , , -> -> # _val `ui `uc -> -> &U _msgtype `ui `*uc -> &U _val `*v `i ]
+[; ;user_interrupts.c: 27: if (length == sizeof (val)) {
+"27
+[e $ ! == -> _length `ui -> # _val `ui 2092  ]
+{
+[; ;user_interrupts.c: 28: ToMainHigh_sendmsg(sizeof (val), 10, (void *) &val);
+"28
+[e ( _ToMainHigh_sendmsg (3 , , -> -> # _val `ui `uc -> -> 10 `i `uc -> &U _val `*v ]
+"29
+}
+[e :U 2092 ]
+[; ;user_interrupts.c: 29: }
+[; ;user_interrupts.c: 30: }
+"30
 [e :UE 2091 ]
 }
-"22
-[v _in_high_int `(i ~T0 @X0 1 ef ]
+"35
+[v _timer1_int_handler `(v ~T0 @X0 1 ef ]
 {
-[; ;interrupts.c: 22: int in_high_int() {
-[e :U _in_high_int ]
+[; ;user_interrupts.c: 35: void timer1_int_handler() {
+[e :U _timer1_int_handler ]
 [f ]
-[; ;interrupts.c: 23: return (!INTCONbits.GIEH);
-"23
-[e ) -> ! != -> . . _INTCONbits 2 7 `i -> -> -> 0 `i `Vuc `i `i ]
-[e $UE 2092  ]
-[; ;interrupts.c: 24: }
-"24
-[e :UE 2092 ]
-}
-"26
-[v _low_int_active `(i ~T0 @X0 1 ef ]
-{
-[; ;interrupts.c: 26: int low_int_active() {
-[e :U _low_int_active ]
-[f ]
-[; ;interrupts.c: 27: return (!INTCONbits.GIEL);
-"27
-[e ) -> ! != -> . . _INTCONbits 2 6 `i -> -> -> 0 `i `Vuc `i `i ]
-[e $UE 2093  ]
-[; ;interrupts.c: 28: }
-"28
+"36
+[v _result `ui ~T0 @X0 1 a ]
+[; ;user_interrupts.c: 36: unsigned int result;
+[; ;user_interrupts.c: 40: result = ReadTimer1();
+"40
+[e = _result ( _ReadTimer1 ..  ]
+[; ;user_interrupts.c: 41: ToMainLow_sendmsg(sizeof(result), 11, (void *) &result);
+"41
+[e ( _ToMainLow_sendmsg (3 , , -> -> # _result `ui `uc -> -> 11 `i `uc -> &U _result `*v ]
+"44
+[v _temp `ui ~T0 @X0 1 a ]
+[; ;user_interrupts.c: 44: unsigned int temp = 0x1;
+[e = _temp -> -> 1 `i `ui ]
+[; ;user_interrupts.c: 45: WriteTimer1(temp);
+"45
+[e ( _WriteTimer1 (1 _temp ]
+[; ;user_interrupts.c: 46: }
+"46
 [e :UE 2093 ]
 }
-"30
-[v _in_low_int `(i ~T0 @X0 1 ef ]
+"48
+[v _adc_int_handler `(v ~T0 @X0 1 ef ]
 {
-[; ;interrupts.c: 30: int in_low_int() {
-[e :U _in_low_int ]
+[; ;user_interrupts.c: 48: void adc_int_handler() {
+[e :U _adc_int_handler ]
 [f ]
-[; ;interrupts.c: 31: if (INTCONbits.GIEL == 1) {
-"31
-[e $ ! == -> . . _INTCONbits 2 6 `i -> 1 `i 2095  ]
-{
-[; ;interrupts.c: 32: return (0);
-"32
-[e ) -> 0 `i ]
-[e $UE 2094  ]
-"33
-}
-[; ;interrupts.c: 33: } else if (in_high_int()) {
-[e $U 2096  ]
-[e :U 2095 ]
-[e $ ! != ( _in_high_int ..  -> 0 `i 2097  ]
-{
-[; ;interrupts.c: 34: return (0);
-"34
-[e ) -> 0 `i ]
-[e $UE 2094  ]
-"35
-}
-[; ;interrupts.c: 35: } else {
-[e $U 2098  ]
-[e :U 2097 ]
-{
-[; ;interrupts.c: 36: return (1);
-"36
-[e ) -> 1 `i ]
-[e $UE 2094  ]
-"37
-}
-[e :U 2098 ]
-[e :U 2096 ]
-[; ;interrupts.c: 37: }
-[; ;interrupts.c: 38: }
-"38
+"49
+[v _value `ui ~T0 @X0 1 a ]
+[; ;user_interrupts.c: 49: unsigned int value = ReadADC();
+[e = _value -> ( _ReadADC ..  `ui ]
+[; ;user_interrupts.c: 51: value = value>>2;
+"51
+[e = _value >> _value -> 2 `i ]
+[; ;user_interrupts.c: 52: ToMainLow_sendmsg(sizeof(value),40,(void *) &value);
+"52
+[e ( _ToMainLow_sendmsg (3 , , -> -> # _value `ui `uc -> -> 40 `i `uc -> &U _value `*v ]
+[; ;user_interrupts.c: 53: }
+"53
 [e :UE 2094 ]
-}
-"40
-[v _in_main `(i ~T0 @X0 1 ef ]
-{
-[; ;interrupts.c: 40: int in_main() {
-[e :U _in_main ]
-[f ]
-[; ;interrupts.c: 41: if ((!in_low_int()) && (!in_high_int())) {
-"41
-[e $ ! && ! != ( _in_low_int ..  -> 0 `i ! != ( _in_high_int ..  -> 0 `i 2100  ]
-{
-[; ;interrupts.c: 42: return (1);
-"42
-[e ) -> 1 `i ]
-[e $UE 2099  ]
-"43
-}
-[; ;interrupts.c: 43: } else {
-[e $U 2101  ]
-[e :U 2100 ]
-{
-[; ;interrupts.c: 44: return (0);
-"44
-[e ) -> 0 `i ]
-[e $UE 2099  ]
-"45
-}
-[e :U 2101 ]
-[; ;interrupts.c: 45: }
-[; ;interrupts.c: 46: }
-"46
-[e :UE 2099 ]
-}
-"83
-[v F16331 `(v ~T0 @X0 1 tf ]
-[v _InterruptHandlerHigh `IF16331 ~T0 @X0 1 e ]
-{
-[; ;interrupts.c: 78: interrupt
-[; ;interrupts.c: 83: void InterruptHandlerHigh() {
-[e :U _InterruptHandlerHigh ]
-[f ]
-[; ;interrupts.c: 88: if (PIR1bits.SSPIF) {
-"88
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 2103  ]
-{
-[; ;interrupts.c: 90: PIR1bits.SSPIF = 0;
-"90
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;interrupts.c: 92: i2c_int_handler();
-"92
-[e ( _i2c_int_handler ..  ]
-"93
-}
-[e :U 2103 ]
-[; ;interrupts.c: 93: }
-[; ;interrupts.c: 96: if (INTCONbits.TMR0IF) {
-"96
-[e $ ! != -> . . _INTCONbits 0 2 `i -> -> -> 0 `i `Vuc `i 2104  ]
-{
-[; ;interrupts.c: 97: INTCONbits.TMR0IF = 0;
-"97
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-[; ;interrupts.c: 99: timer0_int_handler();
-"99
-[e ( _timer0_int_handler ..  ]
-"100
-}
-[e :U 2104 ]
-[; ;interrupts.c: 100: }
-[; ;interrupts.c: 109: SleepIfOkay();
-"109
-[e ( _SleepIfOkay ..  ]
-[; ;interrupts.c: 110: }
-"110
-[e :UE 2102 ]
-}
-"122
-[v F16333 `(v ~T0 @X0 1 tf ]
-[v _InterruptHandlerLow `ILF16333 ~T0 @X0 1 e ]
-{
-[; ;interrupts.c: 117: interrupt low_priority
-[; ;interrupts.c: 122: void InterruptHandlerLow() {
-[e :U _InterruptHandlerLow ]
-[f ]
-[; ;interrupts.c: 124: if (PIR1bits.TMR1IF) {
-"124
-[e $ ! != -> . . _PIR1bits 0 0 `i -> -> -> 0 `i `Vuc `i 2106  ]
-{
-[; ;interrupts.c: 125: PIR1bits.TMR1IF = 0;
-"125
-[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
-[; ;interrupts.c: 126: timer1_int_handler();
-"126
-[e ( _timer1_int_handler ..  ]
-"127
-}
-[e :U 2106 ]
-[; ;interrupts.c: 127: }
-[; ;interrupts.c: 130: if(PIR1bits.ADIF){
-"130
-[e $ ! != -> . . _PIR1bits 0 6 `i -> -> -> 0 `i `Vuc `i 2107  ]
-{
-[; ;interrupts.c: 131: PIR1bits.ADIF = 0;
-"131
-[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-[; ;interrupts.c: 132: adc_int_handler();
-"132
-[e ( _adc_int_handler ..  ]
-"133
-}
-[e :U 2107 ]
-[; ;interrupts.c: 133: }
-[; ;interrupts.c: 136: if (PIR1bits.RCIF) {
-"136
-[e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 2108  ]
-{
-[; ;interrupts.c: 137: PIR1bits.RCIF = 0;
-"137
-[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
-[; ;interrupts.c: 138: uart_recv_int_handler();
-"138
-[e ( _uart_recv_int_handler ..  ]
-"139
-}
-[e :U 2108 ]
-[; ;interrupts.c: 139: }
-[; ;interrupts.c: 140: }
-"140
-[e :UE 2105 ]
 }

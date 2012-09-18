@@ -1,5 +1,5 @@
 
-# 1 "../src/main.c"
+# 1 "../src/user_interrupts.c"
 
 # 44 "/Applications/microchip/xc8/v1.10/include/pic18f2680.h"
 extern volatile unsigned char RXF6SIDH @ 0xD60;
@@ -18652,80 +18652,13 @@ extern void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern void _delay3(unsigned char);
 
-# 7 "/Applications/microchip/xc8/v1.10/include/stdarg.h"
-typedef void * va_list[1];
+# 10 "../src/user_interrupts.h"
+void timer0_int_handler(void);
 
-#pragma intrinsic(__va_start)
-extern void * __va_start(void);
-
-#pragma intrinsic(__va_arg)
-extern void * __va_arg(void *, ...);
-
-# 23 "/Applications/microchip/xc8/v1.10/include/stdio.h"
-extern int errno;
-
-# 54
-struct __prbuf
-{
-char * ptr;
-void (* func)(char);
-};
-
-# 17 "/Applications/microchip/xc8/v1.10/include/conio.h"
-extern int errno;
+void timer1_int_handler(void);
 
 
-extern void init_uart(void);
-
-extern char getch(void);
-extern char getche(void);
-extern void putch(char);
-extern void ungetch(char);
-
-extern __bit kbhit(void);
-
-# 31
-extern char * cgets(char *);
-extern void cputs(const char *);
-
-# 99 "/Applications/microchip/xc8/v1.10/include/stdio.h"
-extern int cprintf(char *, ...);
-#pragma printf_check(cprintf)
-
-
-
-extern int _doprnt(struct __prbuf *, const register char *, register va_list);
-
-
-# 191
-#pragma printf_check(vprintf) const
-#pragma printf_check(vsprintf) const
-
-extern char * gets(char *);
-extern int puts(const char *);
-extern int scanf(const char *, ...);
-extern int sscanf(const char *, const char *, ...);
-extern int vprintf(const char *, va_list);
-extern int vsprintf(char *, const char *, va_list);
-extern int vscanf(const char *, va_list ap);
-extern int vsscanf(const char *, const char *, va_list);
-
-#pragma printf_check(printf) const
-#pragma printf_check(sprintf) const
-extern int sprintf(char *, const char *, ...);
-extern int printf(const char *, ...);
-
-# 12 "../src/interrupts.h"
-void enable_interrupts(void);
-
-int in_high_int(void);
-
-int low_int_active(void);
-
-int in_low_int(void);
-
-
-int in_main(void);
+void adc_int_handler(void);
 
 # 10 "../src/messages.h"
 typedef struct __msg {
@@ -18800,221 +18733,44 @@ void i2c_configure_master(unsigned char);
 unsigned char i2c_master_send(unsigned char,unsigned char *);
 unsigned char i2c_master_recv(unsigned char);
 
-# 1 "../src/uart_thread.h"
-typedef struct __uart_thread_struct {
+# 24 "../src/debug.h"
+void sendValsToPins(char, char, char);
 
-int data;
-} uart_thread_struct;
+# 17 "../src/user_interrupts.c"
+void timer0_int_handler() {
+unsigned int val;
+int length, msgtype;
 
-int uart_lthread(uart_thread_struct *,int,int,unsigned char*);
 
-# 1 "../src/timer1_thread.h"
-typedef struct __timer1_thread_struct {
+LATBbits.LATB0 = !LATBbits.LATB0;
 
-unsigned int timerval;
-} timer1_thread_struct;
+WriteTimer0(0);
 
-void init_timer1_lthread(timer1_thread_struct *);
-int timer1_lthread(timer1_thread_struct *,int,int,unsigned char*);
-
-# 1 "../src/timer0_thread.h"
-typedef struct __timer0_thread_struct {
-
-int data;
-} timer0_thread_struct;
-
-int timer0_lthread(timer0_thread_struct *,int,int,unsigned char*);
-
-
-# 48 "../src/main.c"
-#pragma config OSC = IRCIO67
-#pragma config FCMEN = OFF
-#pragma config IESO = OFF
-
-
-#pragma config PWRT = OFF
-#pragma config BOREN = OFF
-#pragma config BORV = 3
-
-
-#pragma config WDT = OFF
-#pragma config WDTPS = 32768
-
-
-#pragma config PBADEN = OFF
-#pragma config LPT1OSC = OFF
-#pragma config MCLRE = ON
-
-
-#pragma config STVREN = OFF
-#pragma config LVP = OFF
-#pragma config BBSIZ = 1024
-
-# 79
-void main(void) {
-char c;
-signed char length;
-unsigned char msgtype;
-unsigned char last_reg_recvd;
-uart_comm uc;
-i2c_comm ic;
-unsigned char msgbuffer[10 + 1];
-unsigned char i;
-uart_thread_struct uthread_data;
-
-
-timer1_thread_struct t1thread_data;
-timer0_thread_struct t0thread_data;
-
-
-OSCCON = 0xFC;
-
-OSCTUNEbits.PLLEN = 1;
-
-# 104
-init_uart_recv(&uc);
-
-
-init_i2c(&ic);
-
-
-init_timer1_lthread(&t1thread_data);
-
-
-init_queues();
-
-
-TRISB = 0x0;
-LATB = 0x0;
-
-
-
-PORTA = 0x0;
-LATA = 0x0;
-ADCON1 = 0x0F;
-
-TRISA = 0x0F;
-
-
-
-OpenTimer1(0b11111111 & 0b11111111 & 0b11111111 & 0b11111101 & 0b11110111 & 0b11111111);
-
-
-
-enable_interrupts();
-
-
-
-
-IPR1bits.TMR1IP = 0;
-
-IPR1bits.ADIP = 0;
-
-IPR1bits.RCIP = 0;
-
-IPR1bits.SSPIP = 1;
-
-# 154
-i2c_configure_slave(0x9E);
-
-# 167
-PIE1bits.SSPIE = 1;
-
-
-OpenUSART(0b01111111 & 0b11111111 & 0b11111110 & 0b11111101 &
-0b11111111 & 0b11101111, 0x19);
-
-# 191
-while (1) {
-
-
-
-block_on_To_msgqueues();
-
-# 202
-length = ToMainHigh_recvmsg(10, &msgtype, (void *) msgbuffer);
-if (length < 0) {
-
-if (length != -4) {
-
-}
-} else {
-switch (msgtype) {
-
-
-
-case 10:
-{
-timer0_lthread(&t0thread_data, msgtype, length, msgbuffer);
-break;
-};
-case 40:
-
-case 41:
-{
-
-
-last_reg_recvd = msgbuffer[0];
-break;
-};
-case 42:
-{
-
-# 236
-switch (last_reg_recvd) {
-case 0xaa:
-{
-
-
-
-break;
-}
-
-# 256
-};
-
-break;
-};
-default:
-{
-
-break;
-};
-};
-}
-
-
-length = ToMainLow_recvmsg(10, &msgtype, (void *) msgbuffer);
-if (length < 0) {
-
-if (length != -4) {
-
-}
-} else {
-switch (msgtype) {
-case 11:
-{
-timer1_lthread(&t1thread_data, msgtype, length, msgbuffer);
-break;
-};
-case 40:
-{
-
-start_i2c_slave_reply(length, msgbuffer);
-};
-case 30:
-case 31:
-{
-uart_lthread(&uthread_data, msgtype, length, msgbuffer);
-break;
-};
-default:
-{
-
-break;
-};
-};
+length = FromMainHigh_recvmsg(sizeof(val), (unsigned char *)(unsigned int)&msgtype, (void *) &val);
+if (length == sizeof (val)) {
+ToMainHigh_sendmsg(sizeof (val), 10, (void *) &val);
 }
 }
 
+
+
+
+void timer1_int_handler() {
+unsigned int result;
+
+
+
+result = ReadTimer1();
+ToMainLow_sendmsg(sizeof(result), 11, (void *) &result);
+
+
+unsigned int temp = 0x1;
+WriteTimer1(temp);
+}
+
+void adc_int_handler() {
+unsigned int value = ReadADC();
+
+value = value>>2;
+ToMainLow_sendmsg(sizeof(value),40,(void *) &value);
 }

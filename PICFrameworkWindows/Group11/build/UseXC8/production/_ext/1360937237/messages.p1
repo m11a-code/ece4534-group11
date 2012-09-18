@@ -599,60 +599,50 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TXB2SIDL `Vuc ~T0 @X0 0 e@3874 ]
 "20431
 [v _TXB2SIDH `Vuc ~T0 @X0 0 e@3873 ]
-[s S2003 :1 `uc 1 ]
-[n S2003 . NOT_BOR ]
-[s S2004 :1 `uc 1 :1 `uc 1 ]
-[n S2004 . . NOT_POR ]
-[s S2005 :2 `uc 1 :1 `uc 1 ]
-[n S2005 . . NOT_PD ]
-[s S2006 :3 `uc 1 :1 `uc 1 ]
-[n S2006 . . NOT_TO ]
-[s S2007 :4 `uc 1 :1 `uc 1 ]
-[n S2007 . . NOT_RI ]
-[s S2008 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2008 . nBOR nPOR nPD nTO nRI . SBOREN IPEN ]
-[s S2009 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2009 . BOR POR PD TO RI ]
-[u S2002 `S2003 1 `S2004 1 `S2005 1 `S2006 1 `S2007 1 `S2008 1 `S2009 1 ]
-[n S2002 . . . . . . . . ]
-"32638
-[v _RCONbits `VS2002 ~T0 @X0 0 e@4048 ]
-[s S2043 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2043 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
-[s S2044 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2044 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE GIE ]
-[s S2045 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2045 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE GIEL GIEH ]
-[s S2046 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2046 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
-[s S2047 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2047 . . GIEL GIEH ]
-[u S2042 `S2043 1 `S2044 1 `S2045 1 `S2046 1 `S2047 1 ]
-[n S2042 . . . . . . ]
-"33645
-[v _INTCONbits `VS2042 ~T0 @X0 0 e@4082 ]
-[s S1856 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1856 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF ]
-[s S1857 :5 `uc 1 :1 `uc 1 ]
-[n S1857 . . RC1IF ]
-[s S1858 :4 `uc 1 :1 `uc 1 ]
-[n S1858 . . TX1IF ]
-[u S1855 `S1856 1 `S1857 1 `S1858 1 ]
-[n S1855 . . . . ]
-"30007
-[v _PIR1bits `VS1855 ~T0 @X0 0 e@3998 ]
-"33 ../src/my_i2c.h
-[v _i2c_int_handler `(v ~T0 @X0 0 ef ]
-"10 ../src/user_interrupts.h
-[v _timer0_int_handler `(v ~T0 @X0 0 ef ]
-"47 ../src/messages.h
-[v _SleepIfOkay `(v ~T0 @X0 0 ef ]
-"12 ../src/user_interrupts.h
-[v _timer1_int_handler `(v ~T0 @X0 0 ef ]
-"15
-[v _adc_int_handler `(v ~T0 @X0 0 ef ]
-"16 ../src/my_uart.h
-[v _uart_recv_int_handler `(v ~T0 @X0 0 ef ]
+[s S2087 `uc 1 `uc 1 `uc 1 `uc -> 10 `i ]
+[n S2087 __msg full length msgtype data ]
+[s S2088 `S2087 -> 4 `i `uc 1 `uc 1 ]
+[n S2088 __msg_queue queue cur_write_ind cur_read_ind ]
+"22 /Applications/microchip/xc8/v1.10/include/string.h
+[v _memcpy `(*v ~T0 @X0 0 ef3`*v`*Cv`ui ]
+[s S2024 :2 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S2024 . SCS IOFS OSTS IRCF IDLEN ]
+[s S2025 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2025 . SCS0 SCS1 . IRCF0 IRCF1 IRCF2 ]
+[u S2023 `S2024 1 `S2025 1 ]
+[n S2023 . . . ]
+"33045 /Applications/microchip/xc8/v1.10/include/pic18f2680.h
+[v _OSCCONbits `VS2023 ~T0 @X0 0 e@4051 ]
+"18 ../src/interrupts.h
+[v _in_low_int `(i ~T0 @X0 0 ef ]
+"14
+[v _in_high_int `(i ~T0 @X0 0 ef ]
+"21
+[v _in_main `(i ~T0 @X0 0 ef ]
+[s S1811 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1811 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
+[s S1812 :1 `uc 1 ]
+[n S1812 . LB0 ]
+[s S1813 :1 `uc 1 :1 `uc 1 ]
+[n S1813 . . LB1 ]
+[s S1814 :2 `uc 1 :1 `uc 1 ]
+[n S1814 . . LB2 ]
+[s S1815 :3 `uc 1 :1 `uc 1 ]
+[n S1815 . . LB3 ]
+[s S1816 :4 `uc 1 :1 `uc 1 ]
+[n S1816 . . LB4 ]
+[s S1817 :5 `uc 1 :1 `uc 1 ]
+[n S1817 . . LB5 ]
+[s S1818 :6 `uc 1 :1 `uc 1 ]
+[n S1818 . . LB6 ]
+[s S1819 :7 `uc 1 :1 `uc 1 ]
+[n S1819 . . LB7 ]
+[u S1810 `S1811 1 `S1812 1 `S1813 1 `S1814 1 `S1815 1 `S1816 1 `S1817 1 `S1818 1 `S1819 1 ]
+[n S1810 . . . . . . . . . . ]
+"28960 /Applications/microchip/xc8/v1.10/include/pic18f2680.h
+[v _LATBbits `VS1810 ~T0 @X0 0 e@3978 ]
+"30 /Applications/microchip/xc8/v1.10/include/delays.h
+[v _Delay1KTCYx `(v ~T0 @X0 0 ef1`uc ]
 [s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2 . SID3 SID4 SID5 SID6 SID7 SID8 SID9 SID10 ]
 [s S3 :7 `uc 1 :1 `uc 1 ]
@@ -4869,28 +4859,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1800 . . . . . . . . . . ]
 "28828
 [v _LATAbits `VS1800 ~T0 @X0 0 e@3977 ]
-[s S1811 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1811 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
-[s S1812 :1 `uc 1 ]
-[n S1812 . LB0 ]
-[s S1813 :1 `uc 1 :1 `uc 1 ]
-[n S1813 . . LB1 ]
-[s S1814 :2 `uc 1 :1 `uc 1 ]
-[n S1814 . . LB2 ]
-[s S1815 :3 `uc 1 :1 `uc 1 ]
-[n S1815 . . LB3 ]
-[s S1816 :4 `uc 1 :1 `uc 1 ]
-[n S1816 . . LB4 ]
-[s S1817 :5 `uc 1 :1 `uc 1 ]
-[n S1817 . . LB5 ]
-[s S1818 :6 `uc 1 :1 `uc 1 ]
-[n S1818 . . LB6 ]
-[s S1819 :7 `uc 1 :1 `uc 1 ]
-[n S1819 . . LB7 ]
-[u S1810 `S1811 1 `S1812 1 `S1813 1 `S1814 1 `S1815 1 `S1816 1 `S1817 1 `S1818 1 `S1819 1 ]
-[n S1810 . . . . . . . . . . ]
-"28960
-[v _LATBbits `VS1810 ~T0 @X0 0 e@3978 ]
 [s S1821 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1821 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
 [s S1822 :1 `uc 1 ]
@@ -4985,6 +4953,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1851 . . . . ]
 "29934
 [v _PIE1bits `VS1851 ~T0 @X0 0 e@3997 ]
+[s S1856 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1856 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF ]
+[s S1857 :5 `uc 1 :1 `uc 1 ]
+[n S1857 . . RC1IF ]
+[s S1858 :4 `uc 1 :1 `uc 1 ]
+[n S1858 . . TX1IF ]
+[u S1855 `S1856 1 `S1857 1 `S1858 1 ]
+[n S1855 . . . . ]
+"30007
+[v _PIR1bits `VS1855 ~T0 @X0 0 e@3998 ]
 [s S1860 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1860 . TMR1IP TMR2IP CCP1IP SSPIP TXIP RCIP ADIP ]
 [s S1861 :4 `uc 1 :1 `uc 1 ]
@@ -5385,6 +5363,24 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TMR1L `Vuc ~T0 @X0 0 e@4046 ]
 "32589
 [v _TMR1H `Vuc ~T0 @X0 0 e@4047 ]
+[s S2003 :1 `uc 1 ]
+[n S2003 . NOT_BOR ]
+[s S2004 :1 `uc 1 :1 `uc 1 ]
+[n S2004 . . NOT_POR ]
+[s S2005 :2 `uc 1 :1 `uc 1 ]
+[n S2005 . . NOT_PD ]
+[s S2006 :3 `uc 1 :1 `uc 1 ]
+[n S2006 . . NOT_TO ]
+[s S2007 :4 `uc 1 :1 `uc 1 ]
+[n S2007 . . NOT_RI ]
+[s S2008 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2008 . nBOR nPOR nPD nTO nRI . SBOREN IPEN ]
+[s S2009 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2009 . BOR POR PD TO RI ]
+[u S2002 `S2003 1 `S2004 1 `S2005 1 `S2006 1 `S2007 1 `S2008 1 `S2009 1 ]
+[n S2002 . . . . . . . . ]
+"32638
+[v _RCONbits `VS2002 ~T0 @X0 0 e@4048 ]
 [s S2011 :1 `uc 1 ]
 [n S2011 . SWDTEN ]
 [s S2012 :1 `uc 1 ]
@@ -5419,14 +5415,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S2018 . . . . . ]
 "32924
 [v _LVDCONbits `VS2018 ~T0 @X0 0 e@4050 ]
-[s S2024 :2 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
-[n S2024 . SCS IOFS OSTS IRCF IDLEN ]
-[s S2025 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S2025 . SCS0 SCS1 . IRCF0 IRCF1 IRCF2 ]
-[u S2023 `S2024 1 `S2025 1 ]
-[n S2023 . . . ]
-"33045
-[v _OSCCONbits `VS2023 ~T0 @X0 0 e@4051 ]
 [s S2027 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2027 . T0PS PSA T0SE T0CS T08BIT TMR0ON ]
 [s S2028 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -5525,6 +5513,20 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S2038 . . . . ]
 "33544
 [v _INTCON2bits `VS2038 ~T0 @X0 0 e@4081 ]
+[s S2043 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2043 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
+[s S2044 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2044 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE GIE ]
+[s S2045 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2045 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE GIEL GIEH ]
+[s S2046 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2046 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
+[s S2047 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S2047 . . GIEL GIEH ]
+[u S2042 `S2043 1 `S2044 1 `S2045 1 `S2046 1 `S2047 1 ]
+[n S2042 . . . . . . ]
+"33645
+[v _INTCONbits `VS2042 ~T0 @X0 0 e@4082 ]
 "33729
 [v _PROD `Vus ~T0 @X0 0 e@4083 ]
 "33735
@@ -25435,9 +25437,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;interrupts.h: 16: int low_int_active(void);
 [; ;interrupts.h: 18: int in_low_int(void);
 [; ;interrupts.h: 21: int in_main(void);
-[; ;user_interrupts.h: 10: void timer0_int_handler(void);
-[; ;user_interrupts.h: 12: void timer1_int_handler(void);
-[; ;user_interrupts.h: 15: void adc_int_handler(void);
 [; ;messages.h: 10: typedef struct __msg {
 [; ;messages.h: 11: unsigned char full;
 [; ;messages.h: 12: unsigned char length;
@@ -25460,248 +25459,567 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;messages.h: 72: signed char FromMainLow_recvmsg(unsigned char,unsigned char *,void *);
 [; ;messages.h: 78: signed char FromMainHigh_sendmsg(unsigned char,unsigned char,void *);
 [; ;messages.h: 79: signed char FromMainHigh_recvmsg(unsigned char,unsigned char *,void *);
-[; ;my_uart.h: 10: typedef struct __uart_comm {
-[; ;my_uart.h: 11: unsigned char buffer[4];
-[; ;my_uart.h: 12: unsigned char buflen;
-[; ;my_uart.h: 13: } uart_comm;
-[; ;my_uart.h: 15: void init_uart_recv(uart_comm *);
-[; ;my_uart.h: 16: void uart_recv_int_handler(void);
-[; ;my_i2c.h: 7: typedef struct __i2c_comm {
-[; ;my_i2c.h: 8: unsigned char buffer[10];
-[; ;my_i2c.h: 9: unsigned char buflen;
-[; ;my_i2c.h: 10: unsigned char event_count;
-[; ;my_i2c.h: 11: unsigned char status;
-[; ;my_i2c.h: 12: unsigned char error_code;
-[; ;my_i2c.h: 13: unsigned char error_count;
-[; ;my_i2c.h: 14: unsigned char outbuffer[10];
-[; ;my_i2c.h: 15: unsigned char outbuflen;
-[; ;my_i2c.h: 16: unsigned char outbufind;
-[; ;my_i2c.h: 17: unsigned char slave_addr;
-[; ;my_i2c.h: 18: } i2c_comm;
-[; ;my_i2c.h: 32: void init_i2c(i2c_comm *);
-[; ;my_i2c.h: 33: void i2c_int_handler(void);
-[; ;my_i2c.h: 34: void start_i2c_slave_reply(unsigned char,unsigned char *);
-[; ;my_i2c.h: 35: void i2c_configure_slave(unsigned char);
-[; ;my_i2c.h: 36: void i2c_configure_master(unsigned char);
-[; ;my_i2c.h: 37: unsigned char i2c_master_send(unsigned char,unsigned char *);
-[; ;my_i2c.h: 38: unsigned char i2c_master_recv(unsigned char);
-"14 ../src/interrupts.c
-[v _enable_interrupts `(v ~T0 @X0 1 ef ]
+[; ;string.h: 22: extern void * memcpy(void *, const void *, size_t);
+[; ;string.h: 23: extern void * memmove(void *, const void *, size_t);
+[; ;string.h: 24: extern void * memset(void *, int, size_t);
+[; ;string.h: 35: extern char * strcat(char *, const char *);
+[; ;string.h: 36: extern char * strcpy(char *, const char *);
+[; ;string.h: 37: extern char * strncat(char *, const char *, size_t);
+[; ;string.h: 38: extern char * strncpy(char *, const char *, size_t);
+[; ;string.h: 39: extern char * strdup(const char *);
+[; ;string.h: 40: extern char * strtok(char *, const char *);
+[; ;string.h: 43: extern int memcmp(const void *, const void *, size_t);
+[; ;string.h: 44: extern int strcmp(const char *, const char *);
+[; ;string.h: 45: extern int stricmp(const char *, const char *);
+[; ;string.h: 46: extern int strncmp(const char *, const char *, size_t);
+[; ;string.h: 47: extern int strnicmp(const char *, const char *, size_t);
+[; ;string.h: 48: extern void * memchr(const void *, int, size_t);
+[; ;string.h: 49: extern size_t strcspn(const char *, const char *);
+[; ;string.h: 50: extern char * strpbrk(const char *, const char *);
+[; ;string.h: 51: extern size_t strspn(const char *, const char *);
+[; ;string.h: 52: extern char * strstr(const char *, const char *);
+[; ;string.h: 53: extern char * stristr(const char *, const char *);
+[; ;string.h: 54: extern char * strerror(int);
+[; ;string.h: 55: extern size_t strlen(const char *);
+[; ;string.h: 56: extern char * strchr(const char *, int);
+[; ;string.h: 57: extern char * strichr(const char *, int);
+[; ;string.h: 58: extern char * strrchr(const char *, int);
+[; ;string.h: 59: extern char * strrichr(const char *, int);
+[; ;delays.h: 18: void Delay10TCYx(unsigned char);
+[; ;delays.h: 24: void Delay100TCYx(unsigned char);
+[; ;delays.h: 30: void Delay1KTCYx(unsigned char);
+[; ;delays.h: 36: void Delay10KTCYx(unsigned char);
+"14 ../src/messages.c
+[v _init_queue `(v ~T0 @X0 1 ef1`*S2088 ]
 {
-[; ;interrupts.c: 14: void enable_interrupts() {
-[e :U _enable_interrupts ]
+[; ;messages.c: 14: void init_queue(msg_queue *qptr) {
+[e :U _init_queue ]
+[v _qptr `*S2088 ~T0 @X0 1 r1 ]
 [f ]
-[; ;interrupts.c: 17: RCONbits.IPEN = 1;
+"15
+[v _i `uc ~T0 @X0 1 a ]
+[; ;messages.c: 15: unsigned char i;
+[; ;messages.c: 17: qptr->cur_write_ind = 0;
 "17
-[e = . . _RCONbits 5 7 -> -> 1 `i `uc ]
-[; ;interrupts.c: 18: INTCONbits.GIEH = 1;
+[e = . *U _qptr 1 -> -> 0 `i `uc ]
+[; ;messages.c: 18: qptr->cur_read_ind = 0;
 "18
-[e = . . _INTCONbits 2 7 -> -> 1 `i `uc ]
-[; ;interrupts.c: 19: INTCONbits.GIEL = 1;
+[e = . *U _qptr 2 -> -> 0 `i `uc ]
+[; ;messages.c: 19: for (i = 0; i < 4; i++) {
 "19
-[e = . . _INTCONbits 2 6 -> -> 1 `i `uc ]
-[; ;interrupts.c: 20: }
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 4 `i 2090  ]
+[e $U 2091  ]
+[e :U 2090 ]
+{
+[; ;messages.c: 20: qptr->queue[i].full = 0;
 "20
-[e :UE 2091 ]
+[e = . *U + &U . *U _qptr 0 * -> _i `ux -> -> # *U &U . *U _qptr 0 `ui `ux 0 -> -> 0 `i `uc ]
+"21
 }
+"19
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 4 `i 2090  ]
+[e :U 2091 ]
+"21
+}
+[; ;messages.c: 21: }
+[; ;messages.c: 22: }
 "22
-[v _in_high_int `(i ~T0 @X0 1 ef ]
-{
-[; ;interrupts.c: 22: int in_high_int() {
-[e :U _in_high_int ]
-[f ]
-[; ;interrupts.c: 23: return (!INTCONbits.GIEH);
-"23
-[e ) -> ! != -> . . _INTCONbits 2 7 `i -> -> -> 0 `i `Vuc `i `i ]
-[e $UE 2092  ]
-[; ;interrupts.c: 24: }
+[e :UE 2089 ]
+}
 "24
-[e :UE 2092 ]
-}
-"26
-[v _low_int_active `(i ~T0 @X0 1 ef ]
+[v _send_msg `(c ~T0 @X0 1 ef4`*S2088`uc`uc`*v ]
 {
-[; ;interrupts.c: 26: int low_int_active() {
-[e :U _low_int_active ]
+[; ;messages.c: 24: signed char send_msg(msg_queue *qptr, unsigned char length, unsigned char msgtype, void *data) {
+[e :U _send_msg ]
+[v _qptr `*S2088 ~T0 @X0 1 r1 ]
+[v _length `uc ~T0 @X0 1 r2 ]
+[v _msgtype `uc ~T0 @X0 1 r3 ]
+[v _data `*v ~T0 @X0 1 r4 ]
 [f ]
-[; ;interrupts.c: 27: return (!INTCONbits.GIEL);
+"25
+[v _slot `uc ~T0 @X0 1 a ]
 "27
-[e ) -> ! != -> . . _INTCONbits 2 6 `i -> -> -> 0 `i `Vuc `i `i ]
-[e $UE 2093  ]
-[; ;interrupts.c: 28: }
+[v _qmsg `*S2087 ~T0 @X0 1 a ]
 "28
-[e :UE 2093 ]
-}
-"30
-[v _in_low_int `(i ~T0 @X0 1 ef ]
-{
-[; ;interrupts.c: 30: int in_low_int() {
-[e :U _in_low_int ]
-[f ]
-[; ;interrupts.c: 31: if (INTCONbits.GIEL == 1) {
-"31
-[e $ ! == -> . . _INTCONbits 2 6 `i -> 1 `i 2095  ]
-{
-[; ;interrupts.c: 32: return (0);
-"32
-[e ) -> 0 `i ]
-[e $UE 2094  ]
-"33
-}
-[; ;interrupts.c: 33: } else if (in_high_int()) {
-[e $U 2096  ]
-[e :U 2095 ]
-[e $ ! != ( _in_high_int ..  -> 0 `i 2097  ]
-{
-[; ;interrupts.c: 34: return (0);
-"34
-[e ) -> 0 `i ]
-[e $UE 2094  ]
-"35
-}
-[; ;interrupts.c: 35: } else {
-[e $U 2098  ]
-[e :U 2097 ]
-{
-[; ;interrupts.c: 36: return (1);
-"36
-[e ) -> 1 `i ]
-[e $UE 2094  ]
-"37
-}
-[e :U 2098 ]
-[e :U 2096 ]
-[; ;interrupts.c: 37: }
-[; ;interrupts.c: 38: }
+[v _tlength `ui ~T0 @X0 1 a ]
+[; ;messages.c: 25: unsigned char slot;
+[; ;messages.c: 27: msg *qmsg;
+[; ;messages.c: 28: size_t tlength = length;
+[e = _tlength -> _length `ui ]
+[; ;messages.c: 38: slot = qptr->cur_write_ind;
 "38
-[e :UE 2094 ]
-}
-"40
-[v _in_main `(i ~T0 @X0 1 ef ]
-{
-[; ;interrupts.c: 40: int in_main() {
-[e :U _in_main ]
-[f ]
-[; ;interrupts.c: 41: if ((!in_low_int()) && (!in_high_int())) {
+[e = _slot . *U _qptr 1 ]
+[; ;messages.c: 39: qmsg = &(qptr->queue[slot]);
+"39
+[e = _qmsg &U *U + &U . *U _qptr 0 * -> _slot `ux -> -> # *U &U . *U _qptr 0 `ui `ux ]
+[; ;messages.c: 41: if (qmsg->full != 0) {
 "41
-[e $ ! && ! != ( _in_low_int ..  -> 0 `i ! != ( _in_high_int ..  -> 0 `i 2100  ]
+[e $ ! != -> . *U _qmsg 0 `i -> 0 `i 2094  ]
 {
-[; ;interrupts.c: 42: return (1);
+[; ;messages.c: 42: return (-1);
 "42
-[e ) -> 1 `i ]
-[e $UE 2099  ]
+[e ) -> -U -> 1 `i `c ]
+[e $UE 2093  ]
 "43
 }
-[; ;interrupts.c: 43: } else {
-[e $U 2101  ]
-[e :U 2100 ]
-{
-[; ;interrupts.c: 44: return (0);
-"44
-[e ) -> 0 `i ]
-[e $UE 2099  ]
-"45
-}
-[e :U 2101 ]
-[; ;interrupts.c: 45: }
-[; ;interrupts.c: 46: }
+[e :U 2094 ]
+[; ;messages.c: 43: }
+[; ;messages.c: 46: qmsg->length = length;
 "46
-[e :UE 2099 ]
+[e = . *U _qmsg 1 _length ]
+[; ;messages.c: 47: qmsg->msgtype = msgtype;
+"47
+[e = . *U _qmsg 2 _msgtype ]
+[; ;messages.c: 55: memcpy(qmsg->data, data, tlength);
+"55
+[e ( _memcpy (3 , , -> &U . *U _qmsg 3 `*v -> _data `*Cv _tlength ]
+[; ;messages.c: 56: qptr->cur_write_ind = (qptr->cur_write_ind + 1) % 4;
+"56
+[e = . *U _qptr 1 -> % + -> . *U _qptr 1 `i -> 1 `i -> 4 `i `uc ]
+[; ;messages.c: 59: qmsg->full = 1;
+"59
+[e = . *U _qmsg 0 -> -> 1 `i `uc ]
+[; ;messages.c: 60: return (1);
+"60
+[e ) -> -> 1 `i `c ]
+[e $UE 2093  ]
+[; ;messages.c: 61: }
+"61
+[e :UE 2093 ]
 }
-"83
-[v F16331 `(v ~T0 @X0 1 tf ]
-[v _InterruptHandlerHigh `IF16331 ~T0 @X0 1 e ]
+"63
+[v _recv_msg `(c ~T0 @X0 1 ef4`*S2088`uc`*uc`*v ]
 {
-[; ;interrupts.c: 78: interrupt
-[; ;interrupts.c: 83: void InterruptHandlerHigh() {
-[e :U _InterruptHandlerHigh ]
+[; ;messages.c: 63: signed char recv_msg(msg_queue *qptr, unsigned char maxlength, unsigned char *msgtype, void *data) {
+[e :U _recv_msg ]
+[v _qptr `*S2088 ~T0 @X0 1 r1 ]
+[v _maxlength `uc ~T0 @X0 1 r2 ]
+[v _msgtype `*uc ~T0 @X0 1 r3 ]
+[v _data `*v ~T0 @X0 1 r4 ]
 [f ]
-[; ;interrupts.c: 88: if (PIR1bits.SSPIF) {
-"88
-[e $ ! != -> . . _PIR1bits 0 3 `i -> -> -> 0 `i `Vuc `i 2103  ]
+"64
+[v _slot `uc ~T0 @X0 1 a ]
+"68
+[v _qmsg `*S2087 ~T0 @X0 1 a ]
+"69
+[v _tlength `ui ~T0 @X0 1 a ]
+[; ;messages.c: 64: unsigned char slot;
+[; ;messages.c: 68: msg *qmsg;
+[; ;messages.c: 69: size_t tlength;
+[; ;messages.c: 72: slot = qptr->cur_read_ind;
+"72
+[e = _slot . *U _qptr 2 ]
+[; ;messages.c: 73: qmsg = &(qptr->queue[slot]);
+"73
+[e = _qmsg &U *U + &U . *U _qptr 0 * -> _slot `ux -> -> # *U &U . *U _qptr 0 `ui `ux ]
+[; ;messages.c: 74: if (qmsg->full == 1) {
+"74
+[e $ ! == -> . *U _qmsg 0 `i -> 1 `i 2096  ]
 {
-[; ;interrupts.c: 90: PIR1bits.SSPIF = 0;
-"90
-[e = . . _PIR1bits 0 3 -> -> 0 `i `uc ]
-[; ;interrupts.c: 92: i2c_int_handler();
+[; ;messages.c: 76: if (qmsg->length > maxlength) {
+"76
+[e $ ! > -> . *U _qmsg 1 `i -> _maxlength `i 2097  ]
+{
+[; ;messages.c: 77: return (-3);
+"77
+[e ) -> -U -> 3 `i `c ]
+[e $UE 2095  ]
+"78
+}
+[e :U 2097 ]
+[; ;messages.c: 78: }
+[; ;messages.c: 80: tlength = qmsg->length;
+"80
+[e = _tlength -> . *U _qmsg 1 `ui ]
+[; ;messages.c: 81: memcpy(data, qmsg->data, tlength);
+"81
+[e ( _memcpy (3 , , _data -> &U . *U _qmsg 3 `*Cv _tlength ]
+[; ;messages.c: 87: qptr->cur_read_ind = (qptr->cur_read_ind + 1) % 4;
+"87
+[e = . *U _qptr 2 -> % + -> . *U _qptr 2 `i -> 1 `i -> 4 `i `uc ]
+[; ;messages.c: 89: (*msgtype) = qmsg->msgtype;
+"89
+[e = *U _msgtype . *U _qmsg 2 ]
+[; ;messages.c: 91: qmsg->full = 0;
+"91
+[e = . *U _qmsg 0 -> -> 0 `i `uc ]
+[; ;messages.c: 92: return (tlength);
 "92
-[e ( _i2c_int_handler ..  ]
+[e ) -> _tlength `c ]
+[e $UE 2095  ]
 "93
 }
-[e :U 2103 ]
-[; ;interrupts.c: 93: }
-[; ;interrupts.c: 96: if (INTCONbits.TMR0IF) {
-"96
-[e $ ! != -> . . _INTCONbits 0 2 `i -> -> -> 0 `i `Vuc `i 2104  ]
+[; ;messages.c: 93: } else {
+[e $U 2098  ]
+[e :U 2096 ]
 {
-[; ;interrupts.c: 97: INTCONbits.TMR0IF = 0;
-"97
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-[; ;interrupts.c: 99: timer0_int_handler();
-"99
-[e ( _timer0_int_handler ..  ]
-"100
+[; ;messages.c: 94: return (-4);
+"94
+[e ) -> -U -> 4 `i `c ]
+[e $UE 2095  ]
+"95
 }
-[e :U 2104 ]
-[; ;interrupts.c: 100: }
-[; ;interrupts.c: 109: SleepIfOkay();
+[e :U 2098 ]
+[; ;messages.c: 95: }
+[; ;messages.c: 96: }
+"96
+[e :UE 2095 ]
+}
+"101
+[v _ToMainLow_MQ `S2088 ~T0 @X0 1 s ]
+[; ;messages.c: 101: static msg_queue ToMainLow_MQ;
+"103
+[v _ToMainLow_sendmsg `(c ~T0 @X0 1 ef3`uc`uc`*v ]
+{
+[; ;messages.c: 103: signed char ToMainLow_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
+[e :U _ToMainLow_sendmsg ]
+[v _length `uc ~T0 @X0 1 r1 ]
+[v _msgtype `uc ~T0 @X0 1 r2 ]
+[v _data `*v ~T0 @X0 1 r3 ]
+[f ]
+[; ;messages.c: 109: return (send_msg(&ToMainLow_MQ, length, msgtype, data));
 "109
-[e ( _SleepIfOkay ..  ]
-[; ;interrupts.c: 110: }
+[e ) ( _send_msg (4 , , , &U _ToMainLow_MQ _length _msgtype _data ]
+[e $UE 2099  ]
+[; ;messages.c: 110: }
 "110
+[e :UE 2099 ]
+}
+"112
+[v _ToMainLow_recvmsg `(c ~T0 @X0 1 ef3`uc`*uc`*v ]
+{
+[; ;messages.c: 112: signed char ToMainLow_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
+[e :U _ToMainLow_recvmsg ]
+[v _maxlength `uc ~T0 @X0 1 r1 ]
+[v _msgtype `*uc ~T0 @X0 1 r2 ]
+[v _data `*v ~T0 @X0 1 r3 ]
+[f ]
+[; ;messages.c: 118: return (recv_msg(&ToMainLow_MQ, maxlength, msgtype, data));
+"118
+[e ) ( _recv_msg (4 , , , &U _ToMainLow_MQ _maxlength _msgtype _data ]
+[e $UE 2100  ]
+[; ;messages.c: 119: }
+"119
+[e :UE 2100 ]
+}
+"124
+[v _ToMainHigh_MQ `S2088 ~T0 @X0 1 s ]
+[; ;messages.c: 124: static msg_queue ToMainHigh_MQ;
+"126
+[v _ToMainHigh_sendmsg `(c ~T0 @X0 1 ef3`uc`uc`*v ]
+{
+[; ;messages.c: 126: signed char ToMainHigh_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
+[e :U _ToMainHigh_sendmsg ]
+[v _length `uc ~T0 @X0 1 r1 ]
+[v _msgtype `uc ~T0 @X0 1 r2 ]
+[v _data `*v ~T0 @X0 1 r3 ]
+[f ]
+[; ;messages.c: 132: return (send_msg(&ToMainHigh_MQ, length, msgtype, data));
+"132
+[e ) ( _send_msg (4 , , , &U _ToMainHigh_MQ _length _msgtype _data ]
+[e $UE 2101  ]
+[; ;messages.c: 133: }
+"133
+[e :UE 2101 ]
+}
+"135
+[v _ToMainHigh_recvmsg `(c ~T0 @X0 1 ef3`uc`*uc`*v ]
+{
+[; ;messages.c: 135: signed char ToMainHigh_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
+[e :U _ToMainHigh_recvmsg ]
+[v _maxlength `uc ~T0 @X0 1 r1 ]
+[v _msgtype `*uc ~T0 @X0 1 r2 ]
+[v _data `*v ~T0 @X0 1 r3 ]
+[f ]
+[; ;messages.c: 141: return (recv_msg(&ToMainHigh_MQ, maxlength, msgtype, data));
+"141
+[e ) ( _recv_msg (4 , , , &U _ToMainHigh_MQ _maxlength _msgtype _data ]
+[e $UE 2102  ]
+[; ;messages.c: 142: }
+"142
 [e :UE 2102 ]
 }
-"122
-[v F16333 `(v ~T0 @X0 1 tf ]
-[v _InterruptHandlerLow `ILF16333 ~T0 @X0 1 e ]
+"148
+[v _FromMainLow_MQ `S2088 ~T0 @X0 1 s ]
+[; ;messages.c: 148: static msg_queue FromMainLow_MQ;
+"150
+[v _FromMainLow_sendmsg `(c ~T0 @X0 1 ef3`uc`uc`*v ]
 {
-[; ;interrupts.c: 117: interrupt low_priority
-[; ;interrupts.c: 122: void InterruptHandlerLow() {
-[e :U _InterruptHandlerLow ]
+[; ;messages.c: 150: signed char FromMainLow_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
+[e :U _FromMainLow_sendmsg ]
+[v _length `uc ~T0 @X0 1 r1 ]
+[v _msgtype `uc ~T0 @X0 1 r2 ]
+[v _data `*v ~T0 @X0 1 r3 ]
 [f ]
-[; ;interrupts.c: 124: if (PIR1bits.TMR1IF) {
-"124
-[e $ ! != -> . . _PIR1bits 0 0 `i -> -> -> 0 `i `Vuc `i 2106  ]
-{
-[; ;interrupts.c: 125: PIR1bits.TMR1IF = 0;
-"125
-[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
-[; ;interrupts.c: 126: timer1_int_handler();
-"126
-[e ( _timer1_int_handler ..  ]
-"127
+[; ;messages.c: 156: return (send_msg(&FromMainLow_MQ, length, msgtype, data));
+"156
+[e ) ( _send_msg (4 , , , &U _FromMainLow_MQ _length _msgtype _data ]
+[e $UE 2103  ]
+[; ;messages.c: 157: }
+"157
+[e :UE 2103 ]
 }
-[e :U 2106 ]
-[; ;interrupts.c: 127: }
-[; ;interrupts.c: 130: if(PIR1bits.ADIF){
-"130
-[e $ ! != -> . . _PIR1bits 0 6 `i -> -> -> 0 `i `Vuc `i 2107  ]
+"159
+[v _FromMainLow_recvmsg `(c ~T0 @X0 1 ef3`uc`*uc`*v ]
 {
-[; ;interrupts.c: 131: PIR1bits.ADIF = 0;
-"131
-[e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-[; ;interrupts.c: 132: adc_int_handler();
-"132
-[e ( _adc_int_handler ..  ]
-"133
+[; ;messages.c: 159: signed char FromMainLow_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
+[e :U _FromMainLow_recvmsg ]
+[v _maxlength `uc ~T0 @X0 1 r1 ]
+[v _msgtype `*uc ~T0 @X0 1 r2 ]
+[v _data `*v ~T0 @X0 1 r3 ]
+[f ]
+[; ;messages.c: 165: return (recv_msg(&FromMainLow_MQ, maxlength, msgtype, data));
+"165
+[e ) ( _recv_msg (4 , , , &U _FromMainLow_MQ _maxlength _msgtype _data ]
+[e $UE 2104  ]
+[; ;messages.c: 166: }
+"166
+[e :UE 2104 ]
 }
-[e :U 2107 ]
-[; ;interrupts.c: 133: }
-[; ;interrupts.c: 136: if (PIR1bits.RCIF) {
-"136
-[e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 2108  ]
+"172
+[v _FromMainHigh_MQ `S2088 ~T0 @X0 1 s ]
+[; ;messages.c: 172: static msg_queue FromMainHigh_MQ;
+"174
+[v _FromMainHigh_sendmsg `(c ~T0 @X0 1 ef3`uc`uc`*v ]
 {
-[; ;interrupts.c: 137: PIR1bits.RCIF = 0;
-"137
-[e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
-[; ;interrupts.c: 138: uart_recv_int_handler();
-"138
-[e ( _uart_recv_int_handler ..  ]
-"139
-}
-[e :U 2108 ]
-[; ;interrupts.c: 139: }
-[; ;interrupts.c: 140: }
-"140
+[; ;messages.c: 174: signed char FromMainHigh_sendmsg(unsigned char length, unsigned char msgtype, void *data) {
+[e :U _FromMainHigh_sendmsg ]
+[v _length `uc ~T0 @X0 1 r1 ]
+[v _msgtype `uc ~T0 @X0 1 r2 ]
+[v _data `*v ~T0 @X0 1 r3 ]
+[f ]
+[; ;messages.c: 180: return (send_msg(&FromMainHigh_MQ, length, msgtype, data));
+"180
+[e ) ( _send_msg (4 , , , &U _FromMainHigh_MQ _length _msgtype _data ]
+[e $UE 2105  ]
+[; ;messages.c: 181: }
+"181
 [e :UE 2105 ]
+}
+"183
+[v _FromMainHigh_recvmsg `(c ~T0 @X0 1 ef3`uc`*uc`*v ]
+{
+[; ;messages.c: 183: signed char FromMainHigh_recvmsg(unsigned char maxlength, unsigned char *msgtype, void *data) {
+[e :U _FromMainHigh_recvmsg ]
+[v _maxlength `uc ~T0 @X0 1 r1 ]
+[v _msgtype `*uc ~T0 @X0 1 r2 ]
+[v _data `*v ~T0 @X0 1 r3 ]
+[f ]
+[; ;messages.c: 189: return (recv_msg(&FromMainHigh_MQ, maxlength, msgtype, data));
+"189
+[e ) ( _recv_msg (4 , , , &U _FromMainHigh_MQ _maxlength _msgtype _data ]
+[e $UE 2106  ]
+[; ;messages.c: 190: }
+"190
+[e :UE 2106 ]
+}
+"192
+[v _MQ_Main_Willing_to_block `uc ~T0 @X0 1 s ]
+[; ;messages.c: 192: static unsigned char MQ_Main_Willing_to_block;
+"194
+[v _init_queues `(v ~T0 @X0 1 ef ]
+{
+[; ;messages.c: 194: void init_queues() {
+[e :U _init_queues ]
+[f ]
+[; ;messages.c: 195: MQ_Main_Willing_to_block = 0;
+"195
+[e = _MQ_Main_Willing_to_block -> -> 0 `i `uc ]
+[; ;messages.c: 196: init_queue(&ToMainLow_MQ);
+"196
+[e ( _init_queue (1 &U _ToMainLow_MQ ]
+[; ;messages.c: 197: init_queue(&ToMainHigh_MQ);
+"197
+[e ( _init_queue (1 &U _ToMainHigh_MQ ]
+[; ;messages.c: 198: init_queue(&FromMainLow_MQ);
+"198
+[e ( _init_queue (1 &U _FromMainLow_MQ ]
+[; ;messages.c: 199: init_queue(&FromMainHigh_MQ);
+"199
+[e ( _init_queue (1 &U _FromMainHigh_MQ ]
+[; ;messages.c: 200: }
+"200
+[e :UE 2107 ]
+}
+"202
+[v _enter_sleep_mode `(v ~T0 @X0 1 ef ]
+{
+[; ;messages.c: 202: void enter_sleep_mode(void) {
+[e :U _enter_sleep_mode ]
+[f ]
+[; ;messages.c: 204: OSCCONbits.IDLEN = 1;
+"204
+[e = . . _OSCCONbits 0 4 -> -> 1 `i `uc ]
+"213
+[; <"     SLEEP ;# ">
+"214
+"215
+[; <" # 214 ;# ">
+[; ;messages.c: 218: }
+"218
+[e :UE 2108 ]
+}
+"222
+[v _check_msg `(uc ~T0 @X0 1 ef1`*S2088 ]
+{
+[; ;messages.c: 222: unsigned char check_msg(msg_queue *qptr) {
+[e :U _check_msg ]
+[v _qptr `*S2088 ~T0 @X0 1 r1 ]
+[f ]
+[; ;messages.c: 223: return (qptr->queue[qptr->cur_read_ind].full);
+"223
+[e ) . *U + &U . *U _qptr 0 * -> . *U _qptr 2 `ux -> -> # *U &U . *U _qptr 0 `ui `ux 0 ]
+[e $UE 2109  ]
+[; ;messages.c: 224: }
+"224
+[e :UE 2109 ]
+}
+"228
+[v _SleepIfOkay `(v ~T0 @X0 1 ef ]
+{
+[; ;messages.c: 228: void SleepIfOkay() {
+[e :U _SleepIfOkay ]
+[f ]
+[; ;messages.c: 230: if (MQ_Main_Willing_to_block == 0) {
+"230
+[e $ ! == -> _MQ_Main_Willing_to_block `i -> 0 `i 2111  ]
+{
+[; ;messages.c: 231: return;
+"231
+[e $UE 2110  ]
+"232
+}
+[e :U 2111 ]
+[; ;messages.c: 232: }
+[; ;messages.c: 235: if (in_low_int()) {
+"235
+[e $ ! != ( _in_low_int ..  -> 0 `i 2112  ]
+{
+[; ;messages.c: 236: return;
+"236
+[e $UE 2110  ]
+"237
+}
+[e :U 2112 ]
+[; ;messages.c: 237: }
+[; ;messages.c: 240: if (!in_high_int()) {
+"240
+[e $ ! ! != ( _in_high_int ..  -> 0 `i 2113  ]
+{
+[; ;messages.c: 241: return;
+"241
+[e $UE 2110  ]
+"242
+}
+[e :U 2113 ]
+[; ;messages.c: 242: }
+[; ;messages.c: 247: if (check_msg(&ToMainHigh_MQ)) {
+"247
+[e $ ! != -> ( _check_msg (1 &U _ToMainHigh_MQ `i -> -> -> 0 `i `uc `i 2114  ]
+{
+[; ;messages.c: 248: return;
+"248
+[e $UE 2110  ]
+"249
+}
+[e :U 2114 ]
+[; ;messages.c: 249: }
+[; ;messages.c: 250: if (check_msg(&ToMainLow_MQ)) {
+"250
+[e $ ! != -> ( _check_msg (1 &U _ToMainLow_MQ `i -> -> -> 0 `i `uc `i 2115  ]
+{
+[; ;messages.c: 251: return;
+"251
+[e $UE 2110  ]
+"252
+}
+[e :U 2115 ]
+[; ;messages.c: 252: }
+[; ;messages.c: 253: enter_sleep_mode();
+"253
+[e ( _enter_sleep_mode ..  ]
+[; ;messages.c: 254: }
+"254
+[e :UE 2110 ]
+}
+"258
+[v _block_on_To_msgqueues `(v ~T0 @X0 1 ef ]
+{
+[; ;messages.c: 258: void block_on_To_msgqueues() {
+[e :U _block_on_To_msgqueues ]
+[f ]
+[; ;messages.c: 259: if (!in_main()) {
+"259
+[e $ ! ! != ( _in_main ..  -> 0 `i 2117  ]
+{
+[; ;messages.c: 260: return;
+"260
+[e $UE 2116  ]
+"261
+}
+[e :U 2117 ]
+[; ;messages.c: 261: }
+[; ;messages.c: 262: LATBbits.LATB3 = 1;
+"262
+[e = . . _LATBbits 0 3 -> -> 1 `i `uc ]
+[; ;messages.c: 263: MQ_Main_Willing_to_block = 1;
+"263
+[e = _MQ_Main_Willing_to_block -> -> 1 `i `uc ]
+[; ;messages.c: 264: while (1) {
+"264
+[e :U 2119 ]
+{
+[; ;messages.c: 265: if (check_msg(&ToMainHigh_MQ)) {
+"265
+[e $ ! != -> ( _check_msg (1 &U _ToMainHigh_MQ `i -> -> -> 0 `i `uc `i 2121  ]
+{
+[; ;messages.c: 266: MQ_Main_Willing_to_block = 0;
+"266
+[e = _MQ_Main_Willing_to_block -> -> 0 `i `uc ]
+[; ;messages.c: 267: LATBbits.LATB3 = 0;
+"267
+[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
+[; ;messages.c: 268: return;
+"268
+[e $UE 2116  ]
+"269
+}
+[e :U 2121 ]
+[; ;messages.c: 269: }
+[; ;messages.c: 270: if (check_msg(&ToMainLow_MQ)) {
+"270
+[e $ ! != -> ( _check_msg (1 &U _ToMainLow_MQ `i -> -> -> 0 `i `uc `i 2122  ]
+{
+[; ;messages.c: 271: MQ_Main_Willing_to_block = 0;
+"271
+[e = _MQ_Main_Willing_to_block -> -> 0 `i `uc ]
+[; ;messages.c: 272: LATBbits.LATB3 = 0;
+"272
+[e = . . _LATBbits 0 3 -> -> 0 `i `uc ]
+[; ;messages.c: 273: return;
+"273
+[e $UE 2116  ]
+"274
+}
+[e :U 2122 ]
+[; ;messages.c: 274: }
+[; ;messages.c: 275: Delay1KTCYx(10);
+"275
+[e ( _Delay1KTCYx (1 -> -> 10 `i `uc ]
+[; ;messages.c: 276: LATBbits.LATB3 = !LATBbits.LATB3;
+"276
+[e = . . _LATBbits 0 3 -> -> ! != -> . . _LATBbits 0 3 `i -> -> -> 0 `i `Vuc `i `i `uc ]
+"277
+}
+[e :U 2118 ]
+"264
+[e $U 2119  ]
+[e :U 2120 ]
+[; ;messages.c: 277: }
+[; ;messages.c: 278: }
+"278
+[e :UE 2116 ]
 }
