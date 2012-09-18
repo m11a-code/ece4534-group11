@@ -18931,9 +18931,13 @@ ic_ptr->error_code = 0x7;
 }
 
 if (msg_ready) {
-ic_ptr->buffer[ic_ptr->buflen] = ic_ptr->event_count;
-ToMainHigh_sendmsg(ic_ptr->buflen + 1, 40, (void *) ic_ptr->buffer);
-ic_ptr->buflen = 0;
+
+unsigned char data[10];
+unsigned char msgtype;
+int length = FromMainLow_recvmsg(10, &msgtype, (void *) data);
+start_i2c_slave_reply(length, data);
+
+
 } else if (ic_ptr->error_count >= 1) {
 error_buf[0] = ic_ptr->error_count;
 error_buf[1] = ic_ptr->error_code;
@@ -18943,7 +18947,7 @@ ic_ptr->error_count = 0;
 }
 if (msg_to_send) {
 
-ToMainHigh_sendmsg(0, 42, (void *) ic_ptr->buffer);
+# 272
 msg_to_send = 0;
 }
 }
@@ -18976,11 +18980,11 @@ SSPCON2 = 0x0;
 SSPCON1 |= 0x0E;
 SSPSTAT |= 0b10000000;
 
-# 300
+# 308
 TRISCbits.TRISC3 = 1;
 TRISCbits.TRISC4 = 1;
 
-# 307
+# 315
 SSPCON2bits.SEN = 1;
 SSPCON1 |= 0b00100000;
 

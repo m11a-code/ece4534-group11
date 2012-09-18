@@ -666,8 +666,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _ToMainLow_recvmsg `(c ~T0 @X0 0 ef3`uc`*uc`*v ]
 "7 ../src/timer1_thread.h
 [v _timer1_lthread `(i ~T0 @X0 0 ef4`*S2093`i`i`*uc ]
-"34 ../src/my_i2c.h
-[v _start_i2c_slave_reply `(v ~T0 @X0 0 ef2`uc`*uc ]
+"71 ../src/messages.h
+[v _FromMainLow_sendmsg `(c ~T0 @X0 0 ef3`uc`uc`*v ]
 "6 ../src/uart_thread.h
 [v _uart_lthread `(i ~T0 @X0 0 ef4`*S2092`i`i`*uc ]
 [s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -25863,45 +25863,45 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 283: {
 "283
 {
-[; ;main.c: 285: start_i2c_slave_reply(length, msgbuffer);
+[; ;main.c: 285: FromMainLow_sendmsg(length, msgtype, (void *) msgbuffer);
 "285
-[e ( _start_i2c_slave_reply (2 , -> _length `uc &U _msgbuffer ]
-"286
-}
-[; ;main.c: 286: };
-[; ;main.c: 287: case 30:
+[e ( _FromMainLow_sendmsg (3 , , -> _length `uc _msgtype -> &U _msgbuffer `*v ]
 "287
-[e :U 2119 ]
+}
+[; ;main.c: 287: };
+[; ;main.c: 288: case 30:
 "288
-[e :U 2120 ]
-[; ;main.c: 288: case 31:
-[; ;main.c: 289: {
+[e :U 2119 ]
 "289
-{
-[; ;main.c: 290: uart_lthread(&uthread_data, msgtype, length, msgbuffer);
+[e :U 2120 ]
+[; ;main.c: 289: case 31:
+[; ;main.c: 290: {
 "290
-[e ( _uart_lthread (4 , , , &U _uthread_data -> _msgtype `i -> _length `i &U _msgbuffer ]
-[; ;main.c: 291: break;
-"291
-[e $U 2115  ]
-"292
-}
-[; ;main.c: 292: };
-[; ;main.c: 293: default:
-"293
-[e :U 2121 ]
-[; ;main.c: 294: {
-"294
 {
-[; ;main.c: 296: break;
-"296
+[; ;main.c: 291: uart_lthread(&uthread_data, msgtype, length, msgbuffer);
+"291
+[e ( _uart_lthread (4 , , , &U _uthread_data -> _msgtype `i -> _length `i &U _msgbuffer ]
+[; ;main.c: 292: break;
+"292
 [e $U 2115  ]
-"297
+"293
 }
-[; ;main.c: 297: };
+[; ;main.c: 293: };
+[; ;main.c: 294: default:
+"294
+[e :U 2121 ]
+[; ;main.c: 295: {
+"295
+{
+[; ;main.c: 297: break;
+"297
+[e $U 2115  ]
 "298
 }
 [; ;main.c: 298: };
+"299
+}
+[; ;main.c: 299: };
 [e $U 2115  ]
 "276
 [e :U 2116 ]
@@ -25910,20 +25910,20 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> -> 30 `i `uc 2119
  , $ -> -> 31 `i `uc 2120
  2121 ]
-"298
-[e :U 2115 ]
 "299
+[e :U 2115 ]
+"300
 }
 [e :U 2114 ]
-"300
+"301
 }
 [e :U 2096 ]
 "191
 [e $U 2097  ]
 [e :U 2098 ]
-[; ;main.c: 299: }
 [; ;main.c: 300: }
-[; ;main.c: 302: }
-"302
+[; ;main.c: 301: }
+[; ;main.c: 303: }
+"303
 [e :UE 2095 ]
 }

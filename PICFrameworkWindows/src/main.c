@@ -282,7 +282,7 @@ void main(void) {
                 case MSGT_I2C_DATA:
                 {
                     //Send value over I2C
-                    start_i2c_slave_reply(length, msgbuffer);
+                    FromMainLow_sendmsg(length, msgtype, (void *) msgbuffer);
                 };
                 case MSGT_OVERRUN:
                 case MSGT_UART_DATA:

@@ -19000,7 +19000,8 @@ break;
 case 40:
 {
 
-start_i2c_slave_reply(length, msgbuffer);
+FromMainLow_sendmsg(length, msgtype, (void *) msgbuffer);
+
 };
 case 30:
 case 31:
