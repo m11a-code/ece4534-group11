@@ -8083,14 +8083,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 :U ..
 -> -> 0 `i `uc
 -> -> 0 `i `uc
+-> -> 85 `i `uc
 ..
 ]
-[v _empty `uc ~T0 @X0 2  a ]
-[; ;my_i2c.c: 260: unsigned char empty[] = {0x0,0x0};
+[v _empty `uc ~T0 @X0 3  a ]
+[; ;my_i2c.c: 260: unsigned char empty[] = {0x0,0x0,0x55};
 [e = _empty F5030 ]
-[; ;my_i2c.c: 261: start_i2c_slave_reply(2,empty);
+[; ;my_i2c.c: 261: start_i2c_slave_reply(3,empty);
 "261
-[e ( _start_i2c_slave_reply (2 , -> -> 2 `i `uc &U _empty ]
+[e ( _start_i2c_slave_reply (2 , -> -> 3 `i `uc &U _empty ]
 "262
 }
 [e :U 627 ]

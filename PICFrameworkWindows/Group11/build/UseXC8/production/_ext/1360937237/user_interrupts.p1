@@ -7513,10 +7513,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;user_interrupts.c: 50: value = 0x105;
 "50
 [e = _value -> -> 261 `i `ui ]
-[; ;user_interrupts.c: 51: ToMainLow_sendmsg(sizeof(value),40,(void *) &value);
 "51
-[e ( _ToMainLow_sendmsg (3 , , -> -> # _value `ui `uc -> -> 40 `i `uc -> &U _value `*v ]
-[; ;user_interrupts.c: 52: }
+[v _message `uc ~T0 @X0 -> 3 `i a ]
+[; ;user_interrupts.c: 51: unsigned char message[3];
+[; ;user_interrupts.c: 52: message[0] = (unsigned char)(0xFF & value);
 "52
+[e = *U + &U _message * -> -> -> 0 `i `ui `ux -> -> # *U &U _message `ui `ux -> & -> -> 255 `i `ui _value `uc ]
+[; ;user_interrupts.c: 53: message[1] = (unsigned char)(0xFF & (value>>8));
+"53
+[e = *U + &U _message * -> -> -> 1 `i `ui `ux -> -> # *U &U _message `ui `ux -> & -> -> 255 `i `ui >> _value -> 8 `i `uc ]
+[; ;user_interrupts.c: 54: message[2] = 0x10;
+"54
+[e = *U + &U _message * -> -> -> 2 `i `ui `ux -> -> # *U &U _message `ui `ux -> -> 16 `i `uc ]
+[; ;user_interrupts.c: 55: ToMainLow_sendmsg(3,40,(void *) message);
+"55
+[e ( _ToMainLow_sendmsg (3 , , -> -> 3 `i `uc -> -> 40 `i `uc -> &U _message `*v ]
+[; ;user_interrupts.c: 56: }
+"56
 [e :UE 576 ]
 }

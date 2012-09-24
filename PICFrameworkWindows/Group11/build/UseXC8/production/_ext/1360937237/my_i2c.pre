@@ -6110,8 +6110,8 @@ start_i2c_slave_reply(length, data);
 }
 else {
 
-unsigned char empty[] = {0x0,0x0};
-start_i2c_slave_reply(2,empty);
+unsigned char empty[] = {0x0,0x0,0x55};
+start_i2c_slave_reply(3,empty);
 }
 
 

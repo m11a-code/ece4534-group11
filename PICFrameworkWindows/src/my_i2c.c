@@ -257,8 +257,8 @@ void i2c_int_handler() {
         }
         else {
             //send empty message
-            unsigned char empty[] = {0x0,0x0};
-            start_i2c_slave_reply(2,empty);
+            unsigned char empty[] = {0x0,0x0,0x55};
+            start_i2c_slave_reply(3,empty);
         }
         //ToMainHigh_sendmsg(ic_ptr->buflen + 1, MSGT_I2C_DATA, (void *) ic_ptr->buffer);
         //ic_ptr->buflen = 0;

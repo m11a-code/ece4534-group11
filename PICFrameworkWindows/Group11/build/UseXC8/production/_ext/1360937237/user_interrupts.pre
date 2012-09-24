@@ -5941,5 +5941,9 @@ WriteTimer1(temp);
 void adc_int_handler() {
 unsigned int value = ReadADC();
 value = 0x105;
-ToMainLow_sendmsg(sizeof(value),40,(void *) &value);
+unsigned char message[3];
+message[0] = (unsigned char)(0xFF & value);
+message[1] = (unsigned char)(0xFF & (value>>8));
+message[2] = 0x10;
+ToMainLow_sendmsg(3,40,(void *) message);
 }
