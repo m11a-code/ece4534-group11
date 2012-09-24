@@ -252,7 +252,14 @@ void i2c_int_handler() {
         unsigned char data[MSGLEN];
         unsigned char msgtype;
         int length = FromMainLow_recvmsg(MSGLEN, &msgtype, (void *) data);
-        start_i2c_slave_reply(length, data);
+        if(length > 0){
+            start_i2c_slave_reply(length, data);
+        }
+        else {
+            //send empty message
+            unsigned char empty[] = {0x0,0x0};
+            start_i2c_slave_reply(2,empty);
+        }
         //ToMainHigh_sendmsg(ic_ptr->buflen + 1, MSGT_I2C_DATA, (void *) ic_ptr->buffer);
         //ic_ptr->buflen = 0;
     } else if (ic_ptr->error_count >= I2C_ERR_THRESHOLD) {
