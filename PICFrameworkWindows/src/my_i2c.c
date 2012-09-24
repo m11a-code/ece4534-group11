@@ -8,6 +8,8 @@
 
 static i2c_comm *ic_ptr;
 
+static unsigned char emptyMsgCount = 0; //Count for empty messages sent
+
 // Configure for I2C Master mode -- the variable "slave_addr" should be stored in
 //   i2c_comm (as pointed to by ic_ptr) for later use.
 
@@ -257,8 +259,13 @@ void i2c_int_handler() {
         }
         else {
             //send empty message
-            unsigned char empty[] = {0x0,0x0,0x55};
-            start_i2c_slave_reply(3,empty);
+            unsigned char empty[ADC_MSG_SIZE];
+            empty[0] = EMPTY_MSG_TYPE;
+            empty[1] = emptyMsgCount;
+            empty[2] = 0x0;
+            empty[3] = 0x0;
+            emptyMsgCount++;
+            start_i2c_slave_reply(ADC_MSG_SIZE,empty);
         }
         //ToMainHigh_sendmsg(ic_ptr->buflen + 1, MSGT_I2C_DATA, (void *) ic_ptr->buffer);
         //ic_ptr->buflen = 0;

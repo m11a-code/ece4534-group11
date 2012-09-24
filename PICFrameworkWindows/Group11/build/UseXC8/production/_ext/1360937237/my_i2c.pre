@@ -5889,6 +5889,8 @@ unsigned char i2c_master_recv(unsigned char);
 # 9 "../src/my_i2c.c"
 static i2c_comm *ic_ptr;
 
+static unsigned char emptyMsgCount = 0;
+
 
 
 
@@ -5896,13 +5898,13 @@ void i2c_configure_master(unsigned char slave_addr) {
 
 }
 
-# 30
+# 32
 unsigned char i2c_master_send(unsigned char length, unsigned char *msg) {
 
 return(0);
 }
 
-# 48
+# 50
 unsigned char i2c_master_recv(unsigned char length) {
 
 return(0);
@@ -5949,7 +5951,7 @@ ic_ptr->status = 0x6;
 }
 }
 
-# 100
+# 102
 void i2c_int_handler() {
 unsigned char i2c_data;
 unsigned char data_read = 0;
@@ -6110,8 +6112,13 @@ start_i2c_slave_reply(length, data);
 }
 else {
 
-unsigned char empty[] = {0x0,0x0,0x55};
-start_i2c_slave_reply(3,empty);
+unsigned char empty[4];
+empty[0] = 0x55;
+empty[1] = emptyMsgCount;
+empty[2] = 0x0;
+empty[3] = 0x0;
+emptyMsgCount++;
+start_i2c_slave_reply(4,empty);
 }
 
 
@@ -6124,7 +6131,7 @@ ic_ptr->error_count = 0;
 }
 if (msg_to_send) {
 
-# 279
+# 286
 msg_to_send = 0;
 }
 }
@@ -6160,7 +6167,7 @@ SSPSTAT |= 0b10000000;
 TRISCbits.TRISC3 = 1;
 TRISCbits.TRISC4 = 1;
 
-# 322
+# 329
 SSPCON2bits.SEN = 1;
 SSPCON1 |= 0b00100000;
 

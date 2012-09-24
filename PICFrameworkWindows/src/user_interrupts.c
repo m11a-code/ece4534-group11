@@ -14,6 +14,8 @@
 // A function called by the interrupt handler
 // This one does the action I wanted for this program on a timer0 interrupt
 
+static unsigned char adcMsgCount = 0;
+
 void timer0_int_handler() {
     unsigned int val;
     int length, msgtype;
@@ -47,9 +49,11 @@ void timer1_int_handler() {
 
 void adc_int_handler() {
     unsigned int value = ReadADC();
-    unsigned char message[3];
-    message[0] = (unsigned char)(0xFF & value);
-    message[1] = (unsigned char)(0xFF & (value>>8));
-    message[2] = 0x10;
-    ToMainLow_sendmsg(3,MSGT_I2C_DATA,(void *) message);
+    unsigned char message[ADC_MSG_SIZE];
+    message[2] = (unsigned char)(0xFF & value); //Message Data
+    message[3] = (unsigned char)(0xFF & (value>>8));
+    message[0] = ADC_MSG_TYPE;  //Message Type
+    message[1] = adcMsgCount;   //Message Count
+    adcMsgCount++;
+    ToMainLow_sendmsg(ADC_MSG_SIZE,MSGT_I2C_DATA,(void *) message);
 }

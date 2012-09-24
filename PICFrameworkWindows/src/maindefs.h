@@ -35,5 +35,10 @@
 #define MSGT_I2C_MASTER_RECV_COMPLETE 45
 #define MSGT_I2C_MASTER_RECV_FAILED 46
 
+//I2C bus message parameters
+#define ADC_MSG_SIZE 4
+#define ADC_MSG_TYPE 0x10
+#define EMPTY_MSG_TYPE 0x55
+
 #endif
 
