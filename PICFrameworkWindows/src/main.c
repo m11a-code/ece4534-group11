@@ -143,7 +143,7 @@ void main(void) {
     // enable high-priority interrupts and low-priority interrupts
     enable_interrupts();
 
-#ifdef __USE18F45J10
+#ifdef __USE18F45J
     // Decide on the priority of the enabled peripheral interrupts
     // 0 is low, 1 is high
     // Timer1 interrupt

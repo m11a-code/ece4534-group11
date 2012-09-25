@@ -40,11 +40,10 @@ void timer1_int_handler() {
     //Read the timer and tell main to read the A/D converter
     //Send the read timer value (not sure what to do with that yet)
     result = ReadTimer1();
-    ToMainLow_sendmsg(sizeof(result), MSGT_TIMER1, (void *) &result);
-
     // reset the timer
     unsigned int temp = 0x1;
     WriteTimer1(temp);
+    ToMainLow_sendmsg(sizeof(result), MSGT_TIMER1, (void *) &result);
 }
 
 void adc_int_handler() {

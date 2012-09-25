@@ -25,7 +25,7 @@ void init_timer1_lthread(timer1_thread_struct *tptr) {
 int timer1_lthread(timer1_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
     //Store the value of the timer into the struct
     tptr->timerval = msgbuffer[0];
-#ifdef __USE18F45J10
+#ifdef __USE18F45J
     unsigned char toSend[] = {0xAB,0x55};
     i2c_master_send(2,toSend);
 #else
