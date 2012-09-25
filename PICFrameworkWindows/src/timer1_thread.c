@@ -4,6 +4,7 @@
 #include "timer1_thread.h"
 #include <plib/adc.h>
 #include <p18cxxx.h>
+#include "my_i2c.h"
 
 void init_timer1_lthread(timer1_thread_struct *tptr) {
     //Initialize the ADC
@@ -24,6 +25,11 @@ void init_timer1_lthread(timer1_thread_struct *tptr) {
 int timer1_lthread(timer1_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
     //Store the value of the timer into the struct
     tptr->timerval = msgbuffer[0];
+#ifdef __USE18F45J10
+    unsigned char toSend[] = {0xAB,0x55};
+    i2c_master_send(2,toSend);
+#else
     //Read value from ADC
     ConvertADC(); // Start conversion
+#endif
 }

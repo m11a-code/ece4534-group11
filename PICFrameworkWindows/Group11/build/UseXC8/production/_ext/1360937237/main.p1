@@ -132,7 +132,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _OSCTUNEbits `VS217 ~T0 @X0 0 e@3995 ]
 "15 ../src/my_uart.h
 [v _init_uart_recv `(v ~T0 @X0 0 ef1`*S572 ]
-"32 ../src/my_i2c.h
+"34 ../src/my_i2c.h
 [v _init_i2c `(v ~T0 @X0 0 ef1`*S573 ]
 "6 ../src/timer1_thread.h
 [v _init_timer1_lthread `(v ~T0 @X0 0 ef1`*S575 ]
@@ -150,7 +150,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S225 . . . ]
 "3755 /opt/microchip/xc8/v1.10/include/pic18f45j10.h
 [v _IPR1bits `VS225 ~T0 @X0 0 e@3999 ]
-"35 ../src/my_i2c.h
+"39 ../src/my_i2c.h
 [v _i2c_configure_slave `(v ~T0 @X0 0 ef1`uc ]
 [s S220 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S220 . TMR1IE TMR2IE CCP1IE SSP1IE TXIE RCIE ADIE PSPIE ]
@@ -7488,13 +7488,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;my_i2c.h: 16: unsigned char outbufind;
 [; ;my_i2c.h: 17: unsigned char slave_addr;
 [; ;my_i2c.h: 18: } i2c_comm;
-[; ;my_i2c.h: 32: void init_i2c(i2c_comm *);
-[; ;my_i2c.h: 33: void i2c_int_handler(void);
-[; ;my_i2c.h: 34: void start_i2c_slave_reply(unsigned char,unsigned char *);
-[; ;my_i2c.h: 35: void i2c_configure_slave(unsigned char);
-[; ;my_i2c.h: 36: void i2c_configure_master(unsigned char);
-[; ;my_i2c.h: 37: unsigned char i2c_master_send(unsigned char,unsigned char *);
-[; ;my_i2c.h: 38: unsigned char i2c_master_recv(unsigned char);
+[; ;my_i2c.h: 34: void init_i2c(i2c_comm *);
+[; ;my_i2c.h: 35: void i2c_int_handler(void);
+[; ;my_i2c.h: 36: void i2c_slave_int_handler(void);
+[; ;my_i2c.h: 37: void i2c_master_int_handler(void);
+[; ;my_i2c.h: 38: void start_i2c_slave_reply(unsigned char,unsigned char *);
+[; ;my_i2c.h: 39: void i2c_configure_slave(unsigned char);
+[; ;my_i2c.h: 40: void i2c_configure_master(unsigned char);
+[; ;my_i2c.h: 41: unsigned char i2c_master_send(unsigned char,unsigned char *);
+[; ;my_i2c.h: 42: unsigned char i2c_master_recv(unsigned char);
 [; ;uart_thread.h: 1: typedef struct __uart_thread_struct {
 [; ;uart_thread.h: 3: int data;
 [; ;uart_thread.h: 4: } uart_thread_struct;
@@ -7573,303 +7575,303 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 100: OSCTUNEbits.PLLEN = 0;
 "100
 [e = . . _OSCTUNEbits 0 1 -> -> 0 `i `uc ]
-[; ;main.c: 104: init_uart_recv(&uc);
-"104
+[; ;main.c: 105: init_uart_recv(&uc);
+"105
 [e ( _init_uart_recv (1 &U _uc ]
-[; ;main.c: 107: init_i2c(&ic);
-"107
+[; ;main.c: 109: init_i2c(&ic);
+"109
 [e ( _init_i2c (1 &U _ic ]
-[; ;main.c: 110: init_timer1_lthread(&t1thread_data);
-"110
+[; ;main.c: 112: init_timer1_lthread(&t1thread_data);
+"112
 [e ( _init_timer1_lthread (1 &U _t1thread_data ]
-[; ;main.c: 113: init_queues();
-"113
+[; ;main.c: 115: init_queues();
+"115
 [e ( _init_queues ..  ]
-[; ;main.c: 116: TRISB = 0x0;
-"116
+[; ;main.c: 118: TRISB = 0x0;
+"118
 [e = _TRISB -> -> 0 `i `uc ]
-[; ;main.c: 117: LATB = 0x0;
-"117
+[; ;main.c: 119: LATB = 0x0;
+"119
 [e = _LATB -> -> 0 `i `uc ]
-[; ;main.c: 121: PORTA = 0x0;
-"121
-[e = _PORTA -> -> 0 `i `uc ]
-[; ;main.c: 122: LATA = 0x0;
-"122
-[e = _LATA -> -> 0 `i `uc ]
-[; ;main.c: 123: ADCON1 = 0x0F;
+[; ;main.c: 123: PORTA = 0x0;
 "123
-[e = _ADCON1 -> -> 15 `i `uc ]
-[; ;main.c: 125: TRISA = 0x0F;
+[e = _PORTA -> -> 0 `i `uc ]
+[; ;main.c: 124: LATA = 0x0;
+"124
+[e = _LATA -> -> 0 `i `uc ]
+[; ;main.c: 125: ADCON1 = 0x0F;
 "125
+[e = _ADCON1 -> -> 15 `i `uc ]
+[; ;main.c: 127: TRISA = 0x0F;
+"127
 [e = _TRISA -> -> 15 `i `uc ]
-[; ;main.c: 129: OpenTimer1(0b11111111 & 0b11111111 & 0b11111111 & 0b11111101 & 0b11110111 & 0b11111111);
-"129
+[; ;main.c: 135: OpenTimer1(0b11111111 & 0b11111111 & 0b11111111 & 0b11111101 & 0b11110111 & 0b11111111);
+"135
 [e ( _OpenTimer1 (1 -> & & & & & -> 255 `i -> 255 `i -> 255 `i -> 253 `i -> 247 `i -> 255 `i `uc ]
-[; ;main.c: 133: enable_interrupts();
-"133
-[e ( _enable_interrupts ..  ]
-[; ;main.c: 138: IPR1bits.TMR1IP = 0;
-"138
-[e = . . _IPR1bits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 140: IPR1bits.ADIP = 0;
-"140
-[e = . . _IPR1bits 0 6 -> -> 0 `i `uc ]
-[; ;main.c: 142: IPR1bits.RCIP = 0;
-"142
-[e = . . _IPR1bits 0 5 -> -> 0 `i `uc ]
-[; ;main.c: 144: IPR1bits.SSPIP = 1;
+[; ;main.c: 144: enable_interrupts();
 "144
-[e = . . _IPR1bits 1 1 -> -> 1 `i `uc ]
-[; ;main.c: 154: i2c_configure_slave(0x9E);
+[e ( _enable_interrupts ..  ]
+[; ;main.c: 150: IPR1bits.TMR1IP = 0;
+"150
+[e = . . _IPR1bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 152: IPR1bits.ADIP = 0;
+"152
+[e = . . _IPR1bits 0 6 -> -> 0 `i `uc ]
+[; ;main.c: 154: IPR1bits.RCIP = 0;
 "154
-[e ( _i2c_configure_slave (1 -> -> 158 `i `uc ]
-[; ;main.c: 167: PIE1bits.SSPIE = 1;
-"167
+[e = . . _IPR1bits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 156: IPR1bits.SSP1IP = 1;
+"156
+[e = . . _IPR1bits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 176: i2c_configure_slave(0x9C);
+"176
+[e ( _i2c_configure_slave (1 -> -> 156 `i `uc ]
+[; ;main.c: 199: PIE1bits.SSPIE = 1;
+"199
 [e = . . _PIE1bits 1 1 -> -> 1 `i `uc ]
-[; ;main.c: 170: OpenUSART(0b01111111 & 0b11111111 & 0b11111110 & 0b11111101 &
-[; ;main.c: 171: 0b11111111 & 0b11101111, 0x19);
-"171
+[; ;main.c: 204: OpenUSART(0b01111111 & 0b11111111 & 0b11111110 & 0b11111101 &
+[; ;main.c: 205: 0b11111111 & 0b11101111, 0x19);
+"205
 [e ( _OpenUSART (2 , -> & & & & & -> 127 `i -> 255 `i -> 254 `i -> 253 `i -> 255 `i -> 239 `i `uc -> -> 25 `i `ui ]
-[; ;main.c: 191: while (1) {
-"191
+[; ;main.c: 226: while (1) {
+"226
 [e :U 579 ]
 {
-[; ;main.c: 195: block_on_To_msgqueues();
-"195
+[; ;main.c: 230: block_on_To_msgqueues();
+"230
 [e ( _block_on_To_msgqueues ..  ]
-[; ;main.c: 202: length = ToMainHigh_recvmsg(10, &msgtype, (void *) msgbuffer);
-"202
+[; ;main.c: 237: length = ToMainHigh_recvmsg(10, &msgtype, (void *) msgbuffer);
+"237
 [e = _length ( _ToMainHigh_recvmsg (3 , , -> -> 10 `i `uc &U _msgtype -> &U _msgbuffer `*v ]
-[; ;main.c: 203: if (length < 0) {
-"203
+[; ;main.c: 238: if (length < 0) {
+"238
 [e $ ! < -> _length `i -> 0 `i 581  ]
 {
-[; ;main.c: 205: if (length != -4) {
-"205
+[; ;main.c: 240: if (length != -4) {
+"240
 [e $ ! != -> _length `i -U -> 4 `i 582  ]
 {
-"207
+"242
 }
 [e :U 582 ]
-"208
+"243
 }
-[; ;main.c: 207: }
-[; ;main.c: 208: } else {
+[; ;main.c: 242: }
+[; ;main.c: 243: } else {
 [e $U 583  ]
 [e :U 581 ]
 {
-[; ;main.c: 209: switch (msgtype) {
-"209
+[; ;main.c: 244: switch (msgtype) {
+"244
 [e $U 585  ]
 {
-[; ;main.c: 213: case 10:
-"213
+[; ;main.c: 248: case 10:
+"248
 [e :U 586 ]
-[; ;main.c: 214: {
-"214
+[; ;main.c: 249: {
+"249
 {
-[; ;main.c: 215: timer0_lthread(&t0thread_data, msgtype, length, msgbuffer);
-"215
+[; ;main.c: 250: timer0_lthread(&t0thread_data, msgtype, length, msgbuffer);
+"250
 [e ( _timer0_lthread (4 , , , &U _t0thread_data -> _msgtype `i -> _length `i &U _msgbuffer ]
-[; ;main.c: 216: break;
-"216
+[; ;main.c: 251: break;
+"251
 [e $U 584  ]
-"217
+"252
 }
-[; ;main.c: 217: };
-[; ;main.c: 218: case 40:
-"218
+[; ;main.c: 252: };
+[; ;main.c: 253: case 40:
+"253
 [e :U 587 ]
-"220
+"255
 [e :U 588 ]
-[; ;main.c: 220: case 41:
-[; ;main.c: 221: {
-"221
+[; ;main.c: 255: case 41:
+[; ;main.c: 256: {
+"256
 {
-[; ;main.c: 224: last_reg_recvd = msgbuffer[0];
-"224
+[; ;main.c: 259: last_reg_recvd = msgbuffer[0];
+"259
 [e = _last_reg_recvd *U + &U _msgbuffer * -> -> -> 0 `i `ui `ux -> -> # *U &U _msgbuffer `ui `ux ]
-[; ;main.c: 225: break;
-"225
+[; ;main.c: 260: break;
+"260
 [e $U 584  ]
-"226
+"261
 }
-[; ;main.c: 226: };
-[; ;main.c: 227: case 42:
-"227
+[; ;main.c: 261: };
+[; ;main.c: 262: case 42:
+"262
 [e :U 589 ]
-[; ;main.c: 228: {
-"228
+[; ;main.c: 263: {
+"263
 {
-[; ;main.c: 236: switch (last_reg_recvd) {
-"236
+[; ;main.c: 271: switch (last_reg_recvd) {
+"271
 [e $U 591  ]
 {
-[; ;main.c: 237: case 0xaa:
-"237
+[; ;main.c: 272: case 0xaa:
+"272
 [e :U 592 ]
-[; ;main.c: 238: {
-"238
+[; ;main.c: 273: {
+"273
 {
-[; ;main.c: 242: break;
-"242
+[; ;main.c: 277: break;
+"277
 [e $U 590  ]
-"243
+"278
 }
-"256
+"291
 }
-[; ;main.c: 243: }
-[; ;main.c: 256: };
+[; ;main.c: 278: }
+[; ;main.c: 291: };
 [e $U 590  ]
-"236
+"271
 [e :U 591 ]
 [e [\ _last_reg_recvd , $ -> -> 170 `i `uc 592
  590 ]
-"256
+"291
 [e :U 590 ]
-[; ;main.c: 258: break;
-"258
+[; ;main.c: 293: break;
+"293
 [e $U 584  ]
-"259
+"294
 }
-[; ;main.c: 259: };
-[; ;main.c: 260: default:
-"260
+[; ;main.c: 294: };
+[; ;main.c: 295: default:
+"295
 [e :U 593 ]
-[; ;main.c: 261: {
-"261
+[; ;main.c: 296: {
+"296
 {
-[; ;main.c: 263: break;
-"263
+[; ;main.c: 298: break;
+"298
 [e $U 584  ]
-"264
+"299
 }
-[; ;main.c: 264: };
-"265
+[; ;main.c: 299: };
+"300
 }
-[; ;main.c: 265: };
+[; ;main.c: 300: };
 [e $U 584  ]
-"209
+"244
 [e :U 585 ]
 [e [\ _msgtype , $ -> -> 10 `i `uc 586
  , $ -> -> 40 `i `uc 587
  , $ -> -> 41 `i `uc 588
  , $ -> -> 42 `i `uc 589
  593 ]
-"265
+"300
 [e :U 584 ]
-"266
+"301
 }
 [e :U 583 ]
-[; ;main.c: 266: }
-[; ;main.c: 269: length = ToMainLow_recvmsg(10, &msgtype, (void *) msgbuffer);
-"269
+[; ;main.c: 301: }
+[; ;main.c: 304: length = ToMainLow_recvmsg(10, &msgtype, (void *) msgbuffer);
+"304
 [e = _length ( _ToMainLow_recvmsg (3 , , -> -> 10 `i `uc &U _msgtype -> &U _msgbuffer `*v ]
-[; ;main.c: 270: if (length < 0) {
-"270
+[; ;main.c: 305: if (length < 0) {
+"305
 [e $ ! < -> _length `i -> 0 `i 594  ]
 {
-[; ;main.c: 272: if (length != -4) {
-"272
+[; ;main.c: 307: if (length != -4) {
+"307
 [e $ ! != -> _length `i -U -> 4 `i 595  ]
 {
-"274
+"309
 }
 [e :U 595 ]
-"275
+"310
 }
-[; ;main.c: 274: }
-[; ;main.c: 275: } else {
+[; ;main.c: 309: }
+[; ;main.c: 310: } else {
 [e $U 596  ]
 [e :U 594 ]
 {
-[; ;main.c: 276: switch (msgtype) {
-"276
+[; ;main.c: 311: switch (msgtype) {
+"311
 [e $U 598  ]
 {
-[; ;main.c: 277: case 11:
-"277
+[; ;main.c: 312: case 11:
+"312
 [e :U 599 ]
-[; ;main.c: 278: {
-"278
+[; ;main.c: 313: {
+"313
 {
-[; ;main.c: 279: timer1_lthread(&t1thread_data, msgtype, length, msgbuffer);
-"279
+[; ;main.c: 314: timer1_lthread(&t1thread_data, msgtype, length, msgbuffer);
+"314
 [e ( _timer1_lthread (4 , , , &U _t1thread_data -> _msgtype `i -> _length `i &U _msgbuffer ]
-[; ;main.c: 280: break;
-"280
+[; ;main.c: 315: break;
+"315
 [e $U 597  ]
-"281
+"316
 }
-[; ;main.c: 281: };
-[; ;main.c: 282: case 40:
-"282
+[; ;main.c: 316: };
+[; ;main.c: 317: case 40:
+"317
 [e :U 600 ]
-[; ;main.c: 283: {
-"283
+[; ;main.c: 318: {
+"318
 {
-[; ;main.c: 285: FromMainLow_sendmsg(length, msgtype, (void *) msgbuffer);
-"285
+[; ;main.c: 320: FromMainLow_sendmsg(length, msgtype, (void *) msgbuffer);
+"320
 [e ( _FromMainLow_sendmsg (3 , , -> _length `uc _msgtype -> &U _msgbuffer `*v ]
-"286
+"321
 }
-[; ;main.c: 286: };
-[; ;main.c: 287: case 30:
-"287
+[; ;main.c: 321: };
+[; ;main.c: 322: case 30:
+"322
 [e :U 601 ]
-"288
+"323
 [e :U 602 ]
-[; ;main.c: 288: case 31:
-[; ;main.c: 289: {
-"289
+[; ;main.c: 323: case 31:
+[; ;main.c: 324: {
+"324
 {
-[; ;main.c: 290: uart_lthread(&uthread_data, msgtype, length, msgbuffer);
-"290
+[; ;main.c: 325: uart_lthread(&uthread_data, msgtype, length, msgbuffer);
+"325
 [e ( _uart_lthread (4 , , , &U _uthread_data -> _msgtype `i -> _length `i &U _msgbuffer ]
-[; ;main.c: 291: break;
-"291
+[; ;main.c: 326: break;
+"326
 [e $U 597  ]
-"292
+"327
 }
-[; ;main.c: 292: };
-[; ;main.c: 293: default:
-"293
+[; ;main.c: 327: };
+[; ;main.c: 328: default:
+"328
 [e :U 603 ]
-[; ;main.c: 294: {
-"294
+[; ;main.c: 329: {
+"329
 {
-[; ;main.c: 296: break;
-"296
+[; ;main.c: 331: break;
+"331
 [e $U 597  ]
-"297
+"332
 }
-[; ;main.c: 297: };
-"298
+[; ;main.c: 332: };
+"333
 }
-[; ;main.c: 298: };
+[; ;main.c: 333: };
 [e $U 597  ]
-"276
+"311
 [e :U 598 ]
 [e [\ _msgtype , $ -> -> 11 `i `uc 599
  , $ -> -> 40 `i `uc 600
  , $ -> -> 30 `i `uc 601
  , $ -> -> 31 `i `uc 602
  603 ]
-"298
+"333
 [e :U 597 ]
-"299
+"334
 }
 [e :U 596 ]
-"300
+"335
 }
 [e :U 578 ]
-"191
+"226
 [e $U 579  ]
 [e :U 580 ]
-[; ;main.c: 299: }
-[; ;main.c: 300: }
-[; ;main.c: 302: }
-"302
+[; ;main.c: 334: }
+[; ;main.c: 335: }
+[; ;main.c: 337: }
+"337
 [e :UE 577 ]
 }

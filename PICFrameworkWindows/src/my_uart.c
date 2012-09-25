@@ -5,6 +5,7 @@
 #include <plib/usart.h>
 #endif
 #include "my_uart.h"
+#ifndef __USE18F26J50
 
 static uart_comm *uc_ptr;
 
@@ -31,3 +32,4 @@ void init_uart_recv(uart_comm *uc) {
     uc_ptr = uc;
     uc_ptr->buflen = 0;
 }
+#endif

@@ -5872,7 +5872,7 @@ unsigned char buflen;
 void init_uart_recv(uart_comm *);
 void uart_recv_int_handler(void);
 
-# 9 "../src/my_uart.c"
+# 10 "../src/my_uart.c"
 static uart_comm *uc_ptr;
 
 void uart_recv_int_handler() {
@@ -5898,3 +5898,4 @@ void init_uart_recv(uart_comm *uc) {
 uc_ptr = uc;
 uc_ptr->buflen = 0;
 }
+

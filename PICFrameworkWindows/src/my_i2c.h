@@ -21,6 +21,8 @@ typedef struct __i2c_comm {
 #define I2C_STARTED 0x6
 #define	I2C_RCV_DATA 0x7
 #define I2C_SLAVE_SEND 0x8
+#define I2C_MASTER_SEND 0x9
+#define I2C_MASTER_STOP 0x10
 
 #define I2C_ERR_THRESHOLD 1
 #define I2C_ERR_OVERRUN 0x4
@@ -31,6 +33,8 @@ typedef struct __i2c_comm {
 
 void init_i2c(i2c_comm *);
 void i2c_int_handler(void);
+void i2c_slave_int_handler(void);
+void i2c_master_int_handler(void);
 void start_i2c_slave_reply(unsigned char,unsigned char *);
 void i2c_configure_slave(unsigned char);
 void i2c_configure_master(unsigned char);

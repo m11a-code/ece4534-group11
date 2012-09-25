@@ -100,8 +100,10 @@ void main(void) {
     OSCTUNEbits.PLLEN = 0; // Makes the clock exceed the PIC's rated speed if the PLL is on
 #endif
 
+#ifndef __USE18F26J50
     // initialize my uart recv handling code
     init_uart_recv(&uc);
+#endif
 
     // initialize the i2c code
     init_i2c(&ic);
@@ -126,12 +128,22 @@ void main(void) {
 
     // initialize Timers
     //OpenTimer0(TIMER_INT_ON & T0_16BIT & T0_SOURCE_INT & T0_PS_1_128);
+#ifdef __USE18F2680
     OpenTimer1(TIMER_INT_ON & T1_PS_1_8 & T1_16BIT_RW & T1_SOURCE_INT & T1_OSC1EN_OFF & T1_SYNC_EXT_OFF);
+#else
+#ifdef __USE18F45J10
+    OpenTimer1(TIMER_INT_ON & T1_PS_1_8 & T1_16BIT_RW & T1_SOURCE_INT & T1_OSC1EN_OFF & T1_SYNC_EXT_OFF);
+#else
+    OpenTimer1(TIMER_INT_ON & T1_PS_1_8 & T1_16BIT_RW & 0xFD & T1_OSC1EN_OFF & T1_SYNC_EXT_OFF,0x1);
+#endif
+#endif
+
 
     // Peripheral interrupts can have their priority set to high or low
     // enable high-priority interrupts and low-priority interrupts
     enable_interrupts();
 
+#ifdef __USE18F45J10
     // Decide on the priority of the enabled peripheral interrupts
     // 0 is low, 1 is high
     // Timer1 interrupt
@@ -141,7 +153,16 @@ void main(void) {
     // USART RX interrupt
     IPR1bits.RCIP = 0;
     // I2C interrupt
+    IPR1bits.SSP1IP = 1;
+#else
+    IPR1bits.TMR1IP = 0;
+    // ADC interrupt
+    IPR1bits.ADIP = 0;
+    // USART RX interrupt
+    IPR1bits.RCIP = 0;
+    // I2C interrupt
     IPR1bits.SSPIP = 1;
+#endif
 
     // configure the hardware i2c device as a slave (0x9E -> 0x4F) or (0x9A -> 0x4D)
     //This gets shifted over one bit because of the address being 7 bits and 1 bit being the acknowledge bit
@@ -151,7 +172,15 @@ void main(void) {
     // They *are* changed in the timer interrupt handlers if those timers are
     //   enabled.  They are just there to make the lights blink and can be
     //   disabled.
+#ifdef __USE18F45J10
+    i2c_configure_slave(0x9C);
+#else
+#ifdef __USE18F2680
     i2c_configure_slave(0x9E);
+#else
+    i2c_configure_slave(0x9C);
+#endif
+#endif
 #else
     // If I want to test the temperature sensor from the ARM, I just make
     // sure this PIC does not have the same address and configure the
@@ -163,12 +192,18 @@ void main(void) {
     for (;;);
 #endif
 
+#ifdef __USE18F45J
     // must specifically enable the I2C interrupts
+    PIE1bits.SSP1IE = 1;
+#else
     PIE1bits.SSPIE = 1;
+#endif
 
+#ifndef __USE18F26J50
     // configure the hardware USART device
     OpenUSART(USART_TX_INT_OFF & USART_RX_INT_ON & USART_ASYNCH_MODE & USART_EIGHT_BIT &
             USART_CONT_RX & USART_BRGH_LOW, 0x19);
+#endif
 
     /* Junk to force an I2C interrupt in the simulator (if you wanted to)
     PIR1bits.SSPIF = 1;

@@ -149,8 +149,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S219 . . . ]
 "3591
 [v _PIE1bits `VS219 ~T0 @X0 0 e@3997 ]
-"1984 /opt/microchip/xc8/v1.10/include/plib/adc.h
-[v _ConvertADC `(v ~T0 @X0 0 ef ]
+"41 ../src/my_i2c.h
+[v _i2c_master_send `(uc ~T0 @X0 0 ef2`uc`*uc ]
 [s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2 . RA0 RA1 RA2 RA3 . RA5 ]
 [s S3 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -7437,49 +7437,81 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;timer1_thread.h: 4: } timer1_thread_struct;
 [; ;timer1_thread.h: 6: void init_timer1_lthread(timer1_thread_struct *);
 [; ;timer1_thread.h: 7: int timer1_lthread(timer1_thread_struct *,int,int,unsigned char*);
-"8 ../src/timer1_thread.c
+[; ;my_i2c.h: 7: typedef struct __i2c_comm {
+[; ;my_i2c.h: 8: unsigned char buffer[10];
+[; ;my_i2c.h: 9: unsigned char buflen;
+[; ;my_i2c.h: 10: unsigned char event_count;
+[; ;my_i2c.h: 11: unsigned char status;
+[; ;my_i2c.h: 12: unsigned char error_code;
+[; ;my_i2c.h: 13: unsigned char error_count;
+[; ;my_i2c.h: 14: unsigned char outbuffer[10];
+[; ;my_i2c.h: 15: unsigned char outbuflen;
+[; ;my_i2c.h: 16: unsigned char outbufind;
+[; ;my_i2c.h: 17: unsigned char slave_addr;
+[; ;my_i2c.h: 18: } i2c_comm;
+[; ;my_i2c.h: 34: void init_i2c(i2c_comm *);
+[; ;my_i2c.h: 35: void i2c_int_handler(void);
+[; ;my_i2c.h: 36: void i2c_slave_int_handler(void);
+[; ;my_i2c.h: 37: void i2c_master_int_handler(void);
+[; ;my_i2c.h: 38: void start_i2c_slave_reply(unsigned char,unsigned char *);
+[; ;my_i2c.h: 39: void i2c_configure_slave(unsigned char);
+[; ;my_i2c.h: 40: void i2c_configure_master(unsigned char);
+[; ;my_i2c.h: 41: unsigned char i2c_master_send(unsigned char,unsigned char *);
+[; ;my_i2c.h: 42: unsigned char i2c_master_recv(unsigned char);
+"9 ../src/timer1_thread.c
 [v _init_timer1_lthread `(v ~T0 @X0 1 ef1`*S572 ]
 {
-[; ;timer1_thread.c: 8: void init_timer1_lthread(timer1_thread_struct *tptr) {
+[; ;timer1_thread.c: 9: void init_timer1_lthread(timer1_thread_struct *tptr) {
 [e :U _init_timer1_lthread ]
 [v _tptr `*S572 ~T0 @X0 1 r1 ]
 [f ]
-[; ;timer1_thread.c: 10: OpenADC(0b10011111 & 0b11111111 & 0b11110001,
-[; ;timer1_thread.c: 11: 0b10000111 & 0b10001111 &
-[; ;timer1_thread.c: 12: 0b01111111 & 0b11111110 &
-[; ;timer1_thread.c: 13: 0b11111101, 0b1011);
-"13
-[e ( _OpenADC (3 , , -> & & -> 159 `i -> 255 `i -> 241 `i `uc -> & & & & -> 135 `i -> 143 `i -> 127 `i -> 254 `i -> 253 `i `uc -> -> 11 `i `uc ]
-[; ;timer1_thread.c: 14: SetChanADC(0b10000111);
+[; ;timer1_thread.c: 11: OpenADC(0b10011111 & 0b11111111 & 0b11110001,
+[; ;timer1_thread.c: 12: 0b10000111 & 0b10001111 &
+[; ;timer1_thread.c: 13: 0b01111111 & 0b11111110 &
+[; ;timer1_thread.c: 14: 0b11111101, 0b1011);
 "14
+[e ( _OpenADC (3 , , -> & & -> 159 `i -> 255 `i -> 241 `i `uc -> & & & & -> 135 `i -> 143 `i -> 127 `i -> 254 `i -> 253 `i `uc -> -> 11 `i `uc ]
+[; ;timer1_thread.c: 15: SetChanADC(0b10000111);
+"15
 [e ( _SetChanADC (1 -> -> 135 `i `uc ]
-[; ;timer1_thread.c: 16: (PIR1bits.ADIF=0,INTCONbits.PEIE=1,PIE1bits.ADIE=1);
-"16
-[e ; ; = . . _PIR1bits 0 6 -> -> 0 `i `uc = . . _INTCONbits 1 6 -> -> 1 `i `uc = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
-[; ;timer1_thread.c: 17: tptr->timerval = 0;
+[; ;timer1_thread.c: 17: (PIR1bits.ADIF=0,INTCONbits.PEIE=1,PIE1bits.ADIE=1);
 "17
-[e = . *U _tptr 0 -> -> 0 `i `ui ]
-[; ;timer1_thread.c: 18: }
+[e ; ; = . . _PIR1bits 0 6 -> -> 0 `i `uc = . . _INTCONbits 1 6 -> -> 1 `i `uc = . . _PIE1bits 0 6 -> -> 1 `i `uc ]
+[; ;timer1_thread.c: 18: tptr->timerval = 0;
 "18
-[e :UE 573 ]
+[e = . *U _tptr 0 -> -> 0 `i `ui ]
+[; ;timer1_thread.c: 19: }
+"19
+[e :UE 574 ]
 }
-"24
+"25
 [v _timer1_lthread `(i ~T0 @X0 1 ef4`*S572`i`i`*uc ]
 {
-[; ;timer1_thread.c: 24: int timer1_lthread(timer1_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
+[; ;timer1_thread.c: 25: int timer1_lthread(timer1_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
 [e :U _timer1_lthread ]
 [v _tptr `*S572 ~T0 @X0 1 r1 ]
 [v _msgtype `i ~T0 @X0 1 r2 ]
 [v _length `i ~T0 @X0 1 r3 ]
 [v _msgbuffer `*uc ~T0 @X0 1 r4 ]
 [f ]
-[; ;timer1_thread.c: 26: tptr->timerval = msgbuffer[0];
-"26
+[; ;timer1_thread.c: 27: tptr->timerval = msgbuffer[0];
+"27
 [e = . *U _tptr 0 -> *U + _msgbuffer * -> -> 0 `i `x -> -> # *U _msgbuffer `i `x `ui ]
-[; ;timer1_thread.c: 28: ConvertADC();
-"28
-[e ( _ConvertADC ..  ]
-[; ;timer1_thread.c: 29: }
 "29
-[e :UE 574 ]
+[v F5089 `uc ~T0 @X0 -> 0 `x s ]
+[i F5089
+:U ..
+-> -> 171 `i `uc
+-> -> 85 `i `uc
+..
+]
+[v _toSend `uc ~T0 @X0 2  a ]
+[; ;timer1_thread.c: 29: unsigned char toSend[] = {0xAB,0x55};
+[e = _toSend F5089 ]
+[; ;timer1_thread.c: 30: i2c_master_send(2,toSend);
+"30
+[e ( _i2c_master_send (2 , -> -> 2 `i `uc &U _toSend ]
+[; ;timer1_thread.c: 35: }
+"35
+[e :UE 575 ]
 }

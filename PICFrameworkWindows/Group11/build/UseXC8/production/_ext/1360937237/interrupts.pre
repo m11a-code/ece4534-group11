@@ -5906,9 +5906,11 @@ unsigned char outbufind;
 unsigned char slave_addr;
 } i2c_comm;
 
-# 32
+# 34
 void init_i2c(i2c_comm *);
 void i2c_int_handler(void);
+void i2c_slave_int_handler(void);
+void i2c_master_int_handler(void);
 void start_i2c_slave_reply(unsigned char,unsigned char *);
 void i2c_configure_slave(unsigned char);
 void i2c_configure_master(unsigned char);
@@ -5956,9 +5958,7 @@ interrupt
 # 83
 void InterruptHandlerHigh() {
 
-
-
-
+# 97
 if (PIR1bits.SSPIF) {
 
 PIR1bits.SSPIF = 0;
@@ -5967,20 +5967,21 @@ i2c_int_handler();
 }
 
 
+
 if (INTCONbits.TMR0IF) {
 INTCONbits.TMR0IF = 0;
 
 timer0_int_handler();
 }
 
-# 109
+# 119
 SleepIfOkay();
 }
 
-# 117
+# 127
 interrupt low_priority
 
-# 122
+# 132
 void InterruptHandlerLow() {
 
 if (PIR1bits.TMR1IF) {
@@ -5995,9 +5996,11 @@ adc_int_handler();
 }
 
 
+
 if (PIR1bits.RCIF) {
 PIR1bits.RCIF = 0;
 uart_recv_int_handler();
 }
+
 }
 

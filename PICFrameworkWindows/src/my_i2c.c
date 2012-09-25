@@ -8,13 +8,57 @@
 
 static i2c_comm *ic_ptr;
 
+//To determine what mode we are in.
+#define I2C_SLAVE_MODE 1
+#define I2C_MASTER_MODE 2
+static unsigned char i2cMode = 0;
+
 static unsigned char emptyMsgCount = 0; //Count for empty messages sent
 
 // Configure for I2C Master mode -- the variable "slave_addr" should be stored in
 //   i2c_comm (as pointed to by ic_ptr) for later use.
 
 void i2c_configure_master(unsigned char slave_addr) {
-    // Your code goes here
+
+#ifdef __USE18F45J10
+
+    i2cMode = I2C_MASTER_MODE;
+    
+    // set the clock speed (master mode) (FOSC/4 * (SSPADD + 1))
+    SSP1ADD = 0x101;
+    SSP1CON1 = 0x0;
+    SSP1CON2 = 0x0;
+    SSP1STAT = 0x0;
+    
+    SSP1CON1 = 0x20 | SSP1CON1; //See Pg 159 of PIC18F45J10 Datasheet
+    SSP1CON1 = 0x08 | SSP1CON1;
+
+    SSP1STAT = SSP1STAT | 0x80; //See Pg 158
+
+    I2C1_SDA = 1;
+    I2C1_SCL = 1;
+
+    ic_ptr->slave_addr = slave_addr;
+#else
+    i2cMode = I2C_MASTER_MODE;
+
+    // set the clock speed (master mode) (FOSC/4 * (SSPADD + 1))
+    SSPADD = 0x101;
+    SSPCON1 = 0x0;
+    SSPCON2 = 0x0;
+    SSPSTAT = 0x0;
+
+    SSPCON1 = 0x20 | SSPCON1; //See Pg 159 of PIC18F45J10 Datasheet
+    SSPCON1 = 0x08 | SSPCON1;
+
+    SSPSTAT = SSPSTAT | 0x80; //See Pg 158
+
+//    I2C_SDA = 1;
+//    I2C_SCL = 1;
+
+    ic_ptr->slave_addr = slave_addr;
+#endif
+    // end of i2c configure
 }
 
 // Sending in I2C Master mode [slave write]
@@ -30,8 +74,31 @@ void i2c_configure_master(unsigned char slave_addr) {
 //   the structure to which ic_ptr points [there is already a suitable buffer there].
 
 unsigned char i2c_master_send(unsigned char length, unsigned char *msg) {
-    // Your code goes here
-    return(0);
+#ifdef __USE18F45J10
+    if(SSP1STATbits.READ_WRITE == 1){
+        return -1;
+    }
+    for(ic_ptr->outbuflen = 0; ic_ptr->outbuflen < length; ic_ptr->outbuflen++){
+        ic_ptr->outbuffer[ic_ptr->outbuflen] = msg[ic_ptr->outbuflen];
+    }
+    ic_ptr->outbufind = 0;
+    ic_ptr->status = I2C_STARTED;
+    SSP1CON2bits.RCEN = 0;
+    SSP1CON2bits.SEN = 1;
+    return 0;
+#else
+    if(SSPSTATbits.READ_WRITE == 1){
+        return -1;
+    }
+    for(ic_ptr->outbuflen = 0; ic_ptr->outbuflen < length; ic_ptr->outbuflen++){
+        ic_ptr->outbuffer[ic_ptr->outbuflen] = msg[ic_ptr->outbuflen];
+    }
+    ic_ptr->outbufind = 0;
+    ic_ptr->status = I2C_STARTED;
+    SSPCON2bits.RCEN = 0;
+    SSPCON2bits.SEN = 1;
+    return 0;
+#endif
 }
 
 // Receiving in I2C Master mode [slave read]
@@ -48,8 +115,7 @@ unsigned char i2c_master_send(unsigned char length, unsigned char *msg) {
 // The interrupt handler will be responsible for copying the message received into
 
 unsigned char i2c_master_recv(unsigned char length) {
-    // Your code goes here
-    return(0);
+    return 0;
 }
 
 void start_i2c_slave_reply(unsigned char length, unsigned char *msg) {
@@ -100,6 +166,84 @@ void handle_start(unsigned char data_read) {
 //    master code should be in a subroutine called "i2c_master_handler()"
 
 void i2c_int_handler() {
+    switch(i2cMode){
+        case I2C_SLAVE_MODE:{
+            i2c_slave_int_handler();
+            break;
+        }
+        case I2C_MASTER_MODE:{
+            i2c_master_int_handler();
+            break;
+        }
+        default:{
+            //error
+        }
+    }  
+}
+
+void i2c_master_int_handler() {
+#ifdef __USE18F45J10
+    switch(ic_ptr->status){
+        case I2C_STARTED:{
+            SSP1BUF = (0xFE & ic_ptr->slave_addr);
+            ic_ptr->status = I2C_MASTER_SEND;
+            break;
+        }
+        case I2C_MASTER_SEND:{
+            if(SSP1CON2bits.ACKSTAT == 0){
+                if (ic_ptr->outbufind < ic_ptr->outbuflen) {
+                    SSP1BUF = ic_ptr->outbuffer[ic_ptr->outbufind];
+                    ic_ptr->outbufind++;
+                } else {
+                     // we have nothing left to send
+                     ic_ptr->status = I2C_MASTER_STOP;
+                     ic_ptr->outbufind = 0;
+                 }
+            }else{
+                ic_ptr->status = I2C_IDLE;
+                ic_ptr->outbufind = 0;
+            }
+             break;
+        }
+        case I2C_MASTER_STOP:{
+            SSP1CON2bits.PEN = 1;
+            ic_ptr->status = I2C_IDLE;
+            break;
+        }
+    }
+#else
+    switch(ic_ptr->status){
+        case I2C_STARTED:{
+            SSPBUF = (0xFE & ic_ptr->slave_addr);
+            ic_ptr->status = I2C_MASTER_SEND;
+            break;
+        }
+        case I2C_MASTER_SEND:{
+            if(SSPCON2bits.ACKSTAT == 0){
+                if (ic_ptr->outbufind < ic_ptr->outbuflen) {
+                    SSPBUF = ic_ptr->outbuffer[ic_ptr->outbufind];
+                    ic_ptr->outbufind++;
+                } else {
+                     // we have nothing left to send
+                     ic_ptr->status = I2C_MASTER_STOP;
+                     ic_ptr->outbufind = 0;
+                 }
+            }else{
+                ic_ptr->status = I2C_IDLE;
+                ic_ptr->outbufind = 0;
+            }
+             break;
+        }
+        case I2C_MASTER_STOP:{
+            SSPCON2bits.PEN = 1;
+            ic_ptr->status = I2C_IDLE;
+            break;
+        }
+    }
+#endif
+}
+
+void i2c_slave_int_handler() {
     unsigned char i2c_data;
     unsigned char data_read = 0;
     unsigned char data_written = 0;
@@ -302,6 +446,7 @@ void init_i2c(i2c_comm *ic) {
 // the address must include the R/W bit
 
 void i2c_configure_slave(unsigned char addr) {
+    i2cMode = I2C_SLAVE_MODE;
 
     // ensure the two lines are set for input (we are a slave)
     TRISCbits.TRISC3 = 1;
@@ -322,7 +467,12 @@ void i2c_configure_slave(unsigned char addr) {
     I2C_SCL = 1;
     I2C_SDA = 1;
 #else
+#ifdef __USE18F26J50
+    TRISBbits.TRISB5 = 1;
+    TRISBbits.TRISB4 = 1;
+#else
     __dummyXY=35;// Something is messed up with the #ifdefs; this line is designed to invoke a compiler error
+#endif
 #endif
 #endif
     // enable clock-stretching

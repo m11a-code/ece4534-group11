@@ -5877,9 +5877,11 @@ unsigned char outbufind;
 unsigned char slave_addr;
 } i2c_comm;
 
-# 32
+# 34
 void init_i2c(i2c_comm *);
 void i2c_int_handler(void);
+void i2c_slave_int_handler(void);
+void i2c_master_int_handler(void);
 void start_i2c_slave_reply(unsigned char,unsigned char *);
 void i2c_configure_slave(unsigned char);
 void i2c_configure_master(unsigned char);
@@ -5889,6 +5891,11 @@ unsigned char i2c_master_recv(unsigned char);
 # 9 "../src/my_i2c.c"
 static i2c_comm *ic_ptr;
 
+
+
+
+static unsigned char i2cMode = 0;
+
 static unsigned char emptyMsgCount = 0;
 
 
@@ -5896,18 +5903,50 @@ static unsigned char emptyMsgCount = 0;
 
 void i2c_configure_master(unsigned char slave_addr) {
 
+
+
+i2cMode = 2;
+
+
+SSP1ADD = 0x101;
+SSP1CON1 = 0x0;
+SSP1CON2 = 0x0;
+SSP1STAT = 0x0;
+
+SSP1CON1 = 0x20 | SSP1CON1;
+SSP1CON1 = 0x08 | SSP1CON1;
+
+SSP1STAT = SSP1STAT | 0x80;
+
+TRISCbits.TRISC4 = 1;
+TRISCbits.TRISC3 = 1;
+
+ic_ptr->slave_addr = slave_addr;
+
+# 62
 }
 
-# 32
+# 76
 unsigned char i2c_master_send(unsigned char length, unsigned char *msg) {
 
-return(0);
+if(SSP1STATbits.READ_WRITE == 1){
+return -1;
+}
+for(ic_ptr->outbuflen = 0; ic_ptr->outbuflen < length; ic_ptr->outbuflen++){
+ic_ptr->outbuffer[ic_ptr->outbuflen] = msg[ic_ptr->outbuflen];
+}
+ic_ptr->outbufind = 0;
+ic_ptr->status = 0x6;
+SSP1CON2bits.RCEN = 0;
+SSP1CON2bits.SEN = 1;
+return 0;
+
+# 102
 }
 
-# 50
+# 117
 unsigned char i2c_master_recv(unsigned char length) {
-
-return(0);
+return 0;
 }
 
 void start_i2c_slave_reply(unsigned char length, unsigned char *msg) {
@@ -5951,8 +5990,58 @@ ic_ptr->status = 0x6;
 }
 }
 
-# 102
+# 168
 void i2c_int_handler() {
+switch(i2cMode){
+case 1:{
+i2c_slave_int_handler();
+break;
+}
+case 2:{
+i2c_master_int_handler();
+break;
+}
+default:{
+
+}
+}
+}
+
+void i2c_master_int_handler() {
+
+switch(ic_ptr->status){
+case 0x6:{
+SSP1BUF = (0xFE & ic_ptr->slave_addr);
+ic_ptr->status = 0x9;
+break;
+}
+case 0x9:{
+if(SSP1CON2bits.ACKSTAT == 0){
+if (ic_ptr->outbufind < ic_ptr->outbuflen) {
+SSP1BUF = ic_ptr->outbuffer[ic_ptr->outbufind];
+ic_ptr->outbufind++;
+} else {
+
+ic_ptr->status = 0x10;
+ic_ptr->outbufind = 0;
+}
+}else{
+ic_ptr->status = 0x5;
+ic_ptr->outbufind = 0;
+}
+break;
+}
+case 0x10:{
+SSP1CON2bits.PEN = 1;
+ic_ptr->status = 0x5;
+break;
+}
+}
+
+# 244
+}
+
+void i2c_slave_int_handler() {
 unsigned char i2c_data;
 unsigned char data_read = 0;
 unsigned char data_written = 0;
@@ -6113,7 +6202,7 @@ start_i2c_slave_reply(length, data);
 else {
 
 unsigned char empty[4];
-empty[0] = 0x55;
+empty[0] = 0x51;
 empty[1] = emptyMsgCount;
 empty[2] = 0x0;
 empty[3] = 0x0;
@@ -6131,7 +6220,7 @@ ic_ptr->error_count = 0;
 }
 if (msg_to_send) {
 
-# 286
+# 430
 msg_to_send = 0;
 }
 }
@@ -6151,6 +6240,7 @@ ic_ptr->error_count = 0;
 
 
 void i2c_configure_slave(unsigned char addr) {
+i2cMode = 1;
 
 
 TRISCbits.TRISC3 = 1;
@@ -6167,7 +6257,7 @@ SSPSTAT |= 0b10000000;
 TRISCbits.TRISC3 = 1;
 TRISCbits.TRISC4 = 1;
 
-# 329
+# 479
 SSPCON2bits.SEN = 1;
 SSPCON1 |= 0b00100000;
 

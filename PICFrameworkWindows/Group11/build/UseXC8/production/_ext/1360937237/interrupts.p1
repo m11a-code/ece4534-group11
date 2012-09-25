@@ -153,7 +153,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S222 . . . ]
 "3673
 [v _PIR1bits `VS222 ~T0 @X0 0 e@3998 ]
-"33 ../src/my_i2c.h
+"35 ../src/my_i2c.h
 [v _i2c_int_handler `(v ~T0 @X0 0 ef ]
 "10 ../src/user_interrupts.h
 [v _timer0_int_handler `(v ~T0 @X0 0 ef ]
@@ -7432,13 +7432,15 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;my_i2c.h: 16: unsigned char outbufind;
 [; ;my_i2c.h: 17: unsigned char slave_addr;
 [; ;my_i2c.h: 18: } i2c_comm;
-[; ;my_i2c.h: 32: void init_i2c(i2c_comm *);
-[; ;my_i2c.h: 33: void i2c_int_handler(void);
-[; ;my_i2c.h: 34: void start_i2c_slave_reply(unsigned char,unsigned char *);
-[; ;my_i2c.h: 35: void i2c_configure_slave(unsigned char);
-[; ;my_i2c.h: 36: void i2c_configure_master(unsigned char);
-[; ;my_i2c.h: 37: unsigned char i2c_master_send(unsigned char,unsigned char *);
-[; ;my_i2c.h: 38: unsigned char i2c_master_recv(unsigned char);
+[; ;my_i2c.h: 34: void init_i2c(i2c_comm *);
+[; ;my_i2c.h: 35: void i2c_int_handler(void);
+[; ;my_i2c.h: 36: void i2c_slave_int_handler(void);
+[; ;my_i2c.h: 37: void i2c_master_int_handler(void);
+[; ;my_i2c.h: 38: void start_i2c_slave_reply(unsigned char,unsigned char *);
+[; ;my_i2c.h: 39: void i2c_configure_slave(unsigned char);
+[; ;my_i2c.h: 40: void i2c_configure_master(unsigned char);
+[; ;my_i2c.h: 41: unsigned char i2c_master_send(unsigned char,unsigned char *);
+[; ;my_i2c.h: 42: unsigned char i2c_master_recv(unsigned char);
 "14 ../src/interrupts.c
 [v _enable_interrupts `(v ~T0 @X0 1 ef ]
 {
@@ -7563,99 +7565,99 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 581 ]
 }
 "83
-[v F5034 `(v ~T0 @X0 1 tf ]
-[v _InterruptHandlerHigh `IF5034 ~T0 @X0 1 e ]
+[v F5038 `(v ~T0 @X0 1 tf ]
+[v _InterruptHandlerHigh `IF5038 ~T0 @X0 1 e ]
 {
 [; ;interrupts.c: 78: interrupt
 [; ;interrupts.c: 83: void InterruptHandlerHigh() {
 [e :U _InterruptHandlerHigh ]
 [f ]
-[; ;interrupts.c: 88: if (PIR1bits.SSPIF) {
-"88
+[; ;interrupts.c: 97: if (PIR1bits.SSPIF) {
+"97
 [e $ ! != -> . . _PIR1bits 1 1 `i -> -> -> 0 `i `Vuc `i 585  ]
 {
-[; ;interrupts.c: 90: PIR1bits.SSPIF = 0;
-"90
+[; ;interrupts.c: 99: PIR1bits.SSPIF = 0;
+"99
 [e = . . _PIR1bits 1 1 -> -> 0 `i `uc ]
-[; ;interrupts.c: 92: i2c_int_handler();
-"92
+[; ;interrupts.c: 101: i2c_int_handler();
+"101
 [e ( _i2c_int_handler ..  ]
-"93
+"102
 }
 [e :U 585 ]
-[; ;interrupts.c: 93: }
-[; ;interrupts.c: 96: if (INTCONbits.TMR0IF) {
-"96
+[; ;interrupts.c: 102: }
+[; ;interrupts.c: 106: if (INTCONbits.TMR0IF) {
+"106
 [e $ ! != -> . . _INTCONbits 0 2 `i -> -> -> 0 `i `Vuc `i 586  ]
 {
-[; ;interrupts.c: 97: INTCONbits.TMR0IF = 0;
-"97
+[; ;interrupts.c: 107: INTCONbits.TMR0IF = 0;
+"107
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-[; ;interrupts.c: 99: timer0_int_handler();
-"99
+[; ;interrupts.c: 109: timer0_int_handler();
+"109
 [e ( _timer0_int_handler ..  ]
-"100
+"110
 }
 [e :U 586 ]
-[; ;interrupts.c: 100: }
-[; ;interrupts.c: 109: SleepIfOkay();
-"109
-[e ( _SleepIfOkay ..  ]
 [; ;interrupts.c: 110: }
-"110
+[; ;interrupts.c: 119: SleepIfOkay();
+"119
+[e ( _SleepIfOkay ..  ]
+[; ;interrupts.c: 120: }
+"120
 [e :UE 584 ]
 }
-"122
-[v F5036 `(v ~T0 @X0 1 tf ]
-[v _InterruptHandlerLow `ILF5036 ~T0 @X0 1 e ]
+"132
+[v F5040 `(v ~T0 @X0 1 tf ]
+[v _InterruptHandlerLow `ILF5040 ~T0 @X0 1 e ]
 {
-[; ;interrupts.c: 117: interrupt low_priority
-[; ;interrupts.c: 122: void InterruptHandlerLow() {
+[; ;interrupts.c: 127: interrupt low_priority
+[; ;interrupts.c: 132: void InterruptHandlerLow() {
 [e :U _InterruptHandlerLow ]
 [f ]
-[; ;interrupts.c: 124: if (PIR1bits.TMR1IF) {
-"124
+[; ;interrupts.c: 134: if (PIR1bits.TMR1IF) {
+"134
 [e $ ! != -> . . _PIR1bits 0 0 `i -> -> -> 0 `i `Vuc `i 588  ]
 {
-[; ;interrupts.c: 125: PIR1bits.TMR1IF = 0;
-"125
+[; ;interrupts.c: 135: PIR1bits.TMR1IF = 0;
+"135
 [e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
-[; ;interrupts.c: 126: timer1_int_handler();
-"126
+[; ;interrupts.c: 136: timer1_int_handler();
+"136
 [e ( _timer1_int_handler ..  ]
-"127
+"137
 }
 [e :U 588 ]
-[; ;interrupts.c: 127: }
-[; ;interrupts.c: 130: if(PIR1bits.ADIF){
-"130
+[; ;interrupts.c: 137: }
+[; ;interrupts.c: 140: if(PIR1bits.ADIF){
+"140
 [e $ ! != -> . . _PIR1bits 0 6 `i -> -> -> 0 `i `Vuc `i 589  ]
 {
-[; ;interrupts.c: 131: PIR1bits.ADIF = 0;
-"131
+[; ;interrupts.c: 141: PIR1bits.ADIF = 0;
+"141
 [e = . . _PIR1bits 0 6 -> -> 0 `i `uc ]
-[; ;interrupts.c: 132: adc_int_handler();
-"132
+[; ;interrupts.c: 142: adc_int_handler();
+"142
 [e ( _adc_int_handler ..  ]
-"133
+"143
 }
 [e :U 589 ]
-[; ;interrupts.c: 133: }
-[; ;interrupts.c: 136: if (PIR1bits.RCIF) {
-"136
+[; ;interrupts.c: 143: }
+[; ;interrupts.c: 147: if (PIR1bits.RCIF) {
+"147
 [e $ ! != -> . . _PIR1bits 0 5 `i -> -> -> 0 `i `Vuc `i 590  ]
 {
-[; ;interrupts.c: 137: PIR1bits.RCIF = 0;
-"137
+[; ;interrupts.c: 148: PIR1bits.RCIF = 0;
+"148
 [e = . . _PIR1bits 0 5 -> -> 0 `i `uc ]
-[; ;interrupts.c: 138: uart_recv_int_handler();
-"138
+[; ;interrupts.c: 149: uart_recv_int_handler();
+"149
 [e ( _uart_recv_int_handler ..  ]
-"139
+"150
 }
 [e :U 590 ]
-[; ;interrupts.c: 139: }
-[; ;interrupts.c: 140: }
-"140
+[; ;interrupts.c: 150: }
+[; ;interrupts.c: 152: }
+"152
 [e :UE 587 ]
 }
