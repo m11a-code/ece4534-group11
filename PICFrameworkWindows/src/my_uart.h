@@ -14,7 +14,6 @@ typedef struct __uart_comm {
 
 void init_uart_recv(uart_comm *);
 void uart_recv_int_handler(void);
-void uart_send_int_handler(void);
-void init_uart_send(uart_comm *);
+void uart_send(unsigned char, unsigned char*);
 
 #endif

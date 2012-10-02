@@ -242,6 +242,20 @@ void main(void) {
             }
         } else {
             switch (msgtype) {
+                case MSGT_I2C_MASTER_SEND_COMPLETE:
+                {
+                    break;
+                }
+                case MSGT_I2C_MASTER_SEND_FAILED:
+                {
+                    //handle error
+                    break;
+                }
+                case MSGT_I2C_MASTER_RECV_COMPLETE:
+                {
+                    //Relay to UART
+                    break;
+                }
 //                case: MSGT_ADC: {
 //
 //                };

@@ -40,7 +40,7 @@
 #define MSGT_I2C_MASTER_RECV_FAILED 46
 
 //I2C bus message parameters
-#define ADC_MSG_SIZE 4
+#define I2C_MSG_SIZE 4
 #ifdef __USE18F2680
 #define ADC_MSG_TYPE 0x10
 #define EMPTY_MSG_TYPE 0x50

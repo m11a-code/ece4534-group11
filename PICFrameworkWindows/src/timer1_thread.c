@@ -36,8 +36,7 @@ int timer1_lthread(timer1_thread_struct *tptr, int msgtype, int length, unsigned
     ConvertADC(); // Start conversion
 #endif
 #ifdef __USE18F2680
-    unsigned char temp[] = {0xAA};
-    i2c_master_send(1, temp);
+    i2c_master_recv(0xAA, I2C_MSG_SIZE);
 #endif
 
 #endif

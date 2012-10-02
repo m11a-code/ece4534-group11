@@ -48,11 +48,12 @@ void timer1_int_handler() {
 
 void adc_int_handler() {
     unsigned int value = ReadADC();
-    unsigned char message[ADC_MSG_SIZE];
+    value = 0x123;
+    unsigned char message[I2C_MSG_SIZE];
     message[2] = (unsigned char)(0xFF & value); //Message Data
     message[3] = (unsigned char)(0xFF & (value>>8));
     message[0] = ADC_MSG_TYPE;  //Message Type
     message[1] = adcMsgCount;   //Message Count
     adcMsgCount++;
-    ToMainLow_sendmsg(ADC_MSG_SIZE,MSGT_I2C_DATA,(void *) message);
+    ToMainLow_sendmsg(I2C_MSG_SIZE,MSGT_I2C_DATA,(void *) message);
 }

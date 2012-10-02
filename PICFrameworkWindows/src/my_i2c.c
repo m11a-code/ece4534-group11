@@ -21,7 +21,7 @@ static unsigned char emptyMsgCount = 0; //Count for empty messages sent
 void i2c_configure_master(unsigned char slave_addr) {
     i2cMode = I2C_MASTER_MODE;
 
-    // set the clock speed (master mode) (FOSC/4 * (SSPADD + 1))
+/*    // set the clock speed (master mode) (FOSC/4 * (SSPADD + 1))
     SSPADD = 0x101;
     SSPCON1 = 0x0;
     SSPCON2 = 0x0;
@@ -33,7 +33,26 @@ void i2c_configure_master(unsigned char slave_addr) {
     SSPSTAT = SSPSTAT | 0x80; //See Pg 158
 
 //    I2C_SDA = 1;
-//    I2C_SCL = 1;
+//    I2C_SCL = 1; */
+
+        SSPADD = 0x1D;
+
+        SSPSTAT = 0x00;
+        SSPCON1 = 0x00;
+        SSPCON2 = 0x00;
+
+        SSPCON1 |= 0x08;
+        SSPSTAT |= SLEW_OFF;
+        SSPCON1 |= SSPENB;
+
+#ifndef __USE18F45J10
+        I2C_SCL = 1;
+        I2C_SDA = 1;
+#endif
+
+        LATCbits.LATC3 = 1;
+        LATCbits.LATC4 = 1;
+
 
     ic_ptr->slave_addr = slave_addr;
     // end of i2c configure
@@ -52,16 +71,22 @@ void i2c_configure_master(unsigned char slave_addr) {
 //   the structure to which ic_ptr points [there is already a suitable buffer there].
 
 unsigned char i2c_master_send(unsigned char length, unsigned char *msg) {
-    if(SSPSTATbits.READ_WRITE == 1){
-        return -1;
-    }
-    for(ic_ptr->outbuflen = 0; ic_ptr->outbuflen < length; ic_ptr->outbuflen++){
-        ic_ptr->outbuffer[ic_ptr->outbuflen] = msg[ic_ptr->outbuflen];
-    }
-    ic_ptr->outbufind = 0;
-    ic_ptr->status = I2C_SEND_STARTED;
-    SSPCON2bits.RCEN = 0;
-    SSPCON2bits.SEN = 1;
+    if (SSPSTATbits.READ_WRITE == 1) {
+            return -1;
+        }
+
+        for (ic_ptr->outbuflen = 0; ic_ptr->outbuflen < length; ic_ptr->outbuflen++) {
+            ic_ptr->outbuffer[ic_ptr->outbuflen] = msg[ic_ptr->outbuflen];
+        }
+
+        ic_ptr->outbuflen = length;
+        ic_ptr->outbufind = 0;
+
+        ic_ptr->status = I2C_SEND_STARTED;
+
+        SSPCON2bits.RCEN = 0;
+        SSPCON2bits.SEN = 1;
+
     return 0;
 }
 
@@ -78,14 +103,25 @@ unsigned char i2c_master_send(unsigned char length, unsigned char *msg) {
 //   is determined by the parameter passed to i2c_master_recv()].
 // The interrupt handler will be responsible for copying the message received into
 
-unsigned char i2c_master_recv(unsigned char length) {
-    if(SSPSTATbits.READ_WRITE == 1){
-        return -1;
-    }
-    ic_ptr->status = I2C_RECV_STARTED;
-    SSPCON2bits.RCEN = 1;
-    SSPCON2bits.SEN = 1;
-    return 0;
+unsigned char i2c_master_recv(unsigned char command, unsigned char length) {
+    if (SSPSTATbits.READ_WRITE == 1) {
+            return -1;
+        }
+
+        ic_ptr->buflen = length;
+        ic_ptr->bufind = 0;
+
+        ic_ptr->outbuflen = 1;
+        ic_ptr->outbuffer[0] = command;
+        ic_ptr->outbufind = 0;
+
+        ic_ptr->status = I2C_RECV_STARTED;
+
+        SSPCON2bits.RCEN = 1;
+        SSPCON2bits.SEN = 1;
+
+        return 0;
+
 }
 
 void start_i2c_slave_reply(unsigned char length, unsigned char *msg) {
@@ -152,43 +188,122 @@ void i2c_int_handler() {
 }
 
 void i2c_master_int_handler() {
-    switch(ic_ptr->status){
-        case I2C_SEND_STARTED:{
-            SSPBUF = (0xFE & ic_ptr->slave_addr);
+    switch (ic_ptr->status) {
+        case I2C_SEND_STARTED: {
             ic_ptr->status = I2C_MASTER_SEND;
+            SSPBUF = (ic_ptr->slave_addr & 0xFE);
             break;
         }
-        case I2C_MASTER_SEND:{
-            if(SSPCON2bits.ACKSTAT == 0){
+        case I2C_MASTER_SEND: {
+            if (SSPCON2bits.ACKSTAT == 0) {
                 if (ic_ptr->outbufind < ic_ptr->outbuflen) {
                     SSPBUF = ic_ptr->outbuffer[ic_ptr->outbufind];
                     ic_ptr->outbufind++;
-                } else {
-                     // we have nothing left to send
-                     ic_ptr->status = I2C_MASTER_STOP;
-                     ic_ptr->outbufind = 0;
-                 }
-            }else{
+                }
+                else {
+                    ToMainHigh_sendmsg(0, MSGT_I2C_MASTER_SEND_COMPLETE, 0);
+                    ic_ptr->outbuflen = 0;
+                    ic_ptr->status = I2C_IDLE;
+                    SSPCON2bits.PEN = 1;
+                }
+            }
+            else {
+                ToMainHigh_sendmsg(0, MSGT_I2C_MASTER_SEND_FAILED, 0);
+                ic_ptr->error_count++;
+                ic_ptr->error_code = I2C_ERR_NOACK;
                 ic_ptr->status = I2C_IDLE;
-                ic_ptr->outbufind = 0;
-            }
-             break;
-        }
-        case I2C_RECV_STARTED:{
-            SSPBUF = (ic_ptr->slave_addr | 0x01);
-            ic_ptr->status = I2C_MASTER_RECV;
-            break;
-        }
-        case I2C_MASTER_RECV:{
-            if(SSPCON2bits.ACKSTAT == 0){
-                
-            }
-            break;
-        }
-        case I2C_MASTER_STOP:{
-            if(SSPCON2bits.ACKSTAT == 0){
                 SSPCON2bits.PEN = 1;
+            }
+            break;
+        }
+        case I2C_RECV_STARTED: {
+            if (SSPCON2bits.ACKSTAT == 0) {
+                ic_ptr->status = I2C_ACK_RECV;
+                SSPBUF = ic_ptr->slave_addr & 0xFE;
+            }
+            else {
+                ToMainHigh_sendmsg(0, MSGT_I2C_MASTER_RECV_FAILED, 0);
+                ic_ptr->error_count++;
+                ic_ptr->error_code = I2C_ERR_NOACK;
                 ic_ptr->status = I2C_IDLE;
+                SSPCON2bits.PEN = 1;
+            }
+            break;
+        }
+        case I2C_ACK_RECV: {
+            if (SSPCON2bits.ACKSTAT == 0) {
+                ic_ptr->status = I2C_RESTART;
+                ic_ptr->outbuflen = 0;
+                SSPBUF = ic_ptr->outbuffer[0];
+            }
+            else {
+                ToMainHigh_sendmsg(0, MSGT_I2C_MASTER_RECV_FAILED, 0);
+                ic_ptr->error_count++;
+                ic_ptr->error_code = I2C_ERR_NOACK;
+                ic_ptr->status = I2C_IDLE;
+                SSPCON2bits.PEN = 1;
+            }
+            break;
+        }
+        case I2C_RESTART: {
+            if (SSPCON2bits.ACKSTAT == 0) {
+                ic_ptr->status = I2C_RESTARTED;
+                SSPCON2bits.RSEN = 1;
+            }
+            else {
+                ToMainHigh_sendmsg(0, MSGT_I2C_MASTER_RECV_FAILED, 0);
+                ic_ptr->error_count++;
+                ic_ptr->error_code = I2C_ERR_NOACK;
+                ic_ptr->status = I2C_IDLE;
+                SSPCON2bits.PEN = 1;
+            }
+            break;
+        }
+        case I2C_RESTARTED: {
+            ic_ptr->status = I2C_WAIT;
+            SSPBUF = ic_ptr->slave_addr | 0x1;
+            break;
+        }
+        case I2C_WAIT: {
+            if (SSPCON2bits.ACKSTAT == 0) {
+                ic_ptr->status = I2C_RECV;
+                SSPCON2bits.RCEN = 1;
+            }
+            else {
+                ToMainHigh_sendmsg(0, MSGT_I2C_MASTER_RECV_FAILED, 0);
+                ic_ptr->error_count++;
+                ic_ptr->error_code = I2C_ERR_NOACK;
+                ic_ptr->status = I2C_IDLE;
+                SSPCON2bits.PEN = 1;
+            }
+            break;
+        }
+        case I2C_RECV: {
+            if (SSPSTATbits.BF == 1) {
+                ic_ptr->status = I2C_RECV_ACK;
+                ic_ptr->buffer[ic_ptr->bufind] = SSPBUF;
+                ic_ptr->bufind++;
+                if (ic_ptr->bufind < ic_ptr->buflen) {
+                    SSPCON2bits.ACKDT = 0;
+                    SSPCON2bits.ACKEN = 1;
+                }
+                else {
+                    SSPCON2bits.ACKDT = 1;
+                    SSPCON2bits.ACKEN = 1;
+                }
+            }
+            break;
+        }
+        case I2C_RECV_ACK: {
+            if (ic_ptr->bufind < ic_ptr->buflen) {
+                ic_ptr->status = I2C_RECV;
+                SSPCON2bits.RCEN = 1;
+            }
+            else {
+                ToMainHigh_sendmsg(ic_ptr->buflen, MSGT_I2C_MASTER_RECV_COMPLETE,
+                    (void *)(ic_ptr->buffer));
+                ic_ptr->status = I2C_IDLE;
+                SSPCON2bits.PEN = 1;
             }
             break;
         }
@@ -355,13 +470,13 @@ void i2c_slave_int_handler() {
         }
         else {
             //send empty message
-            unsigned char empty[ADC_MSG_SIZE];
+            unsigned char empty[I2C_MSG_SIZE];
             empty[0] = EMPTY_MSG_TYPE;
             empty[1] = emptyMsgCount;
             empty[2] = 0x0;
             empty[3] = 0x0;
             emptyMsgCount++;
-            start_i2c_slave_reply(ADC_MSG_SIZE,empty);
+            start_i2c_slave_reply(I2C_MSG_SIZE,empty);
         }
         //ToMainHigh_sendmsg(ic_ptr->buflen + 1, MSGT_I2C_DATA, (void *) ic_ptr->buffer);
         //ic_ptr->buflen = 0;
