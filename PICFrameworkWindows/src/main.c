@@ -176,7 +176,7 @@ void main(void) {
     i2c_configure_slave(0x9C);
 #else
 #ifdef __USE18F2680
-    i2c_configure_slave(0x9E);
+    i2c_configure_master(0x9C);
 #else
     i2c_configure_slave(0x9C);
 #endif

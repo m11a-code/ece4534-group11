@@ -23,6 +23,9 @@ typedef struct __i2c_comm {
 #define I2C_SLAVE_SEND 0x8
 #define I2C_MASTER_SEND 0x9
 #define I2C_MASTER_STOP 0x10
+#define I2C_SEND_STARTED 0x11
+#define I2C_RECV_STARTED 0x12
+#define I2C_MASTER_RECV 0x13
 
 #define I2C_ERR_THRESHOLD 1
 #define I2C_ERR_OVERRUN 0x4

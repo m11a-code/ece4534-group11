@@ -7,6 +7,7 @@
 #include "my_i2c.h"
 
 void init_timer1_lthread(timer1_thread_struct *tptr) {
+#ifdef __USE18F45J10
     //Initialize the ADC
     OpenADC(ADC_FOSC_8 & ADC_RIGHT_JUST & ADC_0_TAD,
 		ADC_CH0 & ADC_CH1 &
@@ -15,6 +16,7 @@ void init_timer1_lthread(timer1_thread_struct *tptr) {
     SetChanADC(ADC_CH0);
    // Delay10TCYx( 50 );
     ADC_INT_ENABLE(); //Enable Interrupts
+#endif
     tptr->timerval = 0;
 }
 
@@ -30,6 +32,13 @@ int timer1_lthread(timer1_thread_struct *tptr, int msgtype, int length, unsigned
     i2c_master_send(2,toSend);
 #else
     //Read value from ADC
+#ifdef __USE18F45J10
     ConvertADC(); // Start conversion
+#endif
+#ifdef __USE18F2680
+    unsigned char temp[] = {0xAA};
+    i2c_master_send(1, temp);
+#endif
+
 #endif
 }
