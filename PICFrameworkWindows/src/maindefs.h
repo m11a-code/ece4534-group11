@@ -47,6 +47,8 @@
 #else
 #define ADC_MSG_TYPE 0x11
 #define EMPTY_MSG_TYPE 0x51
+#define MICROCAM_IR_TYPE 0x52
+#define DAVENTECH_ULTRASONIC_TYPE 0x53
 #endif
 
 #endif
