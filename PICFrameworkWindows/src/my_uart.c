@@ -34,7 +34,11 @@ void init_uart_recv(uart_comm *uc) {
 }
 
 void uart_send(unsigned char length, unsigned char* msg){
-    msg[length] = 0;
-    putsUSART(msg);
+    unsigned char indx = 0;
+    while(indx < length){
+        WriteUSART(msg[indx]);
+        while(BusyUSART());
+        indx++;
+    }
 }
 #endif

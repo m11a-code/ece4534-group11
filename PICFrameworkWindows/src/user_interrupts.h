@@ -11,6 +11,16 @@ void timer0_int_handler(void);
 
 void timer1_int_handler(void);
 
+void init_encoder_counts(void);
+
+void left_encoder_int_handler(void);
+
+void right_encoder_int_handler(void);
+
+int get_right_encoder_count(void);
+
+int get_left_encoder_count(void);
+
 //ADC Interrupt handler
 void adc_int_handler(void);
 

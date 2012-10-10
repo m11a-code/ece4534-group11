@@ -5,6 +5,8 @@
 #include <plib/i2c.h>
 #endif
 #include "my_i2c.h"
+#include "my_uart.h"
+#include "user_interrupts.h"
 
 static i2c_comm *ic_ptr;
 
@@ -13,7 +15,10 @@ static i2c_comm *ic_ptr;
 #define I2C_MASTER_MODE 2
 static unsigned char i2cMode = 0;
 
+#ifndef __SLAVE2680
 static unsigned char emptyMsgCount = 0; //Count for empty messages sent
+static unsigned char dataMsgCount = 0; //Count for data messages sent
+#endif
 
 // Configure for I2C Master mode -- the variable "slave_addr" should be stored in
 //   i2c_comm (as pointed to by ic_ptr) for later use.
@@ -460,8 +465,34 @@ void i2c_slave_int_handler() {
         ic_ptr->error_code = I2C_ERR_MSGTOOLONG;
     }
 
+    //The master has sent us a command
     if (msg_ready) {
-        //ic_ptr->buffer[ic_ptr->buflen] = ic_ptr->event_count;
+#ifdef __SLAVE2680
+        uart_send(ic_ptr->buflen, ic_ptr->buffer);
+#endif
+#ifdef __MOTOR2680
+        uart_send(ic_ptr->buflen, ic_ptr->buffer);
+#endif
+    } else if (ic_ptr->error_count >= I2C_ERR_THRESHOLD) {
+        error_buf[0] = ic_ptr->error_count;
+        error_buf[1] = ic_ptr->error_code;
+        error_buf[2] = ic_ptr->event_count;
+        ToMainHigh_sendmsg(sizeof (unsigned char) *3, MSGT_I2C_DBG, (void *) error_buf);
+        ic_ptr->error_count = 0;
+    }
+    //The master has requested data from us
+    if (msg_to_send) {
+#ifdef __MOTOR2680
+        dataMsgCount++;
+        unsigned char encoderMsg[I2C_MSG_SIZE];
+        encoderMsg[0] = ENCODERS_MSG_TYPE;
+        encoderMsg[1] = dataMsgCount;
+        encoderMsg[2] = get_left_encoder_count();
+        encoderMsg[3] = get_right_encoder_count();
+        init_encoder_counts();
+        start_i2c_slave_reply(I2C_MSG_SIZE, encoderMsg);
+#endif
+#ifndef __MOTOR2680
         unsigned char data[MSGLEN];
         unsigned char msgtype;
         int length = FromMainLow_recvmsg(MSGLEN, &msgtype, (void *) data);
@@ -470,30 +501,16 @@ void i2c_slave_int_handler() {
         }
         else {
             //send empty message
+#ifdef __SLAVE2680
             unsigned char empty[I2C_MSG_SIZE];
-            empty[0] = EMPTY_MSG_TYPE;
-            empty[1] = emptyMsgCount;
+            empty[0] = GENERIC_EMPTY_MSG_TYPE;
+            empty[1] = 0x0;
             empty[2] = 0x0;
             empty[3] = 0x0;
-            emptyMsgCount++;
             start_i2c_slave_reply(I2C_MSG_SIZE,empty);
+#endif
         }
-        //ToMainHigh_sendmsg(ic_ptr->buflen + 1, MSGT_I2C_DATA, (void *) ic_ptr->buffer);
-        //ic_ptr->buflen = 0;
-    } else if (ic_ptr->error_count >= I2C_ERR_THRESHOLD) {
-        error_buf[0] = ic_ptr->error_count;
-        error_buf[1] = ic_ptr->error_code;
-        error_buf[2] = ic_ptr->event_count;
-        ToMainHigh_sendmsg(sizeof (unsigned char) *3, MSGT_I2C_DBG, (void *) error_buf);
-        ic_ptr->error_count = 0;
-    }
-    if (msg_to_send) {
-        // send to the queue to *ask* for the data to be sent out
-        //ToMainHigh_sendmsg(0, MSGT_I2C_RQST, (void *) ic_ptr->buffer);
-        //unsigned char data[MSGLEN];
-        //unsigned char msgtype;
-        //int length = FromMainLow_recvmsg(MSGLEN, &msgtype, (void *) data);
-        //start_i2c_slave_reply(length, data);
+#endif
         msg_to_send = 0;
     }
 }
@@ -534,12 +551,7 @@ void i2c_configure_slave(unsigned char addr) {
     I2C_SCL = 1;
     I2C_SDA = 1;
 #else
-#ifdef __USE18F26J50
-    TRISBbits.TRISB5 = 1;
-    TRISBbits.TRISB4 = 1;
-#else
     __dummyXY=35;// Something is messed up with the #ifdefs; this line is designed to invoke a compiler error
-#endif
 #endif
 #endif
     // enable clock-stretching

@@ -35,8 +35,27 @@ int timer1_lthread(timer1_thread_struct *tptr, int msgtype, int length, unsigned
 #ifdef __USE18F45J10
     ConvertADC(); // Start conversion
 #endif
-#ifdef __USE18F2680
-    i2c_master_recv(0xAA, I2C_MSG_SIZE);
+#ifdef __MASTER2680
+    unsigned char type;
+    length = FromMainLow_recvmsg(MSGLEN, &type, (void*) msgbuffer);
+    if(length > 0){
+        switch(type){
+            case MSGT_I2C_RQST:
+            {
+                //Change 0xAA if the sonar wants some sort of command
+                i2c_master_recv(0xAA, 4);
+                break;
+            }
+            case MSGT_UART_DATA:
+            {
+                i2c_configure_master(ENCODERS_ADDR);
+                i2c_master_send(length, msgbuffer);
+                break;
+            }
+        }
+    }else{
+        // Do nothing
+    }
 #endif
 
 #endif
