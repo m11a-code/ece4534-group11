@@ -18669,6 +18669,14 @@ void timer0_int_handler(void);
 
 void timer1_int_handler(void);
 
+void init_encoder_counts(void);
+
+void encoder_int_handler(void);
+
+int get_right_encoder_count(void);
+
+int get_left_encoder_count(void);
+
 
 void adc_int_handler(void);
 
@@ -18721,11 +18729,13 @@ unsigned char buflen;
 
 void init_uart_recv(uart_comm *);
 void uart_recv_int_handler(void);
+void uart_send(unsigned char, unsigned char*);
 
 # 7 "../src/my_i2c.h"
 typedef struct __i2c_comm {
 unsigned char buffer[10];
 unsigned char buflen;
+unsigned char bufind;
 unsigned char event_count;
 unsigned char status;
 unsigned char error_code;
@@ -18736,7 +18746,7 @@ unsigned char outbufind;
 unsigned char slave_addr;
 } i2c_comm;
 
-# 34
+# 45
 void init_i2c(i2c_comm *);
 void i2c_int_handler(void);
 void i2c_slave_int_handler(void);
@@ -18745,7 +18755,7 @@ void start_i2c_slave_reply(unsigned char,unsigned char *);
 void i2c_configure_slave(unsigned char);
 void i2c_configure_master(unsigned char);
 unsigned char i2c_master_send(unsigned char,unsigned char *);
-unsigned char i2c_master_recv(unsigned char);
+unsigned char i2c_master_recv(unsigned char, unsigned char);
 
 # 14 "../src/interrupts.c"
 void enable_interrupts() {
@@ -18754,6 +18764,9 @@ void enable_interrupts() {
 RCONbits.IPEN = 1;
 INTCONbits.GIEH = 1;
 INTCONbits.GIEL = 1;
+
+INTCONbits.INT0IE = 1;
+
 }
 
 int in_high_int() {
@@ -18782,13 +18795,15 @@ return (0);
 }
 }
 
-# 78
+# 81
 interrupt
 
-# 83
+# 86
 void InterruptHandlerHigh() {
 
-# 97
+
+
+
 if (PIR1bits.SSPIF) {
 
 PIR1bits.SSPIF = 0;
@@ -18797,21 +18812,20 @@ i2c_int_handler();
 }
 
 
-
 if (INTCONbits.TMR0IF) {
 INTCONbits.TMR0IF = 0;
 
 timer0_int_handler();
 }
 
-# 119
+# 112
 SleepIfOkay();
 }
 
-# 127
+# 120
 interrupt low_priority
 
-# 132
+# 125
 void InterruptHandlerLow() {
 
 if (PIR1bits.TMR1IF) {
@@ -18826,11 +18840,15 @@ adc_int_handler();
 }
 
 
-
 if (PIR1bits.RCIF) {
 PIR1bits.RCIF = 0;
 uart_recv_int_handler();
 }
 
+
+if(INTCONbits.INT0IF){
+INTCONbits.INT0IF = 0;
+encoder_int_handler();
+}
 }
 

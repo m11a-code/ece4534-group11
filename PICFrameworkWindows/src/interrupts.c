@@ -2,6 +2,8 @@
 #include "interrupts.h"
 #include "user_interrupts.h"
 #include "messages.h"
+#include <plib/portb.h>
+#include <plib/timers.h>
 
 //----------------------------------------------------------------------------
 // Note: This code for processing interrupts is configured to allow for high and
@@ -17,10 +19,6 @@ void enable_interrupts() {
     RCONbits.IPEN = 1;
     INTCONbits.GIEH = 1;
     INTCONbits.GIEL = 1;
-#ifdef __MOTOR2680
-    INTCONbits.INT0IE = 1; //enable external interrupt pin 0
-    INTCON3bits.INT1IE = 1; //enable external interrupt pin 1
-#endif
 }
 
 int in_high_int() {
@@ -90,10 +88,16 @@ void InterruptHandlerHigh() {
 
     // check to see if we have an I2C interrupt
     if (PIR1bits.SSPIF) {
+#ifdef __MOTOR2680
+        CloseTimer0();
+#endif
         // clear the interrupt flag
         PIR1bits.SSPIF = 0;
         // call the handler
         i2c_int_handler();
+#ifdef __MOTOR2680
+        OpenTimer0(TIMER_INT_ON & T0_PS_1_8 & T0_8BIT & T0_SOURCE_INT);
+#endif
     }
 
     // check to see if we have an interrupt on timer 0
@@ -140,18 +144,6 @@ void InterruptHandlerLow() {
     if (PIR1bits.RCIF) {
         PIR1bits.RCIF = 0; //clear interrupt flag
         uart_recv_int_handler();
-    }
-
-    // check to see if we have an interrupt on external interrupt pin 1
-    if(INTCON3bits.INT1IF){
-        INTCON3bits.INT1IF = 0; //clear interrupt flag
-        right_encoder_int_handler();
-    }
-
-    // check to see if we have an interrupt on external interrupt pin 0
-    if(INTCONbits.INT0IF){
-        INTCONbits.INT0IF = 0; //clear interrupt flag
-        left_encoder_int_handler();
     }
 }
 

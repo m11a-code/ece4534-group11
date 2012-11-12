@@ -599,33 +599,33 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TXB2SIDL `Vuc ~T0 @X0 0 e@3874 ]
 "20431
 [v _TXB2SIDH `Vuc ~T0 @X0 0 e@3873 ]
-[s S1811 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1811 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
-[s S1812 :1 `uc 1 ]
-[n S1812 . LB0 ]
-[s S1813 :1 `uc 1 :1 `uc 1 ]
-[n S1813 . . LB1 ]
-[s S1814 :2 `uc 1 :1 `uc 1 ]
-[n S1814 . . LB2 ]
-[s S1815 :3 `uc 1 :1 `uc 1 ]
-[n S1815 . . LB3 ]
-[s S1816 :4 `uc 1 :1 `uc 1 ]
-[n S1816 . . LB4 ]
-[s S1817 :5 `uc 1 :1 `uc 1 ]
-[n S1817 . . LB5 ]
-[s S1818 :6 `uc 1 :1 `uc 1 ]
-[n S1818 . . LB6 ]
-[s S1819 :7 `uc 1 :1 `uc 1 ]
-[n S1819 . . LB7 ]
-[u S1810 `S1811 1 `S1812 1 `S1813 1 `S1814 1 `S1815 1 `S1816 1 `S1817 1 `S1818 1 `S1819 1 ]
-[n S1810 . . . . . . . . . . ]
-"28960
-[v _LATBbits `VS1810 ~T0 @X0 0 e@3978 ]
+[s S1752 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1752 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
+[s S1753 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1753 . AN0 AN1 AN2 AN3 T0CKI AN4 OSC2 OSC1 ]
+[s S1754 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1754 . CVREF . VREFM VREFP . HLVDIN CLKO CLKI ]
+[s S1755 :5 `uc 1 :1 `uc 1 ]
+[n S1755 . . LVDIN ]
+[s S1756 :5 `uc 1 :1 `uc 1 ]
+[n S1756 . . SS ]
+[s S1757 :5 `uc 1 :1 `uc 1 ]
+[n S1757 . . NOT_SS ]
+[s S1758 :5 `uc 1 :1 `uc 1 ]
+[n S1758 . . nSS ]
+[s S1759 :7 `uc 1 :1 `uc 1 ]
+[n S1759 . . RJPU ]
+[s S1760 :1 `uc 1 ]
+[n S1760 . ULPWUIN ]
+[u S1751 `S1752 1 `S1753 1 `S1754 1 `S1755 1 `S1756 1 `S1757 1 `S1758 1 `S1759 1 `S1760 1 ]
+[n S1751 . . . . . . . . . . ]
+"28058
+[v _PORTAbits `VS1751 ~T0 @X0 0 e@3968 ]
 "121 /opt/microchip/xc8/v1.10/include/plib/timers.h
 [v _WriteTimer0 `(v ~T0 @X0 0 ef1`ui ]
-"79 ../src/messages.h
-[v _FromMainHigh_recvmsg `(c ~T0 @X0 0 ef3`uc`*uc`*v ]
-"64
+"120
+[v _ReadTimer0 `(ui ~T0 @X0 0 ef ]
+"64 ../src/messages.h
 [v _ToMainHigh_sendmsg `(c ~T0 @X0 0 ef3`uc`uc`*v ]
 "238 /opt/microchip/xc8/v1.10/include/plib/timers.h
 [v _ReadTimer1 `(ui ~T0 @X0 0 ef ]
@@ -4723,28 +4723,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1748 . . . ]
 "27949
 [v _ECANCONbits `VS1748 ~T0 @X0 0 e@3959 ]
-[s S1752 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1752 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
-[s S1753 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1753 . AN0 AN1 AN2 AN3 T0CKI AN4 OSC2 OSC1 ]
-[s S1754 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1754 . CVREF . VREFM VREFP . HLVDIN CLKO CLKI ]
-[s S1755 :5 `uc 1 :1 `uc 1 ]
-[n S1755 . . LVDIN ]
-[s S1756 :5 `uc 1 :1 `uc 1 ]
-[n S1756 . . SS ]
-[s S1757 :5 `uc 1 :1 `uc 1 ]
-[n S1757 . . NOT_SS ]
-[s S1758 :5 `uc 1 :1 `uc 1 ]
-[n S1758 . . nSS ]
-[s S1759 :7 `uc 1 :1 `uc 1 ]
-[n S1759 . . RJPU ]
-[s S1760 :1 `uc 1 ]
-[n S1760 . ULPWUIN ]
-[u S1751 `S1752 1 `S1753 1 `S1754 1 `S1755 1 `S1756 1 `S1757 1 `S1758 1 `S1759 1 `S1760 1 ]
-[n S1751 . . . . . . . . . . ]
-"28058
-[v _PORTAbits `VS1751 ~T0 @X0 0 e@3968 ]
 [s S1762 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1762 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
 [s S1763 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -4851,6 +4829,28 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1800 . . . . . . . . . . ]
 "28828
 [v _LATAbits `VS1800 ~T0 @X0 0 e@3977 ]
+[s S1811 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1811 . LATB0 LATB1 LATB2 LATB3 LATB4 LATB5 LATB6 LATB7 ]
+[s S1812 :1 `uc 1 ]
+[n S1812 . LB0 ]
+[s S1813 :1 `uc 1 :1 `uc 1 ]
+[n S1813 . . LB1 ]
+[s S1814 :2 `uc 1 :1 `uc 1 ]
+[n S1814 . . LB2 ]
+[s S1815 :3 `uc 1 :1 `uc 1 ]
+[n S1815 . . LB3 ]
+[s S1816 :4 `uc 1 :1 `uc 1 ]
+[n S1816 . . LB4 ]
+[s S1817 :5 `uc 1 :1 `uc 1 ]
+[n S1817 . . LB5 ]
+[s S1818 :6 `uc 1 :1 `uc 1 ]
+[n S1818 . . LB6 ]
+[s S1819 :7 `uc 1 :1 `uc 1 ]
+[n S1819 . . LB7 ]
+[u S1810 `S1811 1 `S1812 1 `S1813 1 `S1814 1 `S1815 1 `S1816 1 `S1817 1 `S1818 1 `S1819 1 ]
+[n S1810 . . . . . . . . . . ]
+"28960
+[v _LATBbits `VS1810 ~T0 @X0 0 e@3978 ]
 [s S1821 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1821 . LATC0 LATC1 LATC2 LATC3 LATC4 LATC5 LATC6 LATC7 ]
 [s S1822 :1 `uc 1 ]
@@ -25434,7 +25434,11 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 148: extern void _delay3(unsigned char);
 [; ;user_interrupts.h: 10: void timer0_int_handler(void);
 [; ;user_interrupts.h: 12: void timer1_int_handler(void);
-[; ;user_interrupts.h: 15: void adc_int_handler(void);
+[; ;user_interrupts.h: 14: void init_encoder_counts(void);
+[; ;user_interrupts.h: 16: void encoder_int_handler(void);
+[; ;user_interrupts.h: 18: int get_right_encoder_count(void);
+[; ;user_interrupts.h: 20: int get_left_encoder_count(void);
+[; ;user_interrupts.h: 23: void adc_int_handler(void);
 [; ;messages.h: 10: typedef struct __msg {
 [; ;messages.h: 11: unsigned char full;
 [; ;messages.h: 12: unsigned char length;
@@ -25463,129 +25467,274 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;my_uart.h: 13: } uart_comm;
 [; ;my_uart.h: 15: void init_uart_recv(uart_comm *);
 [; ;my_uart.h: 16: void uart_recv_int_handler(void);
+[; ;my_uart.h: 17: void uart_send(unsigned char, unsigned char*);
 [; ;my_i2c.h: 7: typedef struct __i2c_comm {
 [; ;my_i2c.h: 8: unsigned char buffer[10];
 [; ;my_i2c.h: 9: unsigned char buflen;
-[; ;my_i2c.h: 10: unsigned char event_count;
-[; ;my_i2c.h: 11: unsigned char status;
-[; ;my_i2c.h: 12: unsigned char error_code;
-[; ;my_i2c.h: 13: unsigned char error_count;
-[; ;my_i2c.h: 14: unsigned char outbuffer[10];
-[; ;my_i2c.h: 15: unsigned char outbuflen;
-[; ;my_i2c.h: 16: unsigned char outbufind;
-[; ;my_i2c.h: 17: unsigned char slave_addr;
-[; ;my_i2c.h: 18: } i2c_comm;
-[; ;my_i2c.h: 34: void init_i2c(i2c_comm *);
-[; ;my_i2c.h: 35: void i2c_int_handler(void);
-[; ;my_i2c.h: 36: void i2c_slave_int_handler(void);
-[; ;my_i2c.h: 37: void i2c_master_int_handler(void);
-[; ;my_i2c.h: 38: void start_i2c_slave_reply(unsigned char,unsigned char *);
-[; ;my_i2c.h: 39: void i2c_configure_slave(unsigned char);
-[; ;my_i2c.h: 40: void i2c_configure_master(unsigned char);
-[; ;my_i2c.h: 41: unsigned char i2c_master_send(unsigned char,unsigned char *);
-[; ;my_i2c.h: 42: unsigned char i2c_master_recv(unsigned char);
+[; ;my_i2c.h: 10: unsigned char bufind;
+[; ;my_i2c.h: 11: unsigned char event_count;
+[; ;my_i2c.h: 12: unsigned char status;
+[; ;my_i2c.h: 13: unsigned char error_code;
+[; ;my_i2c.h: 14: unsigned char error_count;
+[; ;my_i2c.h: 15: unsigned char outbuffer[10];
+[; ;my_i2c.h: 16: unsigned char outbuflen;
+[; ;my_i2c.h: 17: unsigned char outbufind;
+[; ;my_i2c.h: 18: unsigned char slave_addr;
+[; ;my_i2c.h: 19: } i2c_comm;
+[; ;my_i2c.h: 45: void init_i2c(i2c_comm *);
+[; ;my_i2c.h: 46: void i2c_int_handler(void);
+[; ;my_i2c.h: 47: void i2c_slave_int_handler(void);
+[; ;my_i2c.h: 48: void i2c_master_int_handler(void);
+[; ;my_i2c.h: 49: void start_i2c_slave_reply(unsigned char,unsigned char *);
+[; ;my_i2c.h: 50: void i2c_configure_slave(unsigned char);
+[; ;my_i2c.h: 51: void i2c_configure_master(unsigned char);
+[; ;my_i2c.h: 52: unsigned char i2c_master_send(unsigned char,unsigned char *);
+[; ;my_i2c.h: 53: unsigned char i2c_master_recv(unsigned char, unsigned char);
 [; ;debug.h: 24: void sendValsToPins(char, char, char);
-"17 ../src/user_interrupts.c
+"16 ../src/user_interrupts.c
 [v _adcMsgCount `uc ~T0 @X0 1 s ]
 [i _adcMsgCount
 -> -> 0 `i `uc
 ]
-[; ;user_interrupts.c: 17: static unsigned char adcMsgCount = 0;
-"19
-[v _timer0_int_handler `(v ~T0 @X0 1 ef ]
-{
-[; ;user_interrupts.c: 19: void timer0_int_handler() {
-[e :U _timer0_int_handler ]
-[f ]
+[; ;user_interrupts.c: 16: static unsigned char adcMsgCount = 0;
+"18
+[v _leftEncoderCount `uc ~T0 @X0 1 s ]
+[i _leftEncoderCount
+-> -> 0 `i `uc
+]
+[; ;user_interrupts.c: 18: static unsigned char leftEncoderCount = 0;
 "20
-[v _val `ui ~T0 @X0 1 a ]
-"21
-[v _length `i ~T0 @X0 1 a ]
-[v _msgtype `i ~T0 @X0 1 a ]
-[; ;user_interrupts.c: 20: unsigned int val;
-[; ;user_interrupts.c: 21: int length, msgtype;
-[; ;user_interrupts.c: 24: LATBbits.LATB0 = !LATBbits.LATB0;
-"24
-[e = . . _LATBbits 0 0 -> -> ! != -> . . _LATBbits 0 0 `i -> -> -> 0 `i `Vuc `i `i `uc ]
-[; ;user_interrupts.c: 26: WriteTimer0(0);
+[v _rightEncoderCount `uc ~T0 @X0 1 s ]
+[i _rightEncoderCount
+-> -> 0 `i `uc
+]
+[; ;user_interrupts.c: 20: static unsigned char rightEncoderCount = 0;
+"23
+[v _prevRA0 `uc ~T0 @X0 1 s ]
+[v _prevRA1 `uc ~T0 @X0 1 s ]
+[v _prevRA2 `uc ~T0 @X0 1 s ]
+[v _prevRA3 `uc ~T0 @X0 1 s ]
+[; ;user_interrupts.c: 23: static unsigned char prevRA0, prevRA1, prevRA2, prevRA3;
 "26
-[e ( _WriteTimer0 (1 -> -> 0 `i `ui ]
-[; ;user_interrupts.c: 28: length = FromMainHigh_recvmsg(sizeof(val), (unsigned char *)(unsigned int)&msgtype, (void *) &val);
-"28
-[e = _length -> ( _FromMainHigh_recvmsg (3 , , -> -> # _val `ui `uc -> -> &U _msgtype `ui `*uc -> &U _val `*v `i ]
-[; ;user_interrupts.c: 29: if (length == sizeof (val)) {
-"29
-[e $ ! == -> _length `ui -> # _val `ui 2092  ]
+[v _init_encoder_counts `(v ~T0 @X0 1 ef ]
 {
-[; ;user_interrupts.c: 30: ToMainHigh_sendmsg(sizeof (val), 10, (void *) &val);
+[; ;user_interrupts.c: 26: void init_encoder_counts(){
+[e :U _init_encoder_counts ]
+[f ]
+[; ;user_interrupts.c: 28: leftEncoderCount = 0;
+"28
+[e = _leftEncoderCount -> -> 0 `i `uc ]
+[; ;user_interrupts.c: 29: rightEncoderCount = 0;
+"29
+[e = _rightEncoderCount -> -> 0 `i `uc ]
+[; ;user_interrupts.c: 30: prevRA0 = PORTAbits.RA0;
 "30
-[e ( _ToMainHigh_sendmsg (3 , , -> -> # _val `ui `uc -> -> 10 `i `uc -> &U _val `*v ]
+[e = _prevRA0 . . _PORTAbits 0 0 ]
+[; ;user_interrupts.c: 31: prevRA1 = PORTAbits.RA1;
 "31
-}
-[e :U 2092 ]
-[; ;user_interrupts.c: 31: }
-[; ;user_interrupts.c: 32: }
+[e = _prevRA1 . . _PORTAbits 0 1 ]
+[; ;user_interrupts.c: 32: prevRA2 = PORTAbits.RA2;
 "32
+[e = _prevRA2 . . _PORTAbits 0 2 ]
+[; ;user_interrupts.c: 33: prevRA3 = PORTAbits.RA3;
+"33
+[e = _prevRA3 . . _PORTAbits 0 3 ]
+[; ;user_interrupts.c: 35: }
+"35
 [e :UE 2091 ]
 }
 "37
+[v _encoder_int_handler `(v ~T0 @X0 1 ef ]
+{
+[; ;user_interrupts.c: 37: void encoder_int_handler(){
+[e :U _encoder_int_handler ]
+[f ]
+[; ;user_interrupts.c: 39: if(prevRA0 == 0){
+"39
+[e $ ! == -> _prevRA0 `i -> 0 `i 2093  ]
+{
+[; ;user_interrupts.c: 40: if(PORTAbits.RA0 == 1){
+"40
+[e $ ! == -> . . _PORTAbits 0 0 `i -> 1 `i 2094  ]
+{
+[; ;user_interrupts.c: 41: leftEncoderCount++;
+"41
+[e ++ _leftEncoderCount -> -> 1 `i `uc ]
+"42
+}
+[e :U 2094 ]
+"43
+}
+[e :U 2093 ]
+[; ;user_interrupts.c: 42: }
+[; ;user_interrupts.c: 43: }
+[; ;user_interrupts.c: 44: if(prevRA1 == 0){
+"44
+[e $ ! == -> _prevRA1 `i -> 0 `i 2095  ]
+{
+[; ;user_interrupts.c: 45: if(PORTAbits.RA1 == 1){
+"45
+[e $ ! == -> . . _PORTAbits 0 1 `i -> 1 `i 2096  ]
+{
+[; ;user_interrupts.c: 46: leftEncoderCount++;
+"46
+[e ++ _leftEncoderCount -> -> 1 `i `uc ]
+"47
+}
+[e :U 2096 ]
+"48
+}
+[e :U 2095 ]
+[; ;user_interrupts.c: 47: }
+[; ;user_interrupts.c: 48: }
+[; ;user_interrupts.c: 49: if(prevRA2 == 0){
+"49
+[e $ ! == -> _prevRA2 `i -> 0 `i 2097  ]
+{
+[; ;user_interrupts.c: 50: if(PORTAbits.RA2 == 1){
+"50
+[e $ ! == -> . . _PORTAbits 0 2 `i -> 1 `i 2098  ]
+{
+[; ;user_interrupts.c: 51: rightEncoderCount++;
+"51
+[e ++ _rightEncoderCount -> -> 1 `i `uc ]
+"52
+}
+[e :U 2098 ]
+"53
+}
+[e :U 2097 ]
+[; ;user_interrupts.c: 52: }
+[; ;user_interrupts.c: 53: }
+[; ;user_interrupts.c: 54: if(prevRA3 == 0){
+"54
+[e $ ! == -> _prevRA3 `i -> 0 `i 2099  ]
+{
+[; ;user_interrupts.c: 55: if(PORTAbits.RA3 == 1){
+"55
+[e $ ! == -> . . _PORTAbits 0 3 `i -> 1 `i 2100  ]
+{
+[; ;user_interrupts.c: 56: rightEncoderCount++;
+"56
+[e ++ _rightEncoderCount -> -> 1 `i `uc ]
+"57
+}
+[e :U 2100 ]
+"58
+}
+[e :U 2099 ]
+[; ;user_interrupts.c: 57: }
+[; ;user_interrupts.c: 58: }
+[; ;user_interrupts.c: 60: }
+"60
+[e :UE 2092 ]
+}
+"62
+[v _get_right_encoder_count `(i ~T0 @X0 1 ef ]
+{
+[; ;user_interrupts.c: 62: int get_right_encoder_count(){
+[e :U _get_right_encoder_count ]
+[f ]
+[; ;user_interrupts.c: 63: return rightEncoderCount;
+"63
+[e ) -> _rightEncoderCount `i ]
+[e $UE 2101  ]
+[; ;user_interrupts.c: 64: }
+"64
+[e :UE 2101 ]
+}
+"66
+[v _get_left_encoder_count `(i ~T0 @X0 1 ef ]
+{
+[; ;user_interrupts.c: 66: int get_left_encoder_count(){
+[e :U _get_left_encoder_count ]
+[f ]
+[; ;user_interrupts.c: 67: return leftEncoderCount;
+"67
+[e ) -> _leftEncoderCount `i ]
+[e $UE 2102  ]
+[; ;user_interrupts.c: 68: }
+"68
+[e :UE 2102 ]
+}
+"70
+[v _timer0_int_handler `(v ~T0 @X0 1 ef ]
+{
+[; ;user_interrupts.c: 70: void timer0_int_handler() {
+[e :U _timer0_int_handler ]
+[f ]
+[; ;user_interrupts.c: 72: WriteTimer0(0);
+"72
+[e ( _WriteTimer0 (1 -> -> 0 `i `ui ]
+"74
+[v _result `ui ~T0 @X0 1 a ]
+[; ;user_interrupts.c: 74: unsigned int result = ReadTimer0();
+[e = _result ( _ReadTimer0 ..  ]
+[; ;user_interrupts.c: 76: ToMainHigh_sendmsg(sizeof(result),10,(void*) &result);
+"76
+[e ( _ToMainHigh_sendmsg (3 , , -> -> # _result `ui `uc -> -> 10 `i `uc -> &U _result `*v ]
+[; ;user_interrupts.c: 77: }
+"77
+[e :UE 2103 ]
+}
+"82
 [v _timer1_int_handler `(v ~T0 @X0 1 ef ]
 {
-[; ;user_interrupts.c: 37: void timer1_int_handler() {
+[; ;user_interrupts.c: 82: void timer1_int_handler() {
 [e :U _timer1_int_handler ]
 [f ]
-"38
+"83
 [v _result `ui ~T0 @X0 1 a ]
-[; ;user_interrupts.c: 38: unsigned int result;
-[; ;user_interrupts.c: 42: result = ReadTimer1();
-"42
+[; ;user_interrupts.c: 83: unsigned int result;
+[; ;user_interrupts.c: 85: result = ReadTimer1();
+"85
 [e = _result ( _ReadTimer1 ..  ]
-"44
+"87
 [v _temp `ui ~T0 @X0 1 a ]
-[; ;user_interrupts.c: 44: unsigned int temp = 0x1;
+[; ;user_interrupts.c: 87: unsigned int temp = 0x1;
 [e = _temp -> -> 1 `i `ui ]
-[; ;user_interrupts.c: 45: WriteTimer1(temp);
-"45
+[; ;user_interrupts.c: 88: WriteTimer1(temp);
+"88
 [e ( _WriteTimer1 (1 _temp ]
-[; ;user_interrupts.c: 46: ToMainLow_sendmsg(sizeof(result), 11, (void *) &result);
-"46
+[; ;user_interrupts.c: 89: ToMainLow_sendmsg(sizeof(result), 11, (void *) &result);
+"89
 [e ( _ToMainLow_sendmsg (3 , , -> -> # _result `ui `uc -> -> 11 `i `uc -> &U _result `*v ]
-[; ;user_interrupts.c: 47: }
-"47
-[e :UE 2093 ]
+[; ;user_interrupts.c: 90: }
+"90
+[e :UE 2104 ]
 }
-"49
+"92
 [v _adc_int_handler `(v ~T0 @X0 1 ef ]
 {
-[; ;user_interrupts.c: 49: void adc_int_handler() {
+[; ;user_interrupts.c: 92: void adc_int_handler() {
 [e :U _adc_int_handler ]
 [f ]
-"50
+"94
 [v _value `ui ~T0 @X0 1 a ]
-[; ;user_interrupts.c: 50: unsigned int value = ReadADC();
+[; ;user_interrupts.c: 94: unsigned int value = ReadADC();
 [e = _value -> ( _ReadADC ..  `ui ]
-"51
+[; ;user_interrupts.c: 95: value = 0x123;
+"95
+[e = _value -> -> 291 `i `ui ]
+"96
 [v _message `uc ~T0 @X0 -> 4 `i a ]
-[; ;user_interrupts.c: 51: unsigned char message[4];
-[; ;user_interrupts.c: 52: message[2] = (unsigned char)(0xFF & value);
-"52
+[; ;user_interrupts.c: 96: unsigned char message[4];
+[; ;user_interrupts.c: 97: message[2] = (unsigned char)(0xFF & value);
+"97
 [e = *U + &U _message * -> -> -> 2 `i `ui `ux -> -> # *U &U _message `ui `ux -> & -> -> 255 `i `ui _value `uc ]
-[; ;user_interrupts.c: 53: message[3] = (unsigned char)(0xFF & (value>>8));
-"53
+[; ;user_interrupts.c: 98: message[3] = (unsigned char)(0xFF & (value>>8));
+"98
 [e = *U + &U _message * -> -> -> 3 `i `ui `ux -> -> # *U &U _message `ui `ux -> & -> -> 255 `i `ui >> _value -> 8 `i `uc ]
-[; ;user_interrupts.c: 54: message[0] = 0x10;
-"54
-[e = *U + &U _message * -> -> -> 0 `i `ui `ux -> -> # *U &U _message `ui `ux -> -> 16 `i `uc ]
-[; ;user_interrupts.c: 55: message[1] = adcMsgCount;
-"55
+[; ;user_interrupts.c: 100: message[1] = adcMsgCount;
+"100
 [e = *U + &U _message * -> -> -> 1 `i `ui `ux -> -> # *U &U _message `ui `ux _adcMsgCount ]
-[; ;user_interrupts.c: 56: adcMsgCount++;
-"56
+[; ;user_interrupts.c: 101: adcMsgCount++;
+"101
 [e ++ _adcMsgCount -> -> 1 `i `uc ]
-[; ;user_interrupts.c: 57: ToMainLow_sendmsg(4,40,(void *) message);
-"57
+[; ;user_interrupts.c: 102: ToMainLow_sendmsg(4,40,(void *) message);
+"102
 [e ( _ToMainLow_sendmsg (3 , , -> -> 4 `i `uc -> -> 40 `i `uc -> &U _message `*v ]
-[; ;user_interrupts.c: 58: }
-"58
-[e :UE 2094 ]
+[; ;user_interrupts.c: 104: }
+"104
+[e :UE 2105 ]
 }

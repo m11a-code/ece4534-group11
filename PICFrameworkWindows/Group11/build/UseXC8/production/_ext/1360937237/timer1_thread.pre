@@ -18791,40 +18791,49 @@ void i2c_configure_master(unsigned char);
 unsigned char i2c_master_send(unsigned char,unsigned char *);
 unsigned char i2c_master_recv(unsigned char, unsigned char);
 
-# 9 "../src/timer1_thread.c"
-void init_timer1_lthread(timer1_thread_struct *tptr) {
+# 10 "../src/user_interrupts.h"
+void timer0_int_handler(void);
 
-# 20
+void timer1_int_handler(void);
+
+void init_encoder_counts(void);
+
+void encoder_int_handler(void);
+
+int get_right_encoder_count(void);
+
+int get_left_encoder_count(void);
+
+
+void adc_int_handler(void);
+
+# 10 "../src/my_uart.h"
+typedef struct __uart_comm {
+unsigned char buffer[4];
+unsigned char buflen;
+} uart_comm;
+
+void init_uart_recv(uart_comm *);
+void uart_recv_int_handler(void);
+void uart_send(unsigned char, unsigned char*);
+
+# 10 "../src/timer1_thread.c"
+static unsigned char msgCount;
+static unsigned char goFlag;
+
+void init_timer1_lthread(timer1_thread_struct *tptr) {
+msgCount = 0;
+
+# 25
 tptr->timerval = 0;
 }
 
-# 27
+# 32
 int timer1_lthread(timer1_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
 
 tptr->timerval = msgbuffer[0];
 
-# 39
-unsigned char type;
-length = FromMainLow_recvmsg(10, &type, (void*) msgbuffer);
-if(length > 0){
-switch(type){
-case 42:
-{
+msgCount++;
 
-i2c_master_recv(0xAA, 4);
-break;
-}
-case 31:
-{
-i2c_configure_master(0x9E);
-i2c_master_send(length, msgbuffer);
-break;
-}
-}
-}else{
-
-}
-
-
-
+# 79
 }

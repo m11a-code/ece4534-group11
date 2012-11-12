@@ -5,8 +5,13 @@
 #include <plib/adc.h>
 #include <p18cxxx.h>
 #include "my_i2c.h"
+#include "user_interrupts.h"
+
+static unsigned char msgCount;
+static unsigned char goFlag;
 
 void init_timer1_lthread(timer1_thread_struct *tptr) {
+    msgCount = 0;
 #ifdef __USE18F45J10
     //Initialize the ADC
     OpenADC(ADC_FOSC_8 & ADC_RIGHT_JUST & ADC_0_TAD,
@@ -27,6 +32,18 @@ void init_timer1_lthread(timer1_thread_struct *tptr) {
 int timer1_lthread(timer1_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
     //Store the value of the timer into the struct
     tptr->timerval = msgbuffer[0];
+
+    msgCount++;
+
+#ifdef __MOTOR2680
+    unsigned char msg[I2C_MSG_SIZE];
+    msg[0] = ENCODERS_MSG_TYPE;
+    msg[1] = msgCount;
+    msg[2] = get_left_encoder_count();
+    msg[3] = get_right_encoder_count();
+    init_encoder_counts();
+    FromMainLow_sendmsg(I2C_MSG_SIZE, MSGT_I2C_DATA, (void*) msg);
+#endif
 #ifdef __USE18F45J
     unsigned char toSend[] = {0xAB,0x55};
     i2c_master_send(2,toSend);

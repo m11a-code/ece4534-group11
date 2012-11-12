@@ -18671,9 +18671,7 @@ void timer1_int_handler(void);
 
 void init_encoder_counts(void);
 
-void left_encoder_int_handler(void);
-
-void right_encoder_int_handler(void);
+void encoder_int_handler(void);
 
 int get_right_encoder_count(void);
 
@@ -18759,7 +18757,7 @@ void i2c_configure_master(unsigned char);
 unsigned char i2c_master_send(unsigned char,unsigned char *);
 unsigned char i2c_master_recv(unsigned char, unsigned char);
 
-# 14 "../src/interrupts.c"
+# 16 "../src/interrupts.c"
 void enable_interrupts() {
 
 
@@ -18794,10 +18792,10 @@ return (0);
 }
 }
 
-# 78
+# 80
 interrupt
 
-# 83
+# 85
 void InterruptHandlerHigh() {
 
 
@@ -18805,9 +18803,12 @@ void InterruptHandlerHigh() {
 
 if (PIR1bits.SSPIF) {
 
+# 95
 PIR1bits.SSPIF = 0;
 
 i2c_int_handler();
+
+# 101
 }
 
 
@@ -18817,14 +18818,14 @@ INTCONbits.TMR0IF = 0;
 timer0_int_handler();
 }
 
-# 109
+# 117
 SleepIfOkay();
 }
 
-# 117
+# 125
 interrupt low_priority
 
-# 122
+# 130
 void InterruptHandlerLow() {
 
 if (PIR1bits.TMR1IF) {

@@ -18721,14 +18721,120 @@ typedef struct __timer0_thread_struct {
 int data;
 } timer0_thread_struct;
 
+# 10
+void init_timer0_lthread(timer0_thread_struct *);
+
 int timer0_lthread(timer0_thread_struct *,int,int,unsigned char*);
 
-# 9 "../src/timer0_thread.c"
+# 10 "../src/messages.h"
+typedef struct __msg {
+unsigned char full;
+unsigned char length;
+unsigned char msgtype;
+unsigned char data[10];
+} msg;
+
+typedef struct __msg_queue {
+msg queue[4];
+unsigned char cur_write_ind;
+unsigned char cur_read_ind;
+} msg_queue;
+
+# 43
+void init_queues(void);
+
+
+
+void SleepIfOkay(void);
+
+
+
+void block_on_To_msgqueues(void);
+
+# 57
+signed char ToMainLow_sendmsg(unsigned char,unsigned char,void *);
+signed char ToMainLow_recvmsg(unsigned char,unsigned char *,void *);
+
+# 64
+signed char ToMainHigh_sendmsg(unsigned char,unsigned char,void *);
+signed char ToMainHigh_recvmsg(unsigned char,unsigned char *,void *);
+
+# 71
+signed char FromMainLow_sendmsg(unsigned char,unsigned char,void *);
+signed char FromMainLow_recvmsg(unsigned char,unsigned char *,void *);
+
+# 78
+signed char FromMainHigh_sendmsg(unsigned char,unsigned char,void *);
+signed char FromMainHigh_recvmsg(unsigned char,unsigned char *,void *);
+
+# 7 "../src/my_i2c.h"
+typedef struct __i2c_comm {
+unsigned char buffer[10];
+unsigned char buflen;
+unsigned char bufind;
+unsigned char event_count;
+unsigned char status;
+unsigned char error_code;
+unsigned char error_count;
+unsigned char outbuffer[10];
+unsigned char outbuflen;
+unsigned char outbufind;
+unsigned char slave_addr;
+} i2c_comm;
+
+# 45
+void init_i2c(i2c_comm *);
+void i2c_int_handler(void);
+void i2c_slave_int_handler(void);
+void i2c_master_int_handler(void);
+void start_i2c_slave_reply(unsigned char,unsigned char *);
+void i2c_configure_slave(unsigned char);
+void i2c_configure_master(unsigned char);
+unsigned char i2c_master_send(unsigned char,unsigned char *);
+unsigned char i2c_master_recv(unsigned char, unsigned char);
+
+# 11 "../src/timer0_thread.c"
+static int sensorToPoll;
+static unsigned char sonarMsgCount;
+
+void init_timer0_lthread(timer0_thread_struct *tptr){
+sensorToPoll = 1;
+sonarMsgCount = 0;
+}
+
 int timer0_lthread(timer0_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
-unsigned int *msgval;
+switch(sensorToPoll){
+case 1:
+{
+i2c_configure_master(0x9A);
 
-msgval = (unsigned int *) msgbuffer;
+sonarMsgCount++;
+unsigned char fakeData[4];
+fakeData[0] = 0x10;
+fakeData[1] = sonarMsgCount;
+fakeData[2] = 0;
+fakeData[3] = 0;
+ToMainHigh_sendmsg(4,45, fakeData);
+sensorToPoll = 2;
+break;
+}
+case 2:
+{
+i2c_configure_master(0x9C);
 
-
-
+unsigned char fakeData[4];
+fakeData[0] = 0x12;
+fakeData[1] = sonarMsgCount;
+fakeData[2] = 0;
+fakeData[3] = 0;
+ToMainHigh_sendmsg(4,45, fakeData);
+sensorToPoll = 3;
+break;
+}
+case 3:
+i2c_configure_master(0x9E);
+FromMainLow_sendmsg(1,42, (void*) msgbuffer);
+sensorToPoll = 1;
+break;
+}
 }

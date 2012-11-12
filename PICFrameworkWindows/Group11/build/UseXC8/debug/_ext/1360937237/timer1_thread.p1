@@ -601,8 +601,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TXB2SIDH `Vuc ~T0 @X0 0 e@3873 ]
 [s S2090 `ui 1 ]
 [n S2090 __timer1_thread_struct timerval ]
-"41 ../src/my_i2c.h
-[v _i2c_master_send `(uc ~T0 @X0 0 ef2`uc`*uc ]
+"20 ../src/user_interrupts.h
+[v _get_left_encoder_count `(i ~T0 @X0 0 ef ]
+"18
+[v _get_right_encoder_count `(i ~T0 @X0 0 ef ]
+"14
+[v _init_encoder_counts `(v ~T0 @X0 0 ef ]
+"71 ../src/messages.h
+[v _FromMainLow_sendmsg `(c ~T0 @X0 0 ef3`uc`uc`*v ]
 [s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2 . SID3 SID4 SID5 SID6 SID7 SID8 SID9 SID10 ]
 [s S3 :7 `uc 1 :1 `uc 1 ]
@@ -25482,66 +25488,111 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;my_i2c.h: 7: typedef struct __i2c_comm {
 [; ;my_i2c.h: 8: unsigned char buffer[10];
 [; ;my_i2c.h: 9: unsigned char buflen;
-[; ;my_i2c.h: 10: unsigned char event_count;
-[; ;my_i2c.h: 11: unsigned char status;
-[; ;my_i2c.h: 12: unsigned char error_code;
-[; ;my_i2c.h: 13: unsigned char error_count;
-[; ;my_i2c.h: 14: unsigned char outbuffer[10];
-[; ;my_i2c.h: 15: unsigned char outbuflen;
-[; ;my_i2c.h: 16: unsigned char outbufind;
-[; ;my_i2c.h: 17: unsigned char slave_addr;
-[; ;my_i2c.h: 18: } i2c_comm;
-[; ;my_i2c.h: 34: void init_i2c(i2c_comm *);
-[; ;my_i2c.h: 35: void i2c_int_handler(void);
-[; ;my_i2c.h: 36: void i2c_slave_int_handler(void);
-[; ;my_i2c.h: 37: void i2c_master_int_handler(void);
-[; ;my_i2c.h: 38: void start_i2c_slave_reply(unsigned char,unsigned char *);
-[; ;my_i2c.h: 39: void i2c_configure_slave(unsigned char);
-[; ;my_i2c.h: 40: void i2c_configure_master(unsigned char);
-[; ;my_i2c.h: 41: unsigned char i2c_master_send(unsigned char,unsigned char *);
-[; ;my_i2c.h: 42: unsigned char i2c_master_recv(unsigned char);
-"9 ../src/timer1_thread.c
+[; ;my_i2c.h: 10: unsigned char bufind;
+[; ;my_i2c.h: 11: unsigned char event_count;
+[; ;my_i2c.h: 12: unsigned char status;
+[; ;my_i2c.h: 13: unsigned char error_code;
+[; ;my_i2c.h: 14: unsigned char error_count;
+[; ;my_i2c.h: 15: unsigned char outbuffer[10];
+[; ;my_i2c.h: 16: unsigned char outbuflen;
+[; ;my_i2c.h: 17: unsigned char outbufind;
+[; ;my_i2c.h: 18: unsigned char slave_addr;
+[; ;my_i2c.h: 19: } i2c_comm;
+[; ;my_i2c.h: 45: void init_i2c(i2c_comm *);
+[; ;my_i2c.h: 46: void i2c_int_handler(void);
+[; ;my_i2c.h: 47: void i2c_slave_int_handler(void);
+[; ;my_i2c.h: 48: void i2c_master_int_handler(void);
+[; ;my_i2c.h: 49: void start_i2c_slave_reply(unsigned char,unsigned char *);
+[; ;my_i2c.h: 50: void i2c_configure_slave(unsigned char);
+[; ;my_i2c.h: 51: void i2c_configure_master(unsigned char);
+[; ;my_i2c.h: 52: unsigned char i2c_master_send(unsigned char,unsigned char *);
+[; ;my_i2c.h: 53: unsigned char i2c_master_recv(unsigned char, unsigned char);
+[; ;user_interrupts.h: 10: void timer0_int_handler(void);
+[; ;user_interrupts.h: 12: void timer1_int_handler(void);
+[; ;user_interrupts.h: 14: void init_encoder_counts(void);
+[; ;user_interrupts.h: 16: void encoder_int_handler(void);
+[; ;user_interrupts.h: 18: int get_right_encoder_count(void);
+[; ;user_interrupts.h: 20: int get_left_encoder_count(void);
+[; ;user_interrupts.h: 23: void adc_int_handler(void);
+[; ;my_uart.h: 10: typedef struct __uart_comm {
+[; ;my_uart.h: 11: unsigned char buffer[4];
+[; ;my_uart.h: 12: unsigned char buflen;
+[; ;my_uart.h: 13: } uart_comm;
+[; ;my_uart.h: 15: void init_uart_recv(uart_comm *);
+[; ;my_uart.h: 16: void uart_recv_int_handler(void);
+[; ;my_uart.h: 17: void uart_send(unsigned char, unsigned char*);
+"10 ../src/timer1_thread.c
+[v _msgCount `uc ~T0 @X0 1 s ]
+[; ;timer1_thread.c: 10: static unsigned char msgCount;
+"12
 [v _init_timer1_lthread `(v ~T0 @X0 1 ef1`*S2090 ]
 {
-[; ;timer1_thread.c: 9: void init_timer1_lthread(timer1_thread_struct *tptr) {
+[; ;timer1_thread.c: 12: void init_timer1_lthread(timer1_thread_struct *tptr) {
 [e :U _init_timer1_lthread ]
 [v _tptr `*S2090 ~T0 @X0 1 r1 ]
 [f ]
-[; ;timer1_thread.c: 18: tptr->timerval = 0;
+[; ;timer1_thread.c: 13: msgCount = 0;
+"13
+[e = _msgCount -> -> 0 `i `uc ]
+[; ;timer1_thread.c: 16: PORTA = 0x00;
+"16
+[e = _PORTA -> -> 0 `i `uc ]
+[; ;timer1_thread.c: 17: ADCON1 = 0xF;
+"17
+[e = _ADCON1 -> -> 15 `i `uc ]
+[; ;timer1_thread.c: 18: TRISA = 0xCF;
 "18
+[e = _TRISA -> -> 207 `i `uc ]
+[; ;timer1_thread.c: 30: tptr->timerval = 0;
+"30
 [e = . *U _tptr 0 -> -> 0 `i `ui ]
-[; ;timer1_thread.c: 19: }
-"19
-[e :UE 2092 ]
+[; ;timer1_thread.c: 31: }
+"31
+[e :UE 2093 ]
 }
-"25
+"37
+[i _msgCount
+-> -> 0 `i `uc
+]
+[; ;timer1_thread.c: 37: static unsigned char msgCount = 0;
+"39
 [v _timer1_lthread `(i ~T0 @X0 1 ef4`*S2090`i`i`*uc ]
 {
-[; ;timer1_thread.c: 25: int timer1_lthread(timer1_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
+[; ;timer1_thread.c: 39: int timer1_lthread(timer1_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
 [e :U _timer1_lthread ]
 [v _tptr `*S2090 ~T0 @X0 1 r1 ]
 [v _msgtype `i ~T0 @X0 1 r2 ]
 [v _length `i ~T0 @X0 1 r3 ]
 [v _msgbuffer `*uc ~T0 @X0 1 r4 ]
 [f ]
-[; ;timer1_thread.c: 27: tptr->timerval = msgbuffer[0];
-"27
+[; ;timer1_thread.c: 41: tptr->timerval = msgbuffer[0];
+"41
 [e = . *U _tptr 0 -> *U + _msgbuffer * -> -> 0 `i `x -> -> # *U _msgbuffer `i `x `ui ]
-"34
-[v F16386 `uc ~T0 @X0 -> 0 `x s ]
-[i F16386
-:U ..
--> -> 238 `i `uc
--> -> 170 `i `uc
-..
-]
-[v _temp `uc ~T0 @X0 2  a ]
-[; ;timer1_thread.c: 34: unsigned char temp[] = {0xEE,0xAA};
-[e = _temp F16386 ]
-[; ;timer1_thread.c: 35: i2c_master_send(2, temp);
-"35
-[e ( _i2c_master_send (2 , -> -> 2 `i `uc &U _temp ]
-[; ;timer1_thread.c: 37: }
-"37
-[e :UE 2093 ]
+[; ;timer1_thread.c: 43: msgCount++;
+"43
+[e ++ _msgCount -> -> 1 `i `uc ]
+"46
+[v _msg `uc ~T0 @X0 -> 4 `i a ]
+[; ;timer1_thread.c: 46: unsigned char msg[4];
+[; ;timer1_thread.c: 47: msg[0] = 0x11;
+"47
+[e = *U + &U _msg * -> -> -> 0 `i `ui `ux -> -> # *U &U _msg `ui `ux -> -> 17 `i `uc ]
+[; ;timer1_thread.c: 48: msg[1] = msgCount;
+"48
+[e = *U + &U _msg * -> -> -> 1 `i `ui `ux -> -> # *U &U _msg `ui `ux _msgCount ]
+[; ;timer1_thread.c: 49: msg[2] = get_left_encoder_count();
+"49
+[e = *U + &U _msg * -> -> -> 2 `i `ui `ux -> -> # *U &U _msg `ui `ux -> ( _get_left_encoder_count ..  `uc ]
+[; ;timer1_thread.c: 50: msg[3] = get_right_encoder_count();
+"50
+[e = *U + &U _msg * -> -> -> 3 `i `ui `ux -> -> # *U &U _msg `ui `ux -> ( _get_right_encoder_count ..  `uc ]
+[; ;timer1_thread.c: 51: init_encoder_counts();
+"51
+[e ( _init_encoder_counts ..  ]
+[; ;timer1_thread.c: 52: FromMainLow_sendmsg(4, 40, (void*) msg);
+"52
+[e ( _FromMainLow_sendmsg (3 , , -> -> 4 `i `uc -> -> 40 `i `uc -> &U _msg `*v ]
+[; ;timer1_thread.c: 86: }
+"86
+[e :UE 2094 ]
 }

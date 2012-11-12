@@ -601,14 +601,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TXB2SIDH `Vuc ~T0 @X0 0 e@3873 ]
 [s S2090 `ui 1 ]
 [n S2090 __timer1_thread_struct timerval ]
-"72 ../src/messages.h
-[v _FromMainLow_recvmsg `(c ~T0 @X0 0 ef3`uc`*uc`*v ]
-"53 ../src/my_i2c.h
-[v _i2c_master_recv `(uc ~T0 @X0 0 ef2`uc`uc ]
-"51
-[v _i2c_configure_master `(v ~T0 @X0 0 ef1`uc ]
-"52
-[v _i2c_master_send `(uc ~T0 @X0 0 ef2`uc`*uc ]
 [s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2 . SID3 SID4 SID5 SID6 SID7 SID8 SID9 SID10 ]
 [s S3 :7 `uc 1 :1 `uc 1 ]
@@ -629,7 +621,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S10 . . RXF6SID9 ]
 [u S1 `S2 1 `S3 1 `S4 1 `S5 1 `S6 1 `S7 1 `S8 1 `S9 1 `S10 1 ]
 [n S1 . . . . . . . . . . ]
-"92 /opt/microchip/xc8/v1.10/include/pic18f2680.h
+"92
 [v _RXF6SIDHbits `VS1 ~T0 @X0 0 e@3424 ]
 [s S12 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S12 . EID16 EID17 . EXIDEN . SID0 SID1 SID2 ]
@@ -25507,102 +25499,60 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;my_i2c.h: 51: void i2c_configure_master(unsigned char);
 [; ;my_i2c.h: 52: unsigned char i2c_master_send(unsigned char,unsigned char *);
 [; ;my_i2c.h: 53: unsigned char i2c_master_recv(unsigned char, unsigned char);
-"9 ../src/timer1_thread.c
+[; ;user_interrupts.h: 10: void timer0_int_handler(void);
+[; ;user_interrupts.h: 12: void timer1_int_handler(void);
+[; ;user_interrupts.h: 14: void init_encoder_counts(void);
+[; ;user_interrupts.h: 16: void encoder_int_handler(void);
+[; ;user_interrupts.h: 18: int get_right_encoder_count(void);
+[; ;user_interrupts.h: 20: int get_left_encoder_count(void);
+[; ;user_interrupts.h: 23: void adc_int_handler(void);
+[; ;my_uart.h: 10: typedef struct __uart_comm {
+[; ;my_uart.h: 11: unsigned char buffer[4];
+[; ;my_uart.h: 12: unsigned char buflen;
+[; ;my_uart.h: 13: } uart_comm;
+[; ;my_uart.h: 15: void init_uart_recv(uart_comm *);
+[; ;my_uart.h: 16: void uart_recv_int_handler(void);
+[; ;my_uart.h: 17: void uart_send(unsigned char, unsigned char*);
+"10 ../src/timer1_thread.c
+[v _msgCount `uc ~T0 @X0 1 s ]
+[; ;timer1_thread.c: 10: static unsigned char msgCount;
+"11
+[v _goFlag `uc ~T0 @X0 1 s ]
+[; ;timer1_thread.c: 11: static unsigned char goFlag;
+"13
 [v _init_timer1_lthread `(v ~T0 @X0 1 ef1`*S2090 ]
 {
-[; ;timer1_thread.c: 9: void init_timer1_lthread(timer1_thread_struct *tptr) {
+[; ;timer1_thread.c: 13: void init_timer1_lthread(timer1_thread_struct *tptr) {
 [e :U _init_timer1_lthread ]
 [v _tptr `*S2090 ~T0 @X0 1 r1 ]
 [f ]
-[; ;timer1_thread.c: 20: tptr->timerval = 0;
-"20
+[; ;timer1_thread.c: 14: msgCount = 0;
+"14
+[e = _msgCount -> -> 0 `i `uc ]
+[; ;timer1_thread.c: 25: tptr->timerval = 0;
+"25
 [e = . *U _tptr 0 -> -> 0 `i `ui ]
-[; ;timer1_thread.c: 21: }
-"21
-[e :UE 2092 ]
+[; ;timer1_thread.c: 26: }
+"26
+[e :UE 2093 ]
 }
-"27
+"32
 [v _timer1_lthread `(i ~T0 @X0 1 ef4`*S2090`i`i`*uc ]
 {
-[; ;timer1_thread.c: 27: int timer1_lthread(timer1_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
+[; ;timer1_thread.c: 32: int timer1_lthread(timer1_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
 [e :U _timer1_lthread ]
 [v _tptr `*S2090 ~T0 @X0 1 r1 ]
 [v _msgtype `i ~T0 @X0 1 r2 ]
 [v _length `i ~T0 @X0 1 r3 ]
 [v _msgbuffer `*uc ~T0 @X0 1 r4 ]
 [f ]
-[; ;timer1_thread.c: 29: tptr->timerval = msgbuffer[0];
-"29
+[; ;timer1_thread.c: 34: tptr->timerval = msgbuffer[0];
+"34
 [e = . *U _tptr 0 -> *U + _msgbuffer * -> -> 0 `i `x -> -> # *U _msgbuffer `i `x `ui ]
-"39
-[v _type `uc ~T0 @X0 1 a ]
-[; ;timer1_thread.c: 39: unsigned char type;
-[; ;timer1_thread.c: 40: length = FromMainLow_recvmsg(10, &type, (void*) msgbuffer);
-"40
-[e = _length -> ( _FromMainLow_recvmsg (3 , , -> -> 10 `i `uc &U _type -> _msgbuffer `*v `i ]
-[; ;timer1_thread.c: 41: if(length > 0){
-"41
-[e $ ! > _length -> 0 `i 2094  ]
-{
-[; ;timer1_thread.c: 42: switch(type){
-"42
-[e $U 2096  ]
-{
-[; ;timer1_thread.c: 43: case 42:
-"43
-[e :U 2097 ]
-[; ;timer1_thread.c: 44: {
-"44
-{
-[; ;timer1_thread.c: 46: i2c_master_recv(0xAA, 4);
-"46
-[e ( _i2c_master_recv (2 , -> -> 170 `i `uc -> -> 4 `i `uc ]
-[; ;timer1_thread.c: 47: break;
-"47
-[e $U 2095  ]
-"48
-}
-[; ;timer1_thread.c: 48: }
-[; ;timer1_thread.c: 49: case 31:
-"49
-[e :U 2098 ]
-[; ;timer1_thread.c: 50: {
-"50
-{
-[; ;timer1_thread.c: 51: i2c_configure_master(0x9E);
-"51
-[e ( _i2c_configure_master (1 -> -> 158 `i `uc ]
-[; ;timer1_thread.c: 52: i2c_master_send(length, msgbuffer);
-"52
-[e ( _i2c_master_send (2 , -> _length `uc _msgbuffer ]
-[; ;timer1_thread.c: 53: break;
-"53
-[e $U 2095  ]
-"54
-}
-"55
-}
-[; ;timer1_thread.c: 54: }
-[; ;timer1_thread.c: 55: }
-[e $U 2095  ]
-"42
-[e :U 2096 ]
-[e [\ _type , $ -> -> 42 `i `uc 2097
- , $ -> -> 31 `i `uc 2098
- 2095 ]
-"55
-[e :U 2095 ]
-"56
-}
-[; ;timer1_thread.c: 56: }else{
-[e $U 2099  ]
-[e :U 2094 ]
-{
-"58
-}
-[e :U 2099 ]
-[; ;timer1_thread.c: 58: }
-[; ;timer1_thread.c: 62: }
-"62
-[e :UE 2093 ]
+[; ;timer1_thread.c: 36: msgCount++;
+"36
+[e ++ _msgCount -> -> 1 `i `uc ]
+[; ;timer1_thread.c: 79: }
+"79
+[e :UE 2094 ]
 }

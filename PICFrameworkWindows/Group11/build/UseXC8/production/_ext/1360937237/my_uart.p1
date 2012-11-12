@@ -631,6 +631,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1892 . . . . ]
 "30727 /opt/microchip/xc8/v1.10/include/pic18f2680.h
 [v _RCSTAbits `VS1892 ~T0 @X0 0 e@4011 ]
+"597 /opt/microchip/xc8/v1.10/include/plib/usart.h
+[v _WriteUSART `(v ~T0 @X0 0 ef1`uc ]
+[s S1901 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1901 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
+[s S1902 :2 `uc 1 :1 `uc 1 ]
+[n S1902 . . BRGH1 ]
+[s S1903 :7 `uc 1 :1 `uc 1 ]
+[n S1903 . . CSRC1 ]
+[s S1904 :3 `uc 1 :1 `uc 1 ]
+[n S1904 . . SENDB1 ]
+[s S1905 :4 `uc 1 :1 `uc 1 ]
+[n S1905 . . SYNC1 ]
+[s S1906 :1 `uc 1 :1 `uc 1 ]
+[n S1906 . . TRMT1 ]
+[s S1907 :6 `uc 1 :1 `uc 1 ]
+[n S1907 . . TX91 ]
+[s S1908 :1 `uc 1 ]
+[n S1908 . TX9D1 ]
+[s S1909 :5 `uc 1 :1 `uc 1 ]
+[n S1909 . . TXEN1 ]
+[u S1900 `S1901 1 `S1902 1 `S1903 1 `S1904 1 `S1905 1 `S1906 1 `S1907 1 `S1908 1 `S1909 1 ]
+[n S1900 . . . . . . . . . . ]
+"30907 /opt/microchip/xc8/v1.10/include/pic18f2680.h
+[v _TXSTAbits `VS1900 ~T0 @X0 0 e@4012 ]
 [s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2 . SID3 SID4 SID5 SID6 SID7 SID8 SID9 SID10 ]
 [s S3 :7 `uc 1 :1 `uc 1 ]
@@ -5067,28 +5091,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _RCSTA1bits `VS1896 ~T0 @X0 0 e@4011 ]
 "30859
 [v _TXSTA1 `Vuc ~T0 @X0 0 e@4012 ]
-[s S1901 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1901 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
-[s S1902 :2 `uc 1 :1 `uc 1 ]
-[n S1902 . . BRGH1 ]
-[s S1903 :7 `uc 1 :1 `uc 1 ]
-[n S1903 . . CSRC1 ]
-[s S1904 :3 `uc 1 :1 `uc 1 ]
-[n S1904 . . SENDB1 ]
-[s S1905 :4 `uc 1 :1 `uc 1 ]
-[n S1905 . . SYNC1 ]
-[s S1906 :1 `uc 1 :1 `uc 1 ]
-[n S1906 . . TRMT1 ]
-[s S1907 :6 `uc 1 :1 `uc 1 ]
-[n S1907 . . TX91 ]
-[s S1908 :1 `uc 1 ]
-[n S1908 . TX9D1 ]
-[s S1909 :5 `uc 1 :1 `uc 1 ]
-[n S1909 . . TXEN1 ]
-[u S1900 `S1901 1 `S1902 1 `S1903 1 `S1904 1 `S1905 1 `S1906 1 `S1907 1 `S1908 1 `S1909 1 ]
-[n S1900 . . . . . . . . . . ]
-"30907
-[v _TXSTAbits `VS1900 ~T0 @X0 0 e@4012 ]
 [s S1911 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1911 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
 [s S1912 :2 `uc 1 :1 `uc 1 ]
@@ -25536,7 +25538,36 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _length `uc ~T0 @X0 1 r1 ]
 [v _msg `*uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;my_uart.c: 37: }
 "37
+[v _indx `uc ~T0 @X0 1 a ]
+[; ;my_uart.c: 37: unsigned char indx = 0;
+[e = _indx -> -> 0 `i `uc ]
+[; ;my_uart.c: 38: while(indx < length){
+"38
+[e $U 2096  ]
+[e :U 2097 ]
+{
+[; ;my_uart.c: 39: WriteUSART(msg[indx]);
+"39
+[e ( _WriteUSART (1 *U + _msg * -> _indx `ux -> -> # *U _msg `ui `ux ]
+[; ;my_uart.c: 40: while((!TXSTAbits.TRMT));
+"40
+[e $U 2099  ]
+[e :U 2100 ]
+[e :U 2099 ]
+[e $ ! != -> . . _TXSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 2100  ]
+[e :U 2101 ]
+[; ;my_uart.c: 41: indx++;
+"41
+[e ++ _indx -> -> 1 `i `uc ]
+"42
+}
+[e :U 2096 ]
+"38
+[e $ < -> _indx `i -> _length `i 2097  ]
+[e :U 2098 ]
+[; ;my_uart.c: 42: }
+[; ;my_uart.c: 43: }
+"43
 [e :UE 2095 ]
 }

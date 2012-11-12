@@ -18723,13 +18723,62 @@ int data;
 
 int uart_lthread(uart_thread_struct *,int,int,unsigned char*);
 
-# 9 "../src/uart_thread.c"
+# 10 "../src/messages.h"
+typedef struct __msg {
+unsigned char full;
+unsigned char length;
+unsigned char msgtype;
+unsigned char data[10];
+} msg;
+
+typedef struct __msg_queue {
+msg queue[4];
+unsigned char cur_write_ind;
+unsigned char cur_read_ind;
+} msg_queue;
+
+# 43
+void init_queues(void);
+
+
+
+void SleepIfOkay(void);
+
+
+
+void block_on_To_msgqueues(void);
+
+# 57
+signed char ToMainLow_sendmsg(unsigned char,unsigned char,void *);
+signed char ToMainLow_recvmsg(unsigned char,unsigned char *,void *);
+
+# 64
+signed char ToMainHigh_sendmsg(unsigned char,unsigned char,void *);
+signed char ToMainHigh_recvmsg(unsigned char,unsigned char *,void *);
+
+# 71
+signed char FromMainLow_sendmsg(unsigned char,unsigned char,void *);
+signed char FromMainLow_recvmsg(unsigned char,unsigned char *,void *);
+
+# 78
+signed char FromMainHigh_sendmsg(unsigned char,unsigned char,void *);
+signed char FromMainHigh_recvmsg(unsigned char,unsigned char *,void *);
+
+# 10 "../src/my_uart.h"
+typedef struct __uart_comm {
+unsigned char buffer[4];
+unsigned char buflen;
+} uart_comm;
+
+void init_uart_recv(uart_comm *);
+void uart_recv_int_handler(void);
+void uart_send(unsigned char, unsigned char*);
+
+# 11 "../src/uart_thread.c"
 int uart_lthread(uart_thread_struct *uptr, int msgtype, int length, unsigned char *msgbuffer) {
 if (msgtype == 30) {
 } else if (msgtype == 31) {
 
-
-msgbuffer[length] = '\0';
-
+# 22
 }
 }

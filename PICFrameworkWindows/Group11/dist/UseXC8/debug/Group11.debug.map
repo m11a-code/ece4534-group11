@@ -21,7 +21,7 @@ Linker command line:
   -prdata=COMRAM,nvrram=COMRAM,nvbit=COMRAM,rbss=COMRAM,rbit=COMRAM \
   -pfarbss=FARRAM,fardata=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
-  -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE /tmp/cgt49tAjp.obj \
+  -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE /tmp/cgtVWhe9I.obj \
   dist/UseXC8/debug/Group11.debug.obj 
 
 Object code version is 3.10
@@ -34,144 +34,154 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/cgt49tAjp.obj
-                end_init                             D2       D2        4        C       0
+/tmp/cgtVWhe9I.obj
+                end_init                             E2       E2        4        C       0
                 reset_vec                             0        0        6        0       0
                 idloc                            200000   200000        8   200000       0
                 config                           300000   300000        E   300000       0
 dist/UseXC8/debug/Group11.debug.obj
-                intcodelo                            18       18       BA        C       0
+                intcodelo                            18       18       CA        C       0
                 intcode                               8        8       10        4       0
-                text55                             1C46     1C46       56        C       0
-                text54                             1F40     1F40       38        C       0
-                text53                              E58      E58      140        C       0
-                text52                             12BA     12BA      106        C       0
-                text51                             211C     211C       14        C       0
-                text50                             1B3A     1B3A       5E        C       0
-                text49                             2166     2166       12        C       0
-                text48                              BAC      BAC      16C        C       0
-                text47                             14A0     14A0       DA        C       0
-                text46                              F98      F98      112        C       0
-                text45                             2008     2008       30        C       0
-                text44                             2064     2064       2C        C       0
-                text43                               D6       D6      7DC        C       0
-                text42                             2196     2196        6        C       0
-                text41                             1FD8     1FD8       30        C       0
-                text40                             185E     185E       9A        C       0
-                text39                             157A     157A       C8        C       0
-                text38                             2090     2090       26        C       0
-                intcode_body                       18F8     18F8       8A        C       0
-                text36                             1D8C     1D8C       48        C       0
-                text35                             17AC     17AC       B2        C       0
-                text34                             2178     2178        C        C       0
-                text33                             2154     2154       12        C       0
-                text32                             2142     2142       12        C       0
-                text31                             1F08     1F08       38        C       0
-                text30                             20B6     20B6       24        C       0
-                text29                             1642     1642       B6        C       0
-                text28                             1E14     1E14       40        C       0
-                text27                             1E92     1E92       3E        C       0
-                text25                             10AA     10AA      10A        C       0
-                text24                             2108     2108       14        C       0
-                text23                             1ED0     1ED0       38        C       0
-                text22                             1BF0     1BF0       56        C       0
-                text21                              D18      D18      140        C       0
-                text20                             11B4     11B4      106        C       0
-                text19                             1982     1982       86        C       0
-                text18                             1D3E     1D3E       4E        C       0
-                text17                             2038     2038       2C        C       0
-                text16                             1C9C     1C9C       52        C       0
-                text15                             1FA8     1FA8       30        C       0
-                text14                             2184     2184        A        C       0
-                text13                             1F78     1F78       30        C       0
-                text12                             20F4     20F4       14        C       0
-                text11                             1ADC     1ADC       5E        C       0
-                text10                             1B98     1B98       58        C       0
-                text9                              13C0     13C0       E0        C       0
-                text8                              16F8     16F8       B4        C       0
-                text7                              1CEE     1CEE       50        C       0
-                text6                              1E54     1E54       3E        C       0
-                text5                              1A08     1A08       72        C       0
-                text4                              2130     2130       12        C       0
-                text3                              1A7A     1A7A       62        C       0
-                text2                              20DA     20DA       1A        C       0
-                text1                              218E     218E        8        C       0
-                text0                               8B2      8B2      2FA        C       0
+                text61                             2298     2298       56        C       0
+                text60                             24EC     24EC       38        C       0
+                text59                             1804     1804      106        C       0
+                text58                             266E     266E       2C        C       0
+                text57                             14AC     14AC      140        C       0
+                text56                             276C     276C       14        C       0
+                text55                             218C     218C       5E        C       0
+                text54                             27B6     27B6       12        C       0
+                text53                             27A4     27A4       12        C       0
+                text52                             270E     270E       1C        C       0
+                text51                             2004     2004       68        C       0
+                text50                              8D8      8D8      62C        C       0
+                text49                             19EA     19EA       DA        C       0
+                text48                             15EC     15EC      112        C       0
+                text47                             25B8     25B8       30        C       0
+                text46                               E6       E6      7F2        C       0
+                text45                             27FE     27FE        6        C       0
+                text44                             1D7C     1D7C       9A        C       0
+                text43                             20CE     20CE       60        C       0
+                text42                             26C4     26C4       26        C       0
+                intcode_body                       1E16     1E16       8C        C       0
+                text40                             2336     2336       48        C       0
+                text39                             1C2E     1C2E       B2        C       0
+                text38                             27E8     27E8        C        C       0
+                text37                             2792     2792       12        C       0
+                text36                             2780     2780       12        C       0
+                text35                             24B4     24B4       38        C       0
+                text34                             26EA     26EA       24        C       0
+                text33                             1F9A     1F9A       6A        C       0
+                text32                             1AC4     1AC4       B6        C       0
+                text31                             23C0     23C0       40        C       0
+                text30                             243E     243E       3E        C       0
+                text28                             27D8     27D8       10        C       0
+                text27                             27C8     27C8       10        C       0
+                text26                             22EE     22EE       48        C       0
+                text25                             2758     2758       14        C       0
+                text24                             247C     247C       38        C       0
+                text23                             2242     2242       56        C       0
+                text22                             16FE     16FE      106        C       0
+                text21                             2642     2642       2C        C       0
+                text20                             136C     136C      140        C       0
+                text19                             1EA2     1EA2       86        C       0
+                text18                             2616     2616       2C        C       0
+                text17                             237E     237E       42        C       0
+                text16                             1CE0     1CE0       9C        C       0
+                text15                             2588     2588       30        C       0
+                text14                             11B8     11B8      1B4        C       0
+                text13                             2558     2558       30        C       0
+                text12                             2744     2744       14        C       0
+                text11                             212E     212E       5E        C       0
+                text10                             21EA     21EA       58        C       0
+                text9                              190A     190A       E0        C       0
+                text8                              1B7A     1B7A       B4        C       0
+                text7                              2524     2524       34        C       0
+                text6                              2400     2400       3E        C       0
+                text5                              1F28     1F28       72        C       0
+                text4                              25E8     25E8       2E        C       0
+                text3                              206C     206C       62        C       0
+                text2                              272A     272A       1A        C       0
+                text1                              27F4     27F4        A        C       0
+                text0                               F04      F04      2B4        C       0
                 cstackCOMRAM                          1        1       33        1       1
                 cstackBANK0                          60       60       47       60       1
-                cstackBANK1                         1A2      1A2       53      100       1
-                bssBANK1                            100      100       A2      100       1
-                dataBANK0                            E2       E2        2       60       1
-                bssBANK0                             A7       A7       39       60       1
-                bssCOMRAM                            34       34        5        1       1
-                cinit                              1DD4     1DD4       40        C       0
-                nvBANK0                              E0       E0        2       60       1
-                nvCOMRAM                             39       39        2        1       1
-                idataBANK0                         219C     219C        2        C       0
+                cstackBANK1                         1A6      1A6       2D      100       1
+                cstackBANK2                         200      200       34      200       1
+                bssBANK1                            100      100       A6      100       1
+                bssBANK0                             A7       A7       3B       60       1
+                bssCOMRAM                            34       34        A        1       1
+                cinit                              269A     269A       2A        C       0
+                nvBANK0                              E2       E2        2       60       1
+                nvCOMRAM                             3E       3E        2        1       1
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   CODE           
-                end_init                             D2       D2        4         0
-                intcodelo                            18       18       BA         0
+                end_init                             E2       E2        4         0
+                intcodelo                            18       18       CA         0
                 intcode                               8        8       10         0
                 reset_vec                             0        0        6         0
-                text55                             1C46     1C46       56         0
-                text54                             1F40     1F40       38         0
-                text53                              E58      E58      140         0
-                text52                             12BA     12BA      106         0
-                text51                             211C     211C       14         0
-                text50                             1B3A     1B3A       5E         0
-                text49                             2166     2166       12         0
-                text48                              BAC      BAC      16C         0
-                text47                             14A0     14A0       DA         0
-                text46                              F98      F98      112         0
-                text45                             2008     2008       30         0
-                text44                             2064     2064       2C         0
-                text43                               D6       D6      7DC         0
-                text42                             2196     2196        6         0
-                text41                             1FD8     1FD8       30         0
-                text40                             185E     185E       9A         0
-                text39                             157A     157A       C8         0
-                text38                             2090     2090       26         0
-                intcode_body                       18F8     18F8       8A         0
-                text36                             1D8C     1D8C       48         0
-                text35                             17AC     17AC       B2         0
-                text34                             2178     2178        C         0
-                text33                             2154     2154       12         0
-                text32                             2142     2142       12         0
-                text31                             1F08     1F08       38         0
-                text30                             20B6     20B6       24         0
-                text29                             1642     1642       B6         0
-                text28                             1E14     1E14       40         0
-                text27                             1E92     1E92       3E         0
-                text25                             10AA     10AA      10A         0
-                text24                             2108     2108       14         0
-                text23                             1ED0     1ED0       38         0
-                text22                             1BF0     1BF0       56         0
-                text21                              D18      D18      140         0
-                text20                             11B4     11B4      106         0
-                text19                             1982     1982       86         0
-                text18                             1D3E     1D3E       4E         0
-                text17                             2038     2038       2C         0
-                text16                             1C9C     1C9C       52         0
-                text15                             1FA8     1FA8       30         0
-                text14                             2184     2184        A         0
-                text13                             1F78     1F78       30         0
-                text12                             20F4     20F4       14         0
-                text11                             1ADC     1ADC       5E         0
-                text10                             1B98     1B98       58         0
-                text9                              13C0     13C0       E0         0
-                text8                              16F8     16F8       B4         0
-                text7                              1CEE     1CEE       50         0
-                text6                              1E54     1E54       3E         0
-                text5                              1A08     1A08       72         0
-                text4                              2130     2130       12         0
-                text3                              1A7A     1A7A       62         0
-                text2                              20DA     20DA       1A         0
-                text1                              218E     218E        8         0
-                text0                               8B2      8B2      2FA         0
-                cinit                              1DD4     1DD4       40         0
-                idataBANK0                         219C     219C        2         0
+                text61                             2298     2298       56         0
+                text60                             24EC     24EC       38         0
+                text59                             1804     1804      106         0
+                text58                             266E     266E       2C         0
+                text57                             14AC     14AC      140         0
+                text56                             276C     276C       14         0
+                text55                             218C     218C       5E         0
+                text54                             27B6     27B6       12         0
+                text53                             27A4     27A4       12         0
+                text52                             270E     270E       1C         0
+                text51                             2004     2004       68         0
+                text50                              8D8      8D8      62C         0
+                text49                             19EA     19EA       DA         0
+                text48                             15EC     15EC      112         0
+                text47                             25B8     25B8       30         0
+                text46                               E6       E6      7F2         0
+                text45                             27FE     27FE        6         0
+                text44                             1D7C     1D7C       9A         0
+                text43                             20CE     20CE       60         0
+                text42                             26C4     26C4       26         0
+                intcode_body                       1E16     1E16       8C         0
+                text40                             2336     2336       48         0
+                text39                             1C2E     1C2E       B2         0
+                text38                             27E8     27E8        C         0
+                text37                             2792     2792       12         0
+                text36                             2780     2780       12         0
+                text35                             24B4     24B4       38         0
+                text34                             26EA     26EA       24         0
+                text33                             1F9A     1F9A       6A         0
+                text32                             1AC4     1AC4       B6         0
+                text31                             23C0     23C0       40         0
+                text30                             243E     243E       3E         0
+                text28                             27D8     27D8       10         0
+                text27                             27C8     27C8       10         0
+                text26                             22EE     22EE       48         0
+                text25                             2758     2758       14         0
+                text24                             247C     247C       38         0
+                text23                             2242     2242       56         0
+                text22                             16FE     16FE      106         0
+                text21                             2642     2642       2C         0
+                text20                             136C     136C      140         0
+                text19                             1EA2     1EA2       86         0
+                text18                             2616     2616       2C         0
+                text17                             237E     237E       42         0
+                text16                             1CE0     1CE0       9C         0
+                text15                             2588     2588       30         0
+                text14                             11B8     11B8      1B4         0
+                text13                             2558     2558       30         0
+                text12                             2744     2744       14         0
+                text11                             212E     212E       5E         0
+                text10                             21EA     21EA       58         0
+                text9                              190A     190A       E0         0
+                text8                              1B7A     1B7A       B4         0
+                text7                              2524     2524       34         0
+                text6                              2400     2400       3E         0
+                text5                              1F28     1F28       72         0
+                text4                              25E8     25E8       2E         0
+                text3                              206C     206C       62         0
+                text2                              272A     272A       1A         0
+                text1                              27F4     27F4        A         0
+                text0                               F04      F04      2B4         0
+                cinit                              269A     269A       2A         0
 
         CLASS   CONST          
 
@@ -181,8 +191,8 @@ TOTAL           Name                               Link     Load   Length     Sp
 
         CLASS   COMRAM         
                 cstackCOMRAM                          1        1       33         1
-                bssCOMRAM                            34       34        5         1
-                nvCOMRAM                             39       39        2         1
+                bssCOMRAM                            34       34        A         1
+                nvCOMRAM                             3E       3E        2         1
 
         CLASS   ABS1           
 
@@ -192,15 +202,15 @@ TOTAL           Name                               Link     Load   Length     Sp
 
         CLASS   BANK0          
                 cstackBANK0                          60       60       47         1
-                dataBANK0                            E2       E2        2         1
-                bssBANK0                             A7       A7       39         1
-                nvBANK0                              E0       E0        2         1
+                bssBANK0                             A7       A7       3B         1
+                nvBANK0                              E2       E2        2         1
 
         CLASS   BANK1          
-                cstackBANK1                         1A2      1A2       53         1
-                bssBANK1                            100      100       A2         1
+                cstackBANK1                         1A6      1A6       2D         1
+                bssBANK1                            100      100       A6         1
 
         CLASS   BANK2          
+                cstackBANK2                         200      200       34         1
 
         CLASS   BANK3          
 
@@ -239,11 +249,12 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class
 
                 reset_vec                      000000  000006  000006         0       0  CODE    
-                cstackCOMRAM                   000001  00003A  00003B         1       1  COMRAM  
+                cstackCOMRAM                   000001  00003F  000040         1       1  COMRAM  
                 intcode                        000008  000010  000018         4       0  CODE    
-                intcodelo                      000018  002186  00219E         C       0  CODE    
+                intcodelo                      000018  0027EC  002804         C       0  CODE    
                 cstackBANK0                    000060  000084  0000E4        60       1  BANK0   
-                bssBANK1                       000100  0000F5  0001F5       100       1  BANK1   
+                bssBANK1                       000100  0000D3  0001D3       100       1  BANK1   
+                cstackBANK2                    000200  000034  000234       200       1  BANK2   
                 idloc                          200000  000008  200008    200000       0  IDLOC   
                 config                         300000  00000E  30000E    300000       0  CONFIG  
 
@@ -252,11 +263,11 @@ UNUSED ADDRESS RANGES
 
         Name                Unused          Largest block    Delta
         BANK0            0000E4-0000FF               1C
-        BANK1            0001F5-0001FF                B
+        BANK1            0001D3-0001FF               2D
         BANK10           000A00-000AFF              100
         BANK11           000B00-000BFF              100
         BANK12           000C00-000CF3               F4
-        BANK2            000200-0002FF              100
+        BANK2            000234-0002FF               CC
         BANK3            000300-0003FF              100
         BANK4            000400-0004FF              100
         BANK5            000500-0005FF              100
@@ -264,87 +275,91 @@ UNUSED ADDRESS RANGES
         BANK7            000700-0007FF              100
         BANK8            000800-0008FF              100
         BANK9            000900-0009FF              100
-        BIGRAM           00003B-00005F               25
+        BIGRAM           000040-00005F               20
                          0000E4-0000FF               1C
-                         0001F5-000CF3              AFF
+                         0001D3-0001FF               2D
+                         000234-000CF3              AC0
         CODE             000006-000007                2
-                         00219E-00FD7F             DBE2
-        COMRAM           00003B-00005F               25
+                         002804-00FD7F             D57C
+        COMRAM           000040-00005F               20
         CONST            000006-000007                2
-                         00219E-00FD7F             DBE2
+                         002804-00FD7F             D57C
         EEDATA           F00000-F003FF              400
-        MEDIUMCONST      00219E-00FD7F             DBE2
+        MEDIUMCONST      002804-00FD7F             D57C
         RAM              0000E4-0000FF               1C
-                         0001F5-000CF3              100
+                         0001D3-0001FF               2D
+                         000234-000CF3              100
         SFR              000D00-000FFF              100
-        SMALLCONST       00219E-00FD7F              100
+        SMALLCONST       002804-00FD7F              100
 
                                   Symbol Table
 
-?_Delay1KTCYx                       cstackBANK1  0001A2
-?_FromMainHigh_recvmsg              cstackBANK0  000078
+?_Delay1KTCYx                       cstackBANK1  0001A6
 ?_FromMainLow_recvmsg               cstackBANK0  000078
-?_FromMainLow_sendmsg               cstackBANK1  0001B8
-?_OpenTimer1                        cstackBANK1  0001A2
-?_OpenUSART                         cstackBANK1  0001A2
+?_FromMainLow_sendmsg               cstackBANK1  0001BC
+?_OpenTimer1                        cstackBANK1  0001A6
+?_OpenUSART                         cstackBANK1  0001A6
 ?_ReadADC                           cstackCOMRAM 000001
+?_ReadTimer0                        cstackBANK0  000060
 ?_ReadTimer1                        cstackCOMRAM 000001
-?_ToMainHigh_recvmsg                cstackBANK1  0001BA
-?_ToMainHigh_sendmsg                cstackBANK0  000076
-?_ToMainLow_recvmsg                 cstackBANK1  0001BA
+?_ToMainHigh_recvmsg                cstackBANK1  0001BE
+?_ToMainHigh_sendmsg                cstackBANK1  0001BC
+?_ToMainLow_recvmsg                 cstackBANK1  0001BE
 ?_ToMainLow_sendmsg                 cstackCOMRAM 000017
 ?_WriteTimer0                       cstackBANK0  000060
 ?_WriteTimer1                       cstackCOMRAM 000001
-?_check_msg                         cstackBANK1  0001A2
+?_WriteUSART                        cstackBANK0  000060
+?_check_msg                         cstackBANK1  0001A6
+?_get_left_encoder_count            cstackBANK1  0001A6
+?_get_right_encoder_count           cstackBANK1  0001A6
 ?_handle_start                      cstackBANK0  000060
-?_i2c_configure_master              cstackBANK1  0001A2
-?_i2c_master_send                   cstackBANK1  0001A2
-?_in_high_int                       cstackBANK1  0001A2
-?_in_low_int                        cstackBANK1  0001A4
-?_in_main                           cstackBANK1  0001A6
-?_init_i2c                          cstackBANK1  0001A2
-?_init_queue                        cstackBANK1  0001A2
-?_init_timer1_lthread               cstackBANK1  0001A2
-?_init_uart_recv                    cstackBANK1  0001A2
-?_memcpy                            cstackBANK1  0001A2
-?_recv_msg                          cstackBANK1  0001AC
-?_send_msg                          cstackBANK1  0001AC
+?_i2c_configure_master              cstackBANK1  0001A6
+?_i2c_configure_slave               cstackBANK1  0001A6
+?_in_high_int                       cstackBANK1  0001A6
+?_in_low_int                        cstackBANK1  0001A8
+?_in_main                           cstackBANK1  0001AA
+?_init_i2c                          cstackBANK1  0001A6
+?_init_queue                        cstackBANK1  0001A6
+?_init_timer1_lthread               cstackBANK1  0001A6
+?_init_uart_recv                    cstackBANK1  0001A6
+?_memcpy                            cstackBANK1  0001A6
+?_recv_msg                          cstackBANK1  0001B0
+?_send_msg                          cstackBANK1  0001B0
 ?_start_i2c_slave_reply             cstackBANK0  000060
-?_timer0_lthread                    cstackBANK1  0001A2
-?_timer1_lthread                    cstackBANK1  0001A7
-?_uart_lthread                      cstackBANK1  0001A2
+?_timer0_lthread                    cstackBANK1  0001C0
+?_timer1_lthread                    cstackBANK1  0001C0
+?_uart_send                         cstackBANK0  000061
 ?i1_memcpy                          cstackCOMRAM 000001
 ?i1_send_msg                        cstackCOMRAM 00000B
+?i2_ToMainHigh_sendmsg              cstackBANK0  000076
 ?i2_check_msg                       cstackBANK0  000060
 ?i2_in_high_int                     cstackBANK0  000060
 ?i2_in_low_int                      cstackBANK0  000062
 ?i2_memcpy                          cstackBANK0  000060
 ?i2_recv_msg                        cstackBANK0  00006A
 ?i2_send_msg                        cstackBANK0  00006A
-Delay1KTCYx@unit                    cstackBANK1  0001A2
-FromMainHigh_recvmsg@data           cstackBANK0  00007B
-FromMainHigh_recvmsg@maxlength      cstackBANK0  000078
-FromMainHigh_recvmsg@msgtype        cstackBANK0  000079
+Delay1KTCYx@unit                    cstackBANK1  0001A6
 FromMainLow_recvmsg@data            cstackBANK0  00007B
 FromMainLow_recvmsg@maxlength       cstackBANK0  000078
 FromMainLow_recvmsg@msgtype         cstackBANK0  000079
-FromMainLow_sendmsg@data            cstackBANK1  0001BA
-FromMainLow_sendmsg@length          cstackBANK1  0001B8
-FromMainLow_sendmsg@msgtype         cstackBANK1  0001B9
-OpenTimer1@config                   cstackBANK1  0001A2
-OpenUSART@config                    cstackBANK1  0001A2
-OpenUSART@spbrg                     cstackBANK1  0001A3
+FromMainLow_sendmsg@data            cstackBANK1  0001BE
+FromMainLow_sendmsg@length          cstackBANK1  0001BC
+FromMainLow_sendmsg@msgtype         cstackBANK1  0001BD
+OpenTimer1@config                   cstackBANK1  0001A6
+OpenUSART@config                    cstackBANK1  0001A6
+OpenUSART@spbrg                     cstackBANK1  0001A7
+ReadTimer0@timer                    cstackBANK0  000062
 ReadTimer1@timer                    cstackCOMRAM 000003
 ReadUSART@data                      cstackCOMRAM 000001
-ToMainHigh_recvmsg@data             cstackBANK1  0001BD
-ToMainHigh_recvmsg@maxlength        cstackBANK1  0001BA
-ToMainHigh_recvmsg@msgtype          cstackBANK1  0001BB
-ToMainHigh_sendmsg@data             cstackBANK0  000078
-ToMainHigh_sendmsg@length           cstackBANK0  000076
-ToMainHigh_sendmsg@msgtype          cstackBANK0  000077
-ToMainLow_recvmsg@data              cstackBANK1  0001BD
-ToMainLow_recvmsg@maxlength         cstackBANK1  0001BA
-ToMainLow_recvmsg@msgtype           cstackBANK1  0001BB
+ToMainHigh_recvmsg@data             cstackBANK1  0001C1
+ToMainHigh_recvmsg@maxlength        cstackBANK1  0001BE
+ToMainHigh_recvmsg@msgtype          cstackBANK1  0001BF
+ToMainHigh_sendmsg@data             cstackBANK1  0001BE
+ToMainHigh_sendmsg@length           cstackBANK1  0001BC
+ToMainHigh_sendmsg@msgtype          cstackBANK1  0001BD
+ToMainLow_recvmsg@data              cstackBANK1  0001C1
+ToMainLow_recvmsg@maxlength         cstackBANK1  0001BE
+ToMainLow_recvmsg@msgtype           cstackBANK1  0001BF
 ToMainLow_sendmsg@data              cstackCOMRAM 000019
 ToMainLow_sendmsg@length            cstackCOMRAM 000017
 ToMainLow_sendmsg@msgtype           cstackCOMRAM 000018
@@ -352,6 +367,7 @@ WriteTimer0@timer                   cstackBANK0  000062
 WriteTimer0@timer0                  cstackBANK0  000060
 WriteTimer1@timer                   cstackCOMRAM 000003
 WriteTimer1@timer1                  cstackCOMRAM 000001
+WriteUSART@data                     cstackBANK0  000060
 _ABDEN                              (abs)        007DC0
 _ABDOVF                             (abs)        007DC7
 _ACKDT                              (abs)        007E2D
@@ -1425,7 +1441,7 @@ _DT                                 (abs)        007C17
 _D_A                                (abs)        007E3D
 _D_NOT_A                            (abs)        007E3D
 _D_nA                               (abs)        007E3D
-_Delay1KTCYx                        text24       002108
+_Delay1KTCYx                        text25       002758
 _ECANCON                            (abs)        000F77
 _ECANCONbits                        (abs)        000F77
 _ECCP1AS                            (abs)        000FB6
@@ -1593,11 +1609,10 @@ _FSR1L                              (abs)        000FE1
 _FSR2                               (abs)        000FD9
 _FSR2H                              (abs)        000FDA
 _FSR2L                              (abs)        000FD9
-_FromMainHigh_MQ                    bssBANK1     000100
-_FromMainHigh_recvmsg               text41       001FD8
-_FromMainLow_MQ                     bssBANK1     000136
-_FromMainLow_recvmsg                text45       002008
-_FromMainLow_sendmsg                text17       002038
+_FromMainHigh_MQ                    bssBANK0     0000AC
+_FromMainLow_MQ                     bssBANK1     000104
+_FromMainLow_recvmsg                text47       0025B8
+_FromMainLow_sendmsg                text18       002616
 _GCEN                               (abs)        007E2F
 _GIE                                (abs)        007F97
 _GIEH                               (abs)        007F97
@@ -1791,8 +1806,8 @@ _OSCTUNEbits                        (abs)        000F9B
 _OSTS                               (abs)        007E9B
 _OV                                 (abs)        007EC3
 _OVERFLOW                           (abs)        007EC3
-_OpenTimer1                         text6        001E54
-_OpenUSART                          text8        0016F8
+_OpenTimer1                         text6        002400
+_OpenUSART                          text8        001B7A
 _PA1                                (abs)        007C12
 _PA2                                (abs)        007C11
 _PA2E                               (abs)        007C27
@@ -2965,9 +2980,10 @@ _RXWARN                             (abs)        007BA1
 _R_NOT_W                            (abs)        007E3A
 _R_W                                (abs)        007E3A
 _R_nW                               (abs)        007E3A
-_ReadADC                            text34       002178
-_ReadTimer1                         text32       002142
-_ReadUSART                          text31       001F08
+_ReadADC                            text38       0027E8
+_ReadTimer0                         text54       0027B6
+_ReadTimer1                         text36       002780
+_ReadUSART                          text35       0024B4
 _SAM                                (abs)        007B8E
 _SBOREN                             (abs)        007E86
 _SCK                                (abs)        007C13
@@ -3038,7 +3054,7 @@ _SWDTE                              (abs)        007E88
 _SWDTEN                             (abs)        007E88
 _SYNC                               (abs)        007D64
 _SYNC1                              (abs)        007D64
-_SleepIfOkay                        text40       00185E
+_SleepIfOkay                        text44       001D7C
 _T08BIT                             (abs)        007EAE
 _T0CKI                              (abs)        007C04
 _T0CON                              (abs)        000FD5
@@ -3617,12 +3633,12 @@ _TXSTA1                             (abs)        000FAC
 _TXSTA1bits                         (abs)        000FAC
 _TXSTAbits                          (abs)        000FAC
 _TXWARN                             (abs)        007BA2
-_ToMainHigh_MQ                      bssBANK0     0000AA
-_ToMainHigh_recvmsg                 text13       001F78
-_ToMainHigh_sendmsg                 text44       002064
-_ToMainLow_MQ                       bssBANK1     00016C
-_ToMainLow_recvmsg                  text15       001FA8
-_ToMainLow_sendmsg                  text30       0020B6
+_ToMainHigh_MQ                      bssBANK1     00013A
+_ToMainHigh_recvmsg                 text13       002558
+_ToMainHigh_sendmsg                 text21       002642
+_ToMainLow_MQ                       bssBANK1     000170
+_ToMainLow_recvmsg                  text15       002588
+_ToMainLow_sendmsg                  text34       0026EA
 _UA                                 (abs)        007E39
 _ULPWUIN                            (abs)        007C00
 _USART_Status                       bssCOMRAM    000037
@@ -3648,8 +3664,9 @@ _WREG                               (abs)        000FE8
 _WREN                               (abs)        007D32
 _WRERR                              (abs)        007D33
 _WUE                                (abs)        007DC1
-_WriteTimer0                        text49       002166
-_WriteTimer1                        text33       002154
+_WriteTimer0                        text53       0027A4
+_WriteTimer1                        text37       002792
+_WriteUSART                         text52       00270E
 _ZERO                               (abs)        007EC2
 __CFG_BBSIZ$1024                    (abs)        000000
 __CFG_BOREN$OFF                     (abs)        000000
@@ -3694,22 +3711,21 @@ __Hconfig                           config       30000E
 __Hconst                            const        000000
 __HcstackBANK0                      cstackBANK0  000000
 __HcstackBANK1                      cstackBANK1  000000
+__HcstackBANK2                      cstackBANK2  000000
 __HcstackCOMRAM                     cstackCOMRAM 000000
 __Hdata                             data         000000
-__HdataBANK0                        dataBANK0    000000
 __Heeprom_data                      eeprom_data  000000
-__Hend_init                         end_init     0000D6
+__Hend_init                         end_init     0000E6
 __Hfarbss                           farbss       000000
 __Hfardata                          fardata      000000
 __Hibigdata                         ibigdata     000000
 __Hidata                            idata        000000
-__HidataBANK0                       idataBANK0   000000
 __Hidloc                            idloc        200008
 __Hifardata                         ifardata     000000
-__Hinit                             init         0000D2
+__Hinit                             init         0000E2
 __Hintcode                          intcode      000018
 __Hintcode_body                     intcode_body 000000
-__Hintcodelo                        intcodelo    0000D2
+__Hintcodelo                        intcodelo    0000E2
 __Hintentry                         intentry     000000
 __Hintret                           intret       000000
 __Hintsave_regs                     intsave_regs 000000
@@ -3721,7 +3737,7 @@ __Hnvbit                            nvbit        000000
 __Hnvrram                           nvrram       000000
 __Hparam                            param0       000000
 __Hparam0                           param0       000000
-__Hpowerup                          powerup      0000D2
+__Hpowerup                          powerup      0000E2
 __Hram                              ram          000000
 __Hramtop                           ramtop       000D00
 __Hrbit                             rbit         000000
@@ -3752,9 +3768,9 @@ __Htext22                           text22       000000
 __Htext23                           text23       000000
 __Htext24                           text24       000000
 __Htext25                           text25       000000
+__Htext26                           text26       000000
 __Htext27                           text27       000000
 __Htext28                           text28       000000
-__Htext29                           text29       000000
 __Htext3                            text3        000000
 __Htext30                           text30       000000
 __Htext31                           text31       000000
@@ -3763,11 +3779,11 @@ __Htext33                           text33       000000
 __Htext34                           text34       000000
 __Htext35                           text35       000000
 __Htext36                           text36       000000
+__Htext37                           text37       000000
 __Htext38                           text38       000000
 __Htext39                           text39       000000
 __Htext4                            text4        000000
 __Htext40                           text40       000000
-__Htext41                           text41       000000
 __Htext42                           text42       000000
 __Htext43                           text43       000000
 __Htext44                           text44       000000
@@ -3784,7 +3800,13 @@ __Htext53                           text53       000000
 __Htext54                           text54       000000
 __Htext55                           text55       000000
 __Htext56                           text56       000000
+__Htext57                           text57       000000
+__Htext58                           text58       000000
+__Htext59                           text59       000000
 __Htext6                            text6        000000
+__Htext60                           text60       000000
+__Htext61                           text61       000000
+__Htext62                           text62       000000
 __Htext7                            text7        000000
 __Htext8                            text8        000000
 __Htext9                            text9        000000
@@ -3817,19 +3839,18 @@ __Lconfig                           config       300000
 __Lconst                            const        000000
 __LcstackBANK0                      cstackBANK0  000000
 __LcstackBANK1                      cstackBANK1  000000
+__LcstackBANK2                      cstackBANK2  000000
 __LcstackCOMRAM                     cstackCOMRAM 000000
 __Ldata                             data         000000
-__LdataBANK0                        dataBANK0    000000
 __Leeprom_data                      eeprom_data  000000
-__Lend_init                         end_init     0000D2
+__Lend_init                         end_init     0000E2
 __Lfarbss                           farbss       000000
 __Lfardata                          fardata      000000
 __Libigdata                         ibigdata     000000
 __Lidata                            idata        000000
-__LidataBANK0                       idataBANK0   000000
 __Lidloc                            idloc        200000
 __Lifardata                         ifardata     000000
-__Linit                             init         0000D2
+__Linit                             init         0000E2
 __Lintcode                          intcode      000008
 __Lintcode_body                     intcode_body 000000
 __Lintcodelo                        intcodelo    000018
@@ -3844,7 +3865,7 @@ __Lnvbit                            nvbit        000000
 __Lnvrram                           nvrram       000000
 __Lparam                            param0       000000
 __Lparam0                           param0       000000
-__Lpowerup                          powerup      0000D2
+__Lpowerup                          powerup      0000E2
 __Lram                              ram          000000
 __Lramtop                           ramtop       000D00
 __Lrbit                             rbit         000000
@@ -3875,9 +3896,9 @@ __Ltext22                           text22       000000
 __Ltext23                           text23       000000
 __Ltext24                           text24       000000
 __Ltext25                           text25       000000
+__Ltext26                           text26       000000
 __Ltext27                           text27       000000
 __Ltext28                           text28       000000
-__Ltext29                           text29       000000
 __Ltext3                            text3        000000
 __Ltext30                           text30       000000
 __Ltext31                           text31       000000
@@ -3886,11 +3907,11 @@ __Ltext33                           text33       000000
 __Ltext34                           text34       000000
 __Ltext35                           text35       000000
 __Ltext36                           text36       000000
+__Ltext37                           text37       000000
 __Ltext38                           text38       000000
 __Ltext39                           text39       000000
 __Ltext4                            text4        000000
 __Ltext40                           text40       000000
-__Ltext41                           text41       000000
 __Ltext42                           text42       000000
 __Ltext43                           text43       000000
 __Ltext44                           text44       000000
@@ -3907,145 +3928,161 @@ __Ltext53                           text53       000000
 __Ltext54                           text54       000000
 __Ltext55                           text55       000000
 __Ltext56                           text56       000000
+__Ltext57                           text57       000000
+__Ltext58                           text58       000000
+__Ltext59                           text59       000000
 __Ltext6                            text6        000000
+__Ltext60                           text60       000000
+__Ltext61                           text61       000000
+__Ltext62                           text62       000000
 __Ltext7                            text7        000000
 __Ltext8                            text8        000000
 __Ltext9                            text9        000000
 __S0                                (abs)        30000E
-__S1                                (abs)        0001F5
+__S1                                (abs)        000234
 __accesstop                         (abs)        000060
 __activetblptr                      (abs)        000000
-__end_of_Delay1KTCYx                text24       00211C
-__end_of_FromMainHigh_recvmsg       text41       002008
-__end_of_FromMainLow_recvmsg        text45       002038
-__end_of_FromMainLow_sendmsg        text17       002064
-__end_of_InterruptHandlerHigh       intcode_body 001982
-__end_of_InterruptHandlerLow        intcodelo    0000D2
-__end_of_OpenTimer1                 text6        001E92
-__end_of_OpenUSART                  text8        0017AC
-__end_of_ReadADC                    text34       002184
-__end_of_ReadTimer1                 text32       002154
-__end_of_ReadUSART                  text31       001F40
-__end_of_SleepIfOkay                text40       0018F8
-__end_of_ToMainHigh_recvmsg         text13       001FA8
-__end_of_ToMainHigh_sendmsg         text44       002090
-__end_of_ToMainLow_recvmsg          text15       001FD8
-__end_of_ToMainLow_sendmsg          text30       0020DA
-__end_of_WriteTimer0                text49       002178
-__end_of_WriteTimer1                text33       002166
-__end_of__initialization            cinit        001E0E
-__end_of_adc_int_handler            text28       001E54
-__end_of_block_on_To_msgqueues      text9        0014A0
-__end_of_check_msg                  text23       001F08
-__end_of_enable_interrupts          text1        002196
-__end_of_enter_sleep_mode           text42       00219C
-__end_of_handle_start               text47       00157A
-__end_of_i2c_configure_master       text7        001D3E
-__end_of_i2c_int_handler            text38       0020B6
-__end_of_i2c_master_int_handler     text48       000D18
-__end_of_i2c_master_send            text25       0011B4
-__end_of_i2c_slave_int_handler      text43       0008B2
-__end_of_in_high_int                text12       002108
-__end_of_in_low_int                 text11       001B3A
-__end_of_in_main                    text10       001BF0
-__end_of_init_i2c                   text3        001ADC
-__end_of_init_queue                 text19       001A08
-__end_of_init_queues                text5        001A7A
-__end_of_init_timer1_lthread        text4        002142
-__end_of_init_uart_recv             text2        0020F4
-__end_of_main                       text0        000BAC
-__end_of_memcpy                     text22       001C46
-__end_of_recv_msg                   text21       000E58
-__end_of_send_msg                   text20       0012BA
-__end_of_start_i2c_slave_reply      text46       0010AA
-__end_of_timer0_int_handler         text39       001642
-__end_of_timer0_lthread             text14       00218E
-__end_of_timer1_int_handler         text27       001ED0
-__end_of_timer1_lthread             text16       001CEE
-__end_of_uart_lthread               text18       001D8C
-__end_of_uart_recv_int_handler      text29       0016F8
-__end_ofi1_memcpy                   text36       001DD4
-__end_ofi1_send_msg                 text35       00185E
-__end_ofi2_check_msg                text54       001F78
-__end_ofi2_in_high_int              text51       002130
-__end_ofi2_in_low_int               text50       001B98
-__end_ofi2_memcpy                   text55       001C9C
-__end_ofi2_recv_msg                 text53       000F98
-__end_ofi2_send_msg                 text52       0013C0
-__initialization                    cinit        001DD4
+__end_of_Delay1KTCYx                text25       00276C
+__end_of_FromMainLow_recvmsg        text47       0025E8
+__end_of_FromMainLow_sendmsg        text18       002642
+__end_of_InterruptHandlerHigh       intcode_body 001EA2
+__end_of_InterruptHandlerLow        intcodelo    0000E2
+__end_of_OpenTimer1                 text6        00243E
+__end_of_OpenUSART                  text8        001C2E
+__end_of_ReadADC                    text38       0027F4
+__end_of_ReadTimer0                 text54       0027C8
+__end_of_ReadTimer1                 text36       002792
+__end_of_ReadUSART                  text35       0024EC
+__end_of_SleepIfOkay                text44       001E16
+__end_of_ToMainHigh_recvmsg         text13       002588
+__end_of_ToMainHigh_sendmsg         text21       00266E
+__end_of_ToMainLow_recvmsg          text15       0025B8
+__end_of_ToMainLow_sendmsg          text34       00270E
+__end_of_WriteTimer0                text53       0027B6
+__end_of_WriteTimer1                text37       0027A4
+__end_of_WriteUSART                 text52       00272A
+__end_of__initialization            cinit        0026BE
+__end_of_adc_int_handler            text31       002400
+__end_of_block_on_To_msgqueues      text9        0019EA
+__end_of_check_msg                  text24       0024B4
+__end_of_enable_interrupts          text1        0027FE
+__end_of_encoder_int_handler        text33       002004
+__end_of_enter_sleep_mode           text45       002804
+__end_of_get_left_encoder_count     text27       0027D8
+__end_of_get_right_encoder_count    text28       0027E8
+__end_of_handle_start               text49       001AC4
+__end_of_i2c_configure_master       text26       002336
+__end_of_i2c_configure_slave        text7        002558
+__end_of_i2c_int_handler            text42       0026EA
+__end_of_i2c_master_int_handler     text50       000F04
+__end_of_i2c_slave_int_handler      text46       0008D8
+__end_of_in_high_int                text12       002758
+__end_of_in_low_int                 text11       00218C
+__end_of_in_main                    text10       002242
+__end_of_init_encoder_counts        text17       0023C0
+__end_of_init_i2c                   text3        0020CE
+__end_of_init_queue                 text19       001F28
+__end_of_init_queues                text5        001F9A
+__end_of_init_timer1_lthread        text4        002616
+__end_of_init_uart_recv             text2        002744
+__end_of_main                       text0        0011B8
+__end_of_memcpy                     text23       002298
+__end_of_recv_msg                   text20       0014AC
+__end_of_send_msg                   text22       001804
+__end_of_start_i2c_slave_reply      text48       0016FE
+__end_of_timer0_int_handler         text43       00212E
+__end_of_timer0_lthread             text14       00136C
+__end_of_timer1_int_handler         text30       00247C
+__end_of_timer1_lthread             text16       001D7C
+__end_of_uart_recv_int_handler      text32       001B7A
+__end_of_uart_send                  text51       00206C
+__end_ofi1_memcpy                   text40       00237E
+__end_ofi1_send_msg                 text39       001CE0
+__end_ofi2_ToMainHigh_sendmsg       text58       00269A
+__end_ofi2_check_msg                text60       002524
+__end_ofi2_in_high_int              text56       002780
+__end_ofi2_in_low_int               text55       0021EA
+__end_ofi2_memcpy                   text61       0022EE
+__end_ofi2_recv_msg                 text57       0015EC
+__end_ofi2_send_msg                 text59       00190A
+__initialization                    cinit        00269A
 __mediumconst                       mediumconst  000000
 __pbssBANK0                         bssBANK0     0000A7
 __pbssBANK1                         bssBANK1     000100
 __pbssCOMRAM                        bssCOMRAM    000034
-__pcinit                            cinit        001DD4
+__pcinit                            cinit        00269A
 __pcstackBANK0                      cstackBANK0  000060
-__pcstackBANK1                      cstackBANK1  0001A2
+__pcstackBANK1                      cstackBANK1  0001A6
+__pcstackBANK2                      cstackBANK2  000200
 __pcstackCOMRAM                     cstackCOMRAM 000001
-__pdataBANK0                        dataBANK0    0000E2
-__pidataBANK0                       idataBANK0   00219C
 __pintcode                          intcode      000008
-__pintcode_body                     intcode_body 0018F8
+__pintcode_body                     intcode_body 001E16
 __pintcodelo                        intcodelo    000018
-__pnvBANK0                          nvBANK0      0000E0
-__pnvCOMRAM                         nvCOMRAM     000039
-__ptext0                            text0        0008B2
-__ptext1                            text1        00218E
-__ptext10                           text10       001B98
-__ptext11                           text11       001ADC
-__ptext12                           text12       0020F4
-__ptext13                           text13       001F78
-__ptext14                           text14       002184
-__ptext15                           text15       001FA8
-__ptext16                           text16       001C9C
-__ptext17                           text17       002038
-__ptext18                           text18       001D3E
-__ptext19                           text19       001982
-__ptext2                            text2        0020DA
-__ptext20                           text20       0011B4
-__ptext21                           text21       000D18
-__ptext22                           text22       001BF0
-__ptext23                           text23       001ED0
-__ptext24                           text24       002108
-__ptext25                           text25       0010AA
-__ptext27                           text27       001E92
-__ptext28                           text28       001E14
-__ptext29                           text29       001642
-__ptext3                            text3        001A7A
-__ptext30                           text30       0020B6
-__ptext31                           text31       001F08
-__ptext32                           text32       002142
-__ptext33                           text33       002154
-__ptext34                           text34       002178
-__ptext35                           text35       0017AC
-__ptext36                           text36       001D8C
-__ptext38                           text38       002090
-__ptext39                           text39       00157A
-__ptext4                            text4        002130
-__ptext40                           text40       00185E
-__ptext41                           text41       001FD8
-__ptext42                           text42       002196
-__ptext43                           text43       0000D6
-__ptext44                           text44       002064
-__ptext45                           text45       002008
-__ptext46                           text46       000F98
-__ptext47                           text47       0014A0
-__ptext48                           text48       000BAC
-__ptext49                           text49       002166
-__ptext5                            text5        001A08
-__ptext50                           text50       001B3A
-__ptext51                           text51       00211C
-__ptext52                           text52       0012BA
-__ptext53                           text53       000E58
-__ptext54                           text54       001F40
-__ptext55                           text55       001C46
-__ptext56                           text56       000000
-__ptext6                            text6        001E54
-__ptext7                            text7        001CEE
-__ptext8                            text8        0016F8
-__ptext9                            text9        0013C0
+__pnvBANK0                          nvBANK0      0000E2
+__pnvCOMRAM                         nvCOMRAM     00003E
+__ptext0                            text0        000F04
+__ptext1                            text1        0027F4
+__ptext10                           text10       0021EA
+__ptext11                           text11       00212E
+__ptext12                           text12       002744
+__ptext13                           text13       002558
+__ptext14                           text14       0011B8
+__ptext15                           text15       002588
+__ptext16                           text16       001CE0
+__ptext17                           text17       00237E
+__ptext18                           text18       002616
+__ptext19                           text19       001EA2
+__ptext2                            text2        00272A
+__ptext20                           text20       00136C
+__ptext21                           text21       002642
+__ptext22                           text22       0016FE
+__ptext23                           text23       002242
+__ptext24                           text24       00247C
+__ptext25                           text25       002758
+__ptext26                           text26       0022EE
+__ptext27                           text27       0027C8
+__ptext28                           text28       0027D8
+__ptext3                            text3        00206C
+__ptext30                           text30       00243E
+__ptext31                           text31       0023C0
+__ptext32                           text32       001AC4
+__ptext33                           text33       001F9A
+__ptext34                           text34       0026EA
+__ptext35                           text35       0024B4
+__ptext36                           text36       002780
+__ptext37                           text37       002792
+__ptext38                           text38       0027E8
+__ptext39                           text39       001C2E
+__ptext4                            text4        0025E8
+__ptext40                           text40       002336
+__ptext42                           text42       0026C4
+__ptext43                           text43       0020CE
+__ptext44                           text44       001D7C
+__ptext45                           text45       0027FE
+__ptext46                           text46       0000E6
+__ptext47                           text47       0025B8
+__ptext48                           text48       0015EC
+__ptext49                           text49       0019EA
+__ptext5                            text5        001F28
+__ptext50                           text50       0008D8
+__ptext51                           text51       002004
+__ptext52                           text52       00270E
+__ptext53                           text53       0027A4
+__ptext54                           text54       0027B6
+__ptext55                           text55       00218C
+__ptext56                           text56       00276C
+__ptext57                           text57       0014AC
+__ptext58                           text58       00266E
+__ptext59                           text59       001804
+__ptext6                            text6        002400
+__ptext60                           text60       0024EC
+__ptext61                           text61       002298
+__ptext62                           text62       000000
+__ptext7                            text7        002524
+__ptext8                            text8        001B7A
+__ptext9                            text9        00190A
 __ramtop                            ramtop       000D00
 __size_of_Delay1KTCYx               (abs)        000000
-__size_of_FromMainHigh_recvmsg      (abs)        000000
 __size_of_FromMainLow_recvmsg       (abs)        000000
 __size_of_FromMainLow_sendmsg       (abs)        000000
 __size_of_InterruptHandlerHigh      (abs)        000000
@@ -4053,6 +4090,7 @@ __size_of_InterruptHandlerLow       (abs)        000000
 __size_of_OpenTimer1                (abs)        000000
 __size_of_OpenUSART                 (abs)        000000
 __size_of_ReadADC                   (abs)        000000
+__size_of_ReadTimer0                (abs)        000000
 __size_of_ReadTimer1                (abs)        000000
 __size_of_ReadUSART                 (abs)        000000
 __size_of_SleepIfOkay               (abs)        000000
@@ -4062,20 +4100,25 @@ __size_of_ToMainLow_recvmsg         (abs)        000000
 __size_of_ToMainLow_sendmsg         (abs)        000000
 __size_of_WriteTimer0               (abs)        000000
 __size_of_WriteTimer1               (abs)        000000
+__size_of_WriteUSART                (abs)        000000
 __size_of_adc_int_handler           (abs)        000000
 __size_of_block_on_To_msgqueues     (abs)        000000
 __size_of_check_msg                 (abs)        000000
 __size_of_enable_interrupts         (abs)        000000
+__size_of_encoder_int_handler       (abs)        000000
 __size_of_enter_sleep_mode          (abs)        000000
+__size_of_get_left_encoder_count    (abs)        000000
+__size_of_get_right_encoder_count   (abs)        000000
 __size_of_handle_start              (abs)        000000
 __size_of_i2c_configure_master      (abs)        000000
+__size_of_i2c_configure_slave       (abs)        000000
 __size_of_i2c_int_handler           (abs)        000000
 __size_of_i2c_master_int_handler    (abs)        000000
-__size_of_i2c_master_send           (abs)        000000
 __size_of_i2c_slave_int_handler     (abs)        000000
 __size_of_in_high_int               (abs)        000000
 __size_of_in_low_int                (abs)        000000
 __size_of_in_main                   (abs)        000000
+__size_of_init_encoder_counts       (abs)        000000
 __size_of_init_i2c                  (abs)        000000
 __size_of_init_queue                (abs)        000000
 __size_of_init_queues               (abs)        000000
@@ -4090,10 +4133,11 @@ __size_of_timer0_int_handler        (abs)        000000
 __size_of_timer0_lthread            (abs)        000000
 __size_of_timer1_int_handler        (abs)        000000
 __size_of_timer1_lthread            (abs)        000000
-__size_of_uart_lthread              (abs)        000000
 __size_of_uart_recv_int_handler     (abs)        000000
+__size_of_uart_send                 (abs)        000000
 __size_ofi1_memcpy                  (abs)        000000
 __size_ofi1_send_msg                (abs)        000000
+__size_ofi2_ToMainHigh_sendmsg      (abs)        000000
 __size_ofi2_check_msg               (abs)        000000
 __size_ofi2_in_high_int             (abs)        000000
 __size_ofi2_in_low_int              (abs)        000000
@@ -4102,31 +4146,37 @@ __size_ofi2_recv_msg                (abs)        000000
 __size_ofi2_send_msg                (abs)        000000
 __smallconst                        smallconst   000000
 _adcMsgCount                        bssCOMRAM    000038
-_adc_int_handler                    text28       001E14
-_block_on_To_msgqueues              text9        0013C0
-_check_msg                          text23       001ED0
+_adc_int_handler                    text31       0023C0
+_block_on_To_msgqueues              text9        00190A
+_check_msg                          text24       00247C
 _emptyMsgCount                      bssBANK0     0000A8
-_enable_interrupts                  text1        00218E
-_enter_sleep_mode                   text42       002196
+_enable_interrupts                  text1        0027F4
+_encoder_int_handler                text33       001F9A
+_enter_sleep_mode                   text45       0027FE
 _errno                              bssCOMRAM    000034
-_handle_start                       text47       0014A0
+_get_left_encoder_count             text27       0027C8
+_get_right_encoder_count            text28       0027D8
+_handle_start                       text49       0019EA
 _i2cMode                            bssBANK0     0000A9
-_i2c_configure_master               text7        001CEE
-_i2c_int_handler                    text38       002090
-_i2c_master_int_handler             text48       000BAC
-_i2c_master_send                    text25       0010AA
-_i2c_slave_int_handler              text43       0000D6
-_ic_ptr                             nvBANK0      0000E0
-_in_high_int                        text12       0020F4
-_in_low_int                         text11       001ADC
-_in_main                            text10       001B98
-_init_i2c                           text3        001A7A
-_init_queue                         text19       001982
-_init_queues                        text5        001A08
-_init_timer1_lthread                text4        002130
-_init_uart_recv                     text2        0020DA
-_main                               text0        0008B2
-_memcpy                             text22       001BF0
+_i2c_configure_master               text26       0022EE
+_i2c_configure_slave                text7        002524
+_i2c_int_handler                    text42       0026C4
+_i2c_master_int_handler             text50       0008D8
+_i2c_slave_int_handler              text46       0000E6
+_ic_ptr                             nvBANK0      0000E2
+_in_high_int                        text12       002744
+_in_low_int                         text11       00212E
+_in_main                            text10       0021EA
+_init_encoder_counts                text17       00237E
+_init_i2c                           text3        00206C
+_init_queue                         text19       001EA2
+_init_queues                        text5        001F28
+_init_timer1_lthread                text4        0025E8
+_init_uart_recv                     text2        00272A
+_leftEncoderCount                   bssBANK0     0000AA
+_main                               text0        000F04
+_memcpy                             text23       002242
+_msgCount                           bssBANK1     000102
 _nA                                 (abs)        007E3D
 _nADDRESS                           (abs)        007E3D
 _nBOR                               (abs)        007E80
@@ -4142,23 +4192,30 @@ _nT3SYNC                            (abs)        007D8A
 _nTO                                (abs)        007E83
 _nW                                 (abs)        007E3A
 _nWRITE                             (abs)        007E3A
-_recv_msg                           text21       000D18
-_send_msg                           text20       0011B4
-_start_i2c_slave_reply              text46       000F98
-_timer0_int_handler                 text39       00157A
-_timer0_lthread                     text14       002184
-_timer1_int_handler                 text27       001E92
-_timer1_lthread                     text16       001C9C
-_uart_lthread                       text18       001D3E
-_uart_recv_int_handler              text29       001642
-_uc_ptr                             nvCOMRAM     000039
+_prevRA0                            bssCOMRAM    00003A
+_prevRA1                            bssCOMRAM    00003B
+_prevRA2                            bssCOMRAM    00003C
+_prevRA3                            bssCOMRAM    00003D
+_recv_msg                           text20       00136C
+_rightEncoderCount                  bssBANK0     0000AB
+_send_msg                           text22       0016FE
+_sensorToPoll                       bssBANK1     000100
+_sonarMsgCount                      bssBANK1     000103
+_start_i2c_slave_reply              text48       0015EC
+_timer0_int_handler                 text43       0020CE
+_timer0_lthread                     text14       0011B8
+_timer1_int_handler                 text30       00243E
+_timer1_lthread                     text16       001CE0
+_uart_recv_int_handler              text32       001AC4
+_uart_send                          text51       002004
+_uc_ptr                             nvCOMRAM     00003E
 adc_int_handler@message             cstackCOMRAM 00001D
 adc_int_handler@value               cstackCOMRAM 000021
-check_msg@qptr                      cstackBANK1  0001A2
-end_of_initialization               cinit        001E0E
+check_msg@qptr                      cstackBANK1  0001A6
+end_of_initialization               cinit        0026BE
 handle_start@data_read              cstackBANK0  000060
-i1_memcpy                           text36       001D8C
-i1_send_msg                         text35       0017AC
+i1_memcpy                           text40       002336
+i1_send_msg                         text39       001C2E
 i1memcpy@d                          cstackCOMRAM 000007
 i1memcpy@d1                         cstackCOMRAM 000001
 i1memcpy@n                          cstackCOMRAM 000005
@@ -4171,15 +4228,18 @@ i1send_msg@qmsg                     cstackCOMRAM 000015
 i1send_msg@qptr                     cstackCOMRAM 00000B
 i1send_msg@slot                     cstackCOMRAM 000014
 i1send_msg@tlength                  cstackCOMRAM 000012
-i2_check_msg                        text54       001F40
-i2_in_high_int                      text51       00211C
-i2_in_low_int                       text50       001B3A
-i2_memcpy                           text55       001C46
-i2_recv_msg                         text53       000E58
-i2_send_msg                         text52       0012BA
-i2c_configure_master@slave_addr     cstackBANK1  0001A2
-i2c_master_send@length              cstackBANK1  0001A2
-i2c_master_send@msg                 cstackBANK1  0001A3
+i2ToMainHigh_sendmsg@data           cstackBANK0  000078
+i2ToMainHigh_sendmsg@length         cstackBANK0  000076
+i2ToMainHigh_sendmsg@msgtype        cstackBANK0  000077
+i2_ToMainHigh_sendmsg               text58       00266E
+i2_check_msg                        text60       0024EC
+i2_in_high_int                      text56       00276C
+i2_in_low_int                       text55       00218C
+i2_memcpy                           text61       002298
+i2_recv_msg                         text57       0014AC
+i2_send_msg                         text59       001804
+i2c_configure_master@slave_addr     cstackBANK1  0001A6
+i2c_configure_slave@addr            cstackBANK1  0001A6
 i2c_slave_int_handler@data          cstackBANK0  00007F
 i2c_slave_int_handler@data_read     cstackBANK0  000098
 i2c_slave_int_handler@data_written  cstackBANK0  000090
@@ -4188,8 +4248,8 @@ i2c_slave_int_handler@error_buf     cstackBANK0  00008D
 i2c_slave_int_handler@i2c_data      cstackBANK0  000094
 i2c_slave_int_handler@length        cstackBANK0  000092
 i2c_slave_int_handler@msg_ready     cstackBANK0  000097
-i2c_slave_int_handler@msg_to_send   cstackBANK0  000095
-i2c_slave_int_handler@msgtype       cstackBANK0  000096
+i2c_slave_int_handler@msg_to_send   cstackBANK0  000096
+i2c_slave_int_handler@msgtype       cstackBANK0  000095
 i2c_slave_int_handler@overrun_error cstackBANK0  000091
 i2check_msg@qptr                    cstackBANK0  000060
 i2memcpy@d                          cstackBANK0  000066
@@ -4211,81 +4271,78 @@ i2send_msg@qmsg                     cstackBANK0  000074
 i2send_msg@qptr                     cstackBANK0  00006A
 i2send_msg@slot                     cstackBANK0  000073
 i2send_msg@tlength                  cstackBANK0  000071
-init_i2c@ic                         cstackBANK1  0001A2
-init_queue@i                        cstackBANK1  0001A5
-init_queue@qptr                     cstackBANK1  0001A2
-init_timer1_lthread@tptr            cstackBANK1  0001A2
-init_uart_recv@uc                   cstackBANK1  0001A2
-int_func                            intcode_body 0018F8
+init_i2c@ic                         cstackBANK1  0001A6
+init_queue@i                        cstackBANK1  0001A9
+init_queue@qptr                     cstackBANK1  0001A6
+init_timer1_lthread@tptr            cstackBANK1  0001A6
+init_uart_recv@uc                   cstackBANK1  0001A6
+int_func                            intcode_body 001E16
 intlevel0                           text         000000
 intlevel1                           text         000000
 intlevel2                           text         000000
 intlevel3                           text         000000
-main@ic                             cstackBANK1  0001D9
-main@last_reg_recvd                 cstackBANK1  0001CF
-main@length                         cstackBANK1  0001D7
-main@msgbuffer                      cstackBANK1  0001C0
-main@msgtype                        cstackBANK1  0001D8
-main@t0thread_data                  cstackBANK1  0001CD
-main@t1thread_data                  cstackBANK1  0001D0
-main@uc                             cstackBANK1  0001D2
-main@uthread_data                   cstackBANK1  0001CB
-memcpy@d                            cstackBANK1  0001A8
-memcpy@d1                           cstackBANK1  0001A2
-memcpy@n                            cstackBANK1  0001A6
-memcpy@s                            cstackBANK1  0001AA
-memcpy@s1                           cstackBANK1  0001A4
-recv_msg@data                       cstackBANK1  0001B1
-recv_msg@maxlength                  cstackBANK1  0001AE
-recv_msg@msgtype                    cstackBANK1  0001AF
-recv_msg@qmsg                       cstackBANK1  0001B8
-recv_msg@qptr                       cstackBANK1  0001AC
-recv_msg@slot                       cstackBANK1  0001B5
-recv_msg@tlength                    cstackBANK1  0001B6
-send_msg@data                       cstackBANK1  0001B0
-send_msg@length                     cstackBANK1  0001AE
-send_msg@msgtype                    cstackBANK1  0001AF
-send_msg@qmsg                       cstackBANK1  0001B6
-send_msg@qptr                       cstackBANK1  0001AC
-send_msg@slot                       cstackBANK1  0001B5
-send_msg@tlength                    cstackBANK1  0001B3
-start                               init         0000D2
+main@ic                             cstackBANK2  000217
+main@last_reg_recvd                 cstackBANK2  000200
+main@length                         cstackBANK2  000215
+main@msgbuffer                      cstackBANK2  000201
+main@msgtype                        cstackBANK2  000216
+main@t0thread_data                  cstackBANK2  00020C
+main@t1thread_data                  cstackBANK2  00020E
+main@uc                             cstackBANK2  000210
+memcpy@d                            cstackBANK1  0001AC
+memcpy@d1                           cstackBANK1  0001A6
+memcpy@n                            cstackBANK1  0001AA
+memcpy@s                            cstackBANK1  0001AE
+memcpy@s1                           cstackBANK1  0001A8
+recv_msg@data                       cstackBANK1  0001B5
+recv_msg@maxlength                  cstackBANK1  0001B2
+recv_msg@msgtype                    cstackBANK1  0001B3
+recv_msg@qmsg                       cstackBANK1  0001BC
+recv_msg@qptr                       cstackBANK1  0001B0
+recv_msg@slot                       cstackBANK1  0001B9
+recv_msg@tlength                    cstackBANK1  0001BA
+send_msg@data                       cstackBANK1  0001B4
+send_msg@length                     cstackBANK1  0001B2
+send_msg@msgtype                    cstackBANK1  0001B3
+send_msg@qmsg                       cstackBANK1  0001BA
+send_msg@qptr                       cstackBANK1  0001B0
+send_msg@slot                       cstackBANK1  0001B9
+send_msg@tlength                    cstackBANK1  0001B7
+start                               init         0000E2
 start_i2c_slave_reply@length        cstackBANK0  000060
 start_i2c_slave_reply@msg           cstackBANK0  000061
-start_initialization                cinit        001DD4
-timer0_int_handler@length           cstackBANK0  000081
-timer0_int_handler@msgtype          cstackBANK0  00007F
-timer0_int_handler@val              cstackBANK0  000083
-timer0_lthread@msgbuffer            cstackBANK1  0001A8
-timer0_lthread@msgval               cstackBANK1  0001AA
+start_initialization                cinit        00269A
+timer0_int_handler@result           cstackBANK0  00007C
+timer0_lthread@fakeData             cstackBANK1  0001CA
+timer0_lthread@fakeData_83136       cstackBANK1  0001CE
+timer0_lthread@msgbuffer            cstackBANK1  0001C6
 timer1_int_handler@result           cstackCOMRAM 00001F
 timer1_int_handler@temp             cstackCOMRAM 00001D
-timer1_lthread@F16386               dataBANK0    0000E2
-timer1_lthread@msgbuffer            cstackBANK1  0001AD
-timer1_lthread@temp                 cstackBANK1  0001B1
-timer1_lthread@tptr                 cstackBANK1  0001A7
-uart_lthread@length                 cstackBANK1  0001A6
-uart_lthread@msgbuffer              cstackBANK1  0001A8
-uart_lthread@msgtype                cstackBANK1  0001A4
+timer1_lthread@msg                  cstackBANK1  0001CA
+timer1_lthread@msgbuffer            cstackBANK1  0001C6
+timer1_lthread@tptr                 cstackBANK1  0001C0
+uart_send@indx                      cstackBANK0  000065
+uart_send@length                    cstackBANK0  000061
+uart_send@msg                       cstackBANK0  000062
 
 
 FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 79 in file "../src/main.c"
+		line 80 in file "../src/main.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
-  ic             28   55[BANK1 ] struct __i2c_comm
-  msgbuffer      11   30[BANK1 ] unsigned char [11]
-  uc              5   48[BANK1 ] struct __uart_comm
-  t1thread_dat    2   46[BANK1 ] struct __timer1_thread_s
-  t0thread_dat    2   43[BANK1 ] struct __timer0_thread_s
-  uthread_data    2   41[BANK1 ] struct __uart_thread_str
-  msgtype         1   54[BANK1 ] unsigned char 
-  length          1   53[BANK1 ] char 
-  last_reg_rec    1   45[BANK1 ] unsigned char 
+  ic             29   23[BANK2 ] struct __i2c_comm
+  msgbuffer      11    1[BANK2 ] unsigned char [11]
+  uc              5   16[BANK2 ] struct __uart_comm
+  t1thread_dat    2   14[BANK2 ] struct __timer1_thread_s
+  t0thread_dat    2   12[BANK2 ] struct __timer0_thread_s
+  uthread_data    2    0        struct __uart_thread_str
+  msgtype         1   22[BANK2 ] unsigned char 
+  length          1   21[BANK2 ] char 
+  last_reg_rec    1    0[BANK2 ] unsigned char 
   i               1    0        unsigned char 
   c               1    0        unsigned char 
  Return value:  Size  Location     Type
@@ -4298,10 +4355,10 @@ FUNCTION INFORMATION:
 		Unchanged: 
  Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
       Params:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Locals:         0       0      53       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0      52       0       0       0       0       0       0       0       0       0       0
       Temps:          0       0       1       0       0       0       0       0       0       0       0       0       0       0
-      Totals:         0       0      54       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:       54 bytes
+      Totals:         0       0       1      52       0       0       0       0       0       0       0       0       0       0
+Total ram usage:       53 bytes
  Hardware stack levels required when called:   15
  This function calls:
 		_init_uart_recv
@@ -4310,7 +4367,8 @@ Total ram usage:       54 bytes
 		_init_queues
 		_OpenTimer1
 		_enable_interrupts
-		_i2c_configure_master
+		_i2c_configure_slave
+		_init_encoder_counts
 		_OpenUSART
 		_block_on_To_msgqueues
 		_ToMainHigh_recvmsg
@@ -4318,7 +4376,6 @@ Total ram usage:       54 bytes
 		_ToMainLow_recvmsg
 		_timer1_lthread
 		_FromMainLow_sendmsg
-		_uart_lthread
  This function is called by:
 		Startup code after reset
  This function uses a non-reentrant model
@@ -4387,10 +4444,10 @@ Total ram usage:        2 bytes
 
  *************** function _init_i2c *****************
  Defined at:
-		line 371 in file "../src/my_i2c.c"
+		line 523 in file "../src/my_i2c.c"
  Parameters:    Size  Location     Type
   ic              2    0[BANK1 ] PTR struct __i2c_comm
-		 -> main@ic(28), 
+		 -> main@ic(29), 
  Auto vars:     Size  Location     Type
 		None
  Return value:  Size  Location     Type
@@ -4418,7 +4475,7 @@ Total ram usage:        2 bytes
 
  *************** function _init_timer1_lthread *****************
  Defined at:
-		line 9 in file "../src/timer1_thread.c"
+		line 12 in file "../src/timer1_thread.c"
  Parameters:    Size  Location     Type
   tptr            2    0[BANK1 ] PTR struct __timer1_thre
 		 -> main@t1thread_data(2), 
@@ -4427,7 +4484,7 @@ Total ram usage:        2 bytes
  Return value:  Size  Location     Type
 		None               void
  Registers used:
-		wreg, fsr2l, fsr2h
+		wreg, fsr2l, fsr2h, status,2
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -4435,9 +4492,9 @@ Total ram usage:        2 bytes
  Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
       Params:         0       0       2       0       0       0       0       0       0       0       0       0       0       0
       Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Totals:         0       0       2       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:        2 bytes
+      Temps:          0       0       1       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         0       0       3       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        3 bytes
  Hardware stack levels used:    1
  Hardware stack levels required when called:   11
  This function calls:
@@ -4507,17 +4564,17 @@ Total ram usage:        1 bytes
  This function uses a non-reentrant model
 
 
- *************** function _i2c_configure_master *****************
+ *************** function _i2c_configure_slave *****************
  Defined at:
-		line 21 in file "../src/my_i2c.c"
+		line 534 in file "../src/my_i2c.c"
  Parameters:    Size  Location     Type
-  slave_addr      1    0[BANK1 ] unsigned char 
+  addr            1    0[BANK1 ] unsigned char 
  Auto vars:     Size  Location     Type
 		None
  Return value:  Size  Location     Type
 		None               void
  Registers used:
-		wreg, fsr2l, fsr2h, status,2, status,0
+		wreg, status,2, status,0
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -4602,7 +4659,7 @@ Total ram usage:        1 bytes
 
  *************** function _in_main *****************
  Defined at:
-		line 40 in file "../src/interrupts.c"
+		line 43 in file "../src/interrupts.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -4633,7 +4690,7 @@ Total ram usage:        2 bytes
 
  *************** function _in_low_int *****************
  Defined at:
-		line 30 in file "../src/interrupts.c"
+		line 33 in file "../src/interrupts.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -4663,7 +4720,7 @@ Total ram usage:        2 bytes
 
  *************** function _in_high_int *****************
  Defined at:
-		line 22 in file "../src/interrupts.c"
+		line 25 in file "../src/interrupts.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -4728,35 +4785,37 @@ Total ram usage:        5 bytes
 
  *************** function _timer0_lthread *****************
  Defined at:
-		line 9 in file "../src/timer0_thread.c"
+		line 19 in file "../src/timer0_thread.c"
  Parameters:    Size  Location     Type
-  tptr            2    0[BANK1 ] PTR struct __timer0_thre
+  tptr            2   26[BANK1 ] PTR struct __timer0_thre
 		 -> main@t0thread_data(2), 
-  msgtype         2    2[BANK1 ] int 
-  length          2    4[BANK1 ] int 
-  msgbuffer       2    6[BANK1 ] PTR unsigned char 
+  msgtype         2   28[BANK1 ] int 
+  length          2   30[BANK1 ] int 
+  msgbuffer       2   32[BANK1 ] PTR unsigned char 
 		 -> main@msgbuffer(11), 
  Auto vars:     Size  Location     Type
-  msgval          2    8[BANK1 ] PTR unsigned int 
-		 -> main@msgbuffer(11), 
+  fakeData        4   40[BANK1 ] unsigned char [4]
+  fakeData        4   36[BANK1 ] unsigned char [4]
  Return value:  Size  Location     Type
-                  2    0[BANK1 ] int 
+                  2   26[BANK1 ] int 
  Registers used:
-		None
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, pclat, tosl, structret, tblptrl, tblptrh, tblptru, prodl, prodh, bsr, cstack
  Tracked objects:
 		On entry : 
 		On exit  : 
 		Unchanged: 
  Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
       Params:         0       0       8       0       0       0       0       0       0       0       0       0       0       0
-      Locals:         0       0       2       0       0       0       0       0       0       0       0       0       0       0
-      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Totals:         0       0      10       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:       10 bytes
+      Locals:         0       0       8       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          0       0       2       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         0       0      18       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:       18 bytes
  Hardware stack levels used:    1
- Hardware stack levels required when called:   11
+ Hardware stack levels required when called:   14
  This function calls:
-		Nothing
+		_i2c_configure_master
+		_ToMainHigh_sendmsg
+		_FromMainLow_sendmsg
  This function is called by:
 		_main
  This function uses a non-reentrant model
@@ -4798,36 +4857,70 @@ Total ram usage:        5 bytes
 
  *************** function _timer1_lthread *****************
  Defined at:
-		line 25 in file "../src/timer1_thread.c"
+		line 39 in file "../src/timer1_thread.c"
  Parameters:    Size  Location     Type
-  tptr            2    5[BANK1 ] PTR struct __timer1_thre
+  tptr            2   26[BANK1 ] PTR struct __timer1_thre
 		 -> main@t1thread_data(2), 
-  msgtype         2    7[BANK1 ] int 
-  length          2    9[BANK1 ] int 
-  msgbuffer       2   11[BANK1 ] PTR unsigned char 
+  msgtype         2   28[BANK1 ] int 
+  length          2   30[BANK1 ] int 
+  msgbuffer       2   32[BANK1 ] PTR unsigned char 
 		 -> main@msgbuffer(11), 
  Auto vars:     Size  Location     Type
-  temp            2   15[BANK1 ] unsigned char [2]
+  msg             4   36[BANK1 ] unsigned char [4]
  Return value:  Size  Location     Type
-                  2    5[BANK1 ] int 
+                  2   26[BANK1 ] int 
  Registers used:
-		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, pclat, tosl, structret, tblptrl, tblptrh, tblptru, prodl, prodh, bsr, cstack
  Tracked objects:
 		On entry : 
 		On exit  : 
 		Unchanged: 
  Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
       Params:         0       0       8       0       0       0       0       0       0       0       0       0       0       0
-      Locals:         0       0       2       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       0       4       0       0       0       0       0       0       0       0       0       0       0
       Temps:          0       0       2       0       0       0       0       0       0       0       0       0       0       0
-      Totals:         0       0      12       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:       12 bytes
+      Totals:         0       0      14       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:       14 bytes
  Hardware stack levels used:    1
- Hardware stack levels required when called:   12
+ Hardware stack levels required when called:   14
  This function calls:
-		_i2c_master_send
+		_get_left_encoder_count
+		_get_right_encoder_count
+		_init_encoder_counts
+		_FromMainLow_sendmsg
  This function is called by:
 		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _init_encoder_counts *****************
+ Defined at:
+		line 26 in file "../src/user_interrupts.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		wreg, status,2
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
+      Params:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          0       0       1       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         0       0       1       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        1 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:   11
+ This function calls:
+		Nothing
+ This function is called by:
+		_main
+		_timer1_lthread
  This function uses a non-reentrant model
 
 
@@ -4838,7 +4931,7 @@ Total ram usage:       12 bytes
   length          1   22[BANK1 ] unsigned char 
   msgtype         1   23[BANK1 ] unsigned char 
   data            2   24[BANK1 ] PTR void 
-		 -> main@msgbuffer(11), 
+		 -> timer1_lthread@msg(4), main@msgbuffer(11), 
  Auto vars:     Size  Location     Type
 		None
  Return value:  Size  Location     Type
@@ -4861,41 +4954,8 @@ Total ram usage:        4 bytes
 		_send_msg
  This function is called by:
 		_main
- This function uses a non-reentrant model
-
-
- *************** function _uart_lthread *****************
- Defined at:
-		line 9 in file "../src/uart_thread.c"
- Parameters:    Size  Location     Type
-  uptr            2    0[BANK1 ] PTR struct __uart_thread
-		 -> main@uthread_data(2), 
-  msgtype         2    2[BANK1 ] int 
-  length          2    4[BANK1 ] int 
-  msgbuffer       2    6[BANK1 ] PTR unsigned char 
-		 -> main@msgbuffer(11), 
- Auto vars:     Size  Location     Type
-		None
- Return value:  Size  Location     Type
-                  2    0[BANK1 ] int 
- Registers used:
-		wreg, fsr2l, fsr2h, status,2, status,0
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
-      Params:         0       0       8       0       0       0       0       0       0       0       0       0       0       0
-      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Totals:         0       0       8       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:        8 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:   11
- This function calls:
-		Nothing
- This function is called by:
-		_main
+		_timer0_lthread
+		_timer1_lthread
  This function uses a non-reentrant model
 
 
@@ -4930,46 +4990,6 @@ Total ram usage:        4 bytes
  This function uses a non-reentrant model
 
 
- *************** function _send_msg *****************
- Defined at:
-		line 24 in file "../src/messages.c"
- Parameters:    Size  Location     Type
-  qptr            2   10[BANK1 ] PTR struct __msg_queue
-		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
-  length          1   12[BANK1 ] unsigned char 
-  msgtype         1   13[BANK1 ] unsigned char 
-  data            2   14[BANK1 ] PTR void 
-		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@val(2), NULL(0), 
-		 -> i2c_slave_int_handler@error_buf(3), main@msgbuffer(11), main@uc(5), 
- Auto vars:     Size  Location     Type
-  qmsg            2   20[BANK1 ] PTR struct __msg
-		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
-  tlength         2   17[BANK1 ] unsigned int 
-  slot            1   19[BANK1 ] unsigned char 
- Return value:  Size  Location     Type
-                  1    wreg      char 
- Registers used:
-		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
-      Params:         0       0       6       0       0       0       0       0       0       0       0       0       0       0
-      Locals:         0       0       5       0       0       0       0       0       0       0       0       0       0       0
-      Temps:          0       0       1       0       0       0       0       0       0       0       0       0       0       0
-      Totals:         0       0      12       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:       12 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:   12
- This function calls:
-		_memcpy
- This function is called by:
-		_FromMainLow_sendmsg
-		_FromMainHigh_sendmsg
- This function uses a non-reentrant model
-
-
  *************** function _recv_msg *****************
  Defined at:
 		line 63 in file "../src/messages.c"
@@ -4978,9 +4998,9 @@ Total ram usage:       12 bytes
 		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
   maxlength       1   12[BANK1 ] unsigned char 
   msgtype         2   13[BANK1 ] PTR unsigned char 
-		 -> RAM(3327), i2c_slave_int_handler@msgtype(1), main@msgtype(1), 
+		 -> i2c_slave_int_handler@msgtype(1), main@msgtype(1), 
   data            2   15[BANK1 ] PTR void 
-		 -> timer0_int_handler@val(2), i2c_slave_int_handler@data(10), main@msgbuffer(11), 
+		 -> i2c_slave_int_handler@data(10), main@msgbuffer(11), 
  Auto vars:     Size  Location     Type
   qmsg            2   22[BANK1 ] PTR struct __msg
 		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
@@ -5007,6 +5027,83 @@ Total ram usage:       14 bytes
  This function is called by:
 		_ToMainLow_recvmsg
 		_ToMainHigh_recvmsg
+		_FromMainHigh_recvmsg
+ This function uses a non-reentrant model
+
+
+ *************** function _ToMainHigh_sendmsg *****************
+ Defined at:
+		line 126 in file "../src/messages.c"
+ Parameters:    Size  Location     Type
+  length          1   22[BANK1 ] unsigned char 
+  msgtype         1   23[BANK1 ] unsigned char 
+  data            2   24[BANK1 ] PTR void 
+		 -> timer0_int_handler@result(2), timer0_lthread@fakeData_83136(4), timer0_lthread@fakeData(4), i2c_slave_int_handler@error_buf(3), 
+		 -> NULL(0), main@ic(29), 
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      char 
+ Registers used:
+		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
+      Params:         0       0       4       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         0       0       4       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        4 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:   13
+ This function calls:
+		_send_msg
+ This function is called by:
+		_timer0_lthread
+ This function uses a non-reentrant model
+
+
+ *************** function _send_msg *****************
+ Defined at:
+		line 24 in file "../src/messages.c"
+ Parameters:    Size  Location     Type
+  qptr            2   10[BANK1 ] PTR struct __msg_queue
+		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
+  length          1   12[BANK1 ] unsigned char 
+  msgtype         1   13[BANK1 ] unsigned char 
+  data            2   14[BANK1 ] PTR void 
+		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@result(2), timer1_lthread@msg(4), 
+		 -> timer0_lthread@fakeData_83136(4), timer0_lthread@fakeData(4), i2c_slave_int_handler@error_buf(3), NULL(0), 
+		 -> main@msgbuffer(11), main@ic(29), main@uc(5), 
+ Auto vars:     Size  Location     Type
+  qmsg            2   20[BANK1 ] PTR struct __msg
+		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
+  tlength         2   17[BANK1 ] unsigned int 
+  slot            1   19[BANK1 ] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      char 
+ Registers used:
+		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
+      Params:         0       0       6       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       0       5       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          0       0       1       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         0       0      12       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:       12 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:   12
+ This function calls:
+		_memcpy
+ This function is called by:
+		_ToMainHigh_sendmsg
+		_FromMainLow_sendmsg
+		_FromMainHigh_sendmsg
  This function uses a non-reentrant model
 
 
@@ -5015,21 +5112,23 @@ Total ram usage:       14 bytes
 		line 13 in file "/opt/microchip/xc8/v1.10/sources/memcpy.c"
  Parameters:    Size  Location     Type
   d1              2    0[BANK1 ] PTR void 
-		 -> timer0_int_handler@val(2), i2c_slave_int_handler@data(10), FromMainHigh_MQ(54), FromMainLow_MQ(54), 
-		 -> ToMainHigh_MQ(54), ToMainLow_MQ(54), main@msgbuffer(11), 
+		 -> i2c_slave_int_handler@data(10), FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), 
+		 -> ToMainLow_MQ(54), main@msgbuffer(11), 
   s1              2    2[BANK1 ] PTR const void 
-		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@val(2), NULL(0), 
-		 -> i2c_slave_int_handler@error_buf(3), FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), 
-		 -> ToMainLow_MQ(54), main@msgbuffer(11), main@uc(5), 
+		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@result(2), timer1_lthread@msg(4), 
+		 -> timer0_lthread@fakeData_83136(4), timer0_lthread@fakeData(4), i2c_slave_int_handler@error_buf(3), NULL(0), 
+		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
+		 -> main@msgbuffer(11), main@ic(29), main@uc(5), 
   n               2    4[BANK1 ] unsigned int 
  Auto vars:     Size  Location     Type
   s               2    8[BANK1 ] PTR const unsigned char 
-		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@val(2), NULL(0), 
-		 -> i2c_slave_int_handler@error_buf(3), FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), 
-		 -> ToMainLow_MQ(54), main@msgbuffer(11), main@uc(5), 
+		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@result(2), timer1_lthread@msg(4), 
+		 -> timer0_lthread@fakeData_83136(4), timer0_lthread@fakeData(4), i2c_slave_int_handler@error_buf(3), NULL(0), 
+		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
+		 -> main@msgbuffer(11), main@ic(29), main@uc(5), 
   d               2    6[BANK1 ] PTR unsigned char 
-		 -> timer0_int_handler@val(2), i2c_slave_int_handler@data(10), FromMainHigh_MQ(54), FromMainLow_MQ(54), 
-		 -> ToMainHigh_MQ(54), ToMainLow_MQ(54), main@msgbuffer(11), 
+		 -> i2c_slave_int_handler@data(10), FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), 
+		 -> ToMainLow_MQ(54), main@msgbuffer(11), 
  Return value:  Size  Location     Type
                   2    0[BANK1 ] PTR void 
  Registers used:
@@ -5115,29 +5214,87 @@ Total ram usage:        1 bytes
  This function uses a non-reentrant model
 
 
- *************** function _i2c_master_send *****************
+ *************** function _i2c_configure_master *****************
  Defined at:
-		line 54 in file "../src/my_i2c.c"
+		line 27 in file "../src/my_i2c.c"
  Parameters:    Size  Location     Type
-  length          1    0[BANK1 ] unsigned char 
-  msg             2    1[BANK1 ] PTR unsigned char 
-		 -> timer1_lthread@temp(2), 
+  slave_addr      1    0[BANK1 ] unsigned char 
  Auto vars:     Size  Location     Type
 		None
  Return value:  Size  Location     Type
-                  1    wreg      unsigned char 
+		None               void
  Registers used:
-		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh
+		wreg, fsr2l, fsr2h, status,2, status,0
  Tracked objects:
 		On entry : 
 		On exit  : 
 		Unchanged: 
  Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
-      Params:         0       0       3       0       0       0       0       0       0       0       0       0       0       0
+      Params:         0       0       1       0       0       0       0       0       0       0       0       0       0       0
       Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Temps:          0       0       2       0       0       0       0       0       0       0       0       0       0       0
-      Totals:         0       0       5       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:        5 bytes
+      Temps:          0       0       1       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         0       0       2       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        2 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:   11
+ This function calls:
+		Nothing
+ This function is called by:
+		_timer0_lthread
+ This function uses a non-reentrant model
+
+
+ *************** function _get_left_encoder_count *****************
+ Defined at:
+		line 66 in file "../src/user_interrupts.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  2    0[BANK1 ] int 
+ Registers used:
+		None
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
+      Params:         0       0       2       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         0       0       2       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        2 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:   11
+ This function calls:
+		Nothing
+ This function is called by:
+		_timer1_lthread
+ This function uses a non-reentrant model
+
+
+ *************** function _get_right_encoder_count *****************
+ Defined at:
+		line 62 in file "../src/user_interrupts.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  2    0[BANK1 ] int 
+ Registers used:
+		None
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
+      Params:         0       0       2       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         0       0       2       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        2 bytes
  Hardware stack levels used:    1
  Hardware stack levels required when called:   11
  This function calls:
@@ -5149,7 +5306,7 @@ Total ram usage:        5 bytes
 
  *************** function _InterruptHandlerLow *****************
  Defined at:
-		line 132 in file "../src/interrupts.c"
+		line 125 in file "../src/interrupts.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -5174,6 +5331,7 @@ Total ram usage:       17 bytes
 		_timer1_int_handler
 		_adc_int_handler
 		_uart_recv_int_handler
+		_encoder_int_handler
  This function is called by:
 		Interrupt level 1
  This function uses a non-reentrant model
@@ -5181,7 +5339,7 @@ Total ram usage:       17 bytes
 
  *************** function _timer1_int_handler *****************
  Defined at:
-		line 37 in file "../src/user_interrupts.c"
+		line 82 in file "../src/user_interrupts.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -5214,7 +5372,7 @@ Total ram usage:        6 bytes
 
  *************** function _adc_int_handler *****************
  Defined at:
-		line 49 in file "../src/user_interrupts.c"
+		line 92 in file "../src/user_interrupts.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -5270,6 +5428,36 @@ Total ram usage:        2 bytes
  This function calls:
 		_ReadUSART
 		_ToMainLow_sendmsg
+ This function is called by:
+		_InterruptHandlerLow
+ This function uses a non-reentrant model
+
+
+ *************** function _encoder_int_handler *****************
+ Defined at:
+		line 37 in file "../src/user_interrupts.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
+      Params:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    6
+ This function calls:
+		Nothing
  This function is called by:
 		_InterruptHandlerLow
  This function uses a non-reentrant model
@@ -5439,8 +5627,9 @@ Total ram usage:        2 bytes
   send_msg        1   12[COMRAM] unsigned char 
   send_msg        1   13[COMRAM] unsigned char 
   send_msg        2   14[COMRAM] PTR void 
-		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@val(2), NULL(0), 
-		 -> i2c_slave_int_handler@error_buf(3), main@msgbuffer(11), main@uc(5), 
+		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@result(2), timer1_lthread@msg(4), 
+		 -> timer0_lthread@fakeData_83136(4), timer0_lthread@fakeData(4), i2c_slave_int_handler@error_buf(3), NULL(0), 
+		 -> main@msgbuffer(11), main@ic(29), main@uc(5), 
  Auto vars:     Size  Location     Type
   send_msg        2   20[COMRAM] PTR struct __msg
 		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
@@ -5474,21 +5663,23 @@ Total ram usage:       12 bytes
 		line 13 in file "/opt/microchip/xc8/v1.10/sources/memcpy.c"
  Parameters:    Size  Location     Type
   memcpy          2    0[COMRAM] PTR void 
-		 -> timer0_int_handler@val(2), i2c_slave_int_handler@data(10), FromMainHigh_MQ(54), FromMainLow_MQ(54), 
-		 -> ToMainHigh_MQ(54), ToMainLow_MQ(54), main@msgbuffer(11), 
+		 -> i2c_slave_int_handler@data(10), FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), 
+		 -> ToMainLow_MQ(54), main@msgbuffer(11), 
   memcpy          2    2[COMRAM] PTR const void 
-		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@val(2), NULL(0), 
-		 -> i2c_slave_int_handler@error_buf(3), FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), 
-		 -> ToMainLow_MQ(54), main@msgbuffer(11), main@uc(5), 
+		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@result(2), timer1_lthread@msg(4), 
+		 -> timer0_lthread@fakeData_83136(4), timer0_lthread@fakeData(4), i2c_slave_int_handler@error_buf(3), NULL(0), 
+		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
+		 -> main@msgbuffer(11), main@ic(29), main@uc(5), 
   memcpy          2    4[COMRAM] unsigned int 
  Auto vars:     Size  Location     Type
   memcpy          2    8[COMRAM] PTR const unsigned char 
-		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@val(2), NULL(0), 
-		 -> i2c_slave_int_handler@error_buf(3), FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), 
-		 -> ToMainLow_MQ(54), main@msgbuffer(11), main@uc(5), 
+		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@result(2), timer1_lthread@msg(4), 
+		 -> timer0_lthread@fakeData_83136(4), timer0_lthread@fakeData(4), i2c_slave_int_handler@error_buf(3), NULL(0), 
+		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
+		 -> main@msgbuffer(11), main@ic(29), main@uc(5), 
   memcpy          2    6[COMRAM] PTR unsigned char 
-		 -> timer0_int_handler@val(2), i2c_slave_int_handler@data(10), FromMainHigh_MQ(54), FromMainLow_MQ(54), 
-		 -> ToMainHigh_MQ(54), ToMainLow_MQ(54), main@msgbuffer(11), 
+		 -> i2c_slave_int_handler@data(10), FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), 
+		 -> ToMainLow_MQ(54), main@msgbuffer(11), 
  Return value:  Size  Location     Type
                   2    0[COMRAM] PTR void 
  Registers used:
@@ -5514,7 +5705,7 @@ Total ram usage:       10 bytes
 
  *************** function _InterruptHandlerHigh *****************
  Defined at:
-		line 83 in file "../src/interrupts.c"
+		line 86 in file "../src/interrupts.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -5546,7 +5737,7 @@ Total ram usage:       14 bytes
 
  *************** function _i2c_int_handler *****************
  Defined at:
-		line 133 in file "../src/my_i2c.c"
+		line 180 in file "../src/my_i2c.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -5554,7 +5745,7 @@ Total ram usage:       14 bytes
  Return value:  Size  Location     Type
 		None               void
  Registers used:
-		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+		wreg, fsr0l, fsr0h, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, pclat, tosl, structret, tblptrl, tblptrh, tblptru, prodl, prodh, bsr, cstack
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -5577,33 +5768,31 @@ Total ram usage:        0 bytes
 
  *************** function _timer0_int_handler *****************
  Defined at:
-		line 19 in file "../src/user_interrupts.c"
+		line 70 in file "../src/user_interrupts.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
-  val             2   35[BANK0 ] unsigned int 
-  length          2   33[BANK0 ] int 
-  msgtype         2   31[BANK0 ] int 
+  result          2   28[BANK0 ] unsigned int 
  Return value:  Size  Location     Type
 		None               void
  Registers used:
-		wreg, status,2, status,0, cstack
+		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
  Tracked objects:
 		On entry : 
 		On exit  : 
 		Unchanged: 
  Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
       Params:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Locals:         0       6       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       2       0       0       0       0       0       0       0       0       0       0       0       0
       Temps:          0       2       0       0       0       0       0       0       0       0       0       0       0       0
-      Totals:         0       8       0       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:        8 bytes
+      Totals:         0       4       0       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        4 bytes
  Hardware stack levels used:    1
  Hardware stack levels required when called:    3
  This function calls:
 		_WriteTimer0
-		_FromMainHigh_recvmsg
-		_ToMainHigh_sendmsg
+		_ReadTimer0
+		i2_ToMainHigh_sendmsg
  This function is called by:
 		_InterruptHandlerHigh
  This function uses a non-reentrant model
@@ -5642,40 +5831,6 @@ Total ram usage:        0 bytes
  This function uses a non-reentrant model
 
 
- *************** function _FromMainHigh_recvmsg *****************
- Defined at:
-		line 183 in file "../src/messages.c"
- Parameters:    Size  Location     Type
-  maxlength       1   24[BANK0 ] unsigned char 
-  msgtype         2   25[BANK0 ] PTR unsigned char 
-		 -> RAM(3327), 
-  data            2   27[BANK0 ] PTR void 
-		 -> timer0_int_handler@val(2), 
- Auto vars:     Size  Location     Type
-		None
- Return value:  Size  Location     Type
-                  1    wreg      char 
- Registers used:
-		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
-      Params:         0       5       0       0       0       0       0       0       0       0       0       0       0       0
-      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Totals:         0       5       0       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:        5 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:    2
- This function calls:
-		i2_recv_msg
- This function is called by:
-		_timer0_int_handler
- This function uses a non-reentrant model
-
-
  *************** function _enter_sleep_mode *****************
  Defined at:
 		line 202 in file "../src/messages.c"
@@ -5707,18 +5862,18 @@ Total ram usage:        0 bytes
 
  *************** function _i2c_slave_int_handler *****************
  Defined at:
-		line 180 in file "../src/my_i2c.c"
+		line 319 in file "../src/my_i2c.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
   empty           4   41[BANK0 ] unsigned char [4]
   data           10   31[BANK0 ] unsigned char [10]
   length          2   50[BANK0 ] int 
-  msgtype         1   54[BANK0 ] unsigned char 
+  msgtype         1   53[BANK0 ] unsigned char 
   error_buf       3   45[BANK0 ] unsigned char [3]
   data_read       1   56[BANK0 ] unsigned char 
   msg_ready       1   55[BANK0 ] unsigned char 
-  msg_to_send     1   53[BANK0 ] unsigned char 
+  msg_to_send     1   54[BANK0 ] unsigned char 
   i2c_data        1   52[BANK0 ] unsigned char 
   overrun_erro    1   49[BANK0 ] unsigned char 
   data_written    1   48[BANK0 ] unsigned char 
@@ -5740,45 +5895,12 @@ Total ram usage:       28 bytes
  Hardware stack levels required when called:    3
  This function calls:
 		_handle_start
+		_uart_send
+		i2_ToMainHigh_sendmsg
 		_FromMainLow_recvmsg
 		_start_i2c_slave_reply
-		_ToMainHigh_sendmsg
  This function is called by:
 		_i2c_int_handler
- This function uses a non-reentrant model
-
-
- *************** function _ToMainHigh_sendmsg *****************
- Defined at:
-		line 126 in file "../src/messages.c"
- Parameters:    Size  Location     Type
-  length          1   22[BANK0 ] unsigned char 
-  msgtype         1   23[BANK0 ] unsigned char 
-  data            2   24[BANK0 ] PTR void 
-		 -> timer0_int_handler@val(2), i2c_slave_int_handler@error_buf(3), 
- Auto vars:     Size  Location     Type
-		None
- Return value:  Size  Location     Type
-                  1    wreg      char 
- Registers used:
-		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
-      Params:         0       4       0       0       0       0       0       0       0       0       0       0       0       0
-      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0
-      Totals:         0       4       0       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:        4 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:    2
- This function calls:
-		i2_send_msg
- This function is called by:
-		_i2c_slave_int_handler
-		_timer0_int_handler
  This function uses a non-reentrant model
 
 
@@ -5818,11 +5940,11 @@ Total ram usage:        5 bytes
 
  *************** function _start_i2c_slave_reply *****************
  Defined at:
-		line 86 in file "../src/my_i2c.c"
+		line 133 in file "../src/my_i2c.c"
  Parameters:    Size  Location     Type
   length          1    0[BANK0 ] unsigned char 
   msg             2    1[BANK0 ] PTR unsigned char 
-		 -> i2c_slave_int_handler@empty(4), i2c_slave_int_handler@data(10), 
+		 -> i2c_slave_int_handler@data(10), 
  Auto vars:     Size  Location     Type
 		None
  Return value:  Size  Location     Type
@@ -5849,7 +5971,7 @@ Total ram usage:        5 bytes
 
  *************** function _handle_start *****************
  Defined at:
-		line 104 in file "../src/my_i2c.c"
+		line 151 in file "../src/my_i2c.c"
  Parameters:    Size  Location     Type
   data_read       1    0[BANK0 ] unsigned char 
  Auto vars:     Size  Location     Type
@@ -5878,7 +6000,7 @@ Total ram usage:        1 bytes
 
  *************** function _i2c_master_int_handler *****************
  Defined at:
-		line 149 in file "../src/my_i2c.c"
+		line 196 in file "../src/my_i2c.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -5886,7 +6008,7 @@ Total ram usage:        1 bytes
  Return value:  Size  Location     Type
 		None               void
  Registers used:
-		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh
+		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
  Tracked objects:
 		On entry : 
 		On exit  : 
@@ -5894,14 +6016,76 @@ Total ram usage:        1 bytes
  Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
       Params:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
       Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          0       2       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         0       2       0       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        2 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    3
+ This function calls:
+		i2_ToMainHigh_sendmsg
+ This function is called by:
+		_i2c_int_handler
+ This function uses a non-reentrant model
+
+
+ *************** function _uart_send *****************
+ Defined at:
+		line 36 in file "../src/my_uart.c"
+ Parameters:    Size  Location     Type
+  length          1    1[BANK0 ] unsigned char 
+  msg             2    2[BANK0 ] PTR unsigned char 
+		 -> NULL(0), main@ic(29), 
+ Auto vars:     Size  Location     Type
+  indx            1    5[BANK0 ] unsigned char 
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
+      Params:         0       3       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       1       0       0       0       0       0       0       0       0       0       0       0       0
       Temps:          0       1       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         0       5       0       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        5 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		_WriteUSART
+ This function is called by:
+		_i2c_slave_int_handler
+ This function uses a non-reentrant model
+
+
+ *************** function _WriteUSART *****************
+ Defined at:
+		line 14 in file "plib/USART/uwrite.c"
+ Parameters:    Size  Location     Type
+  data            1    0[BANK0 ] unsigned char 
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		None
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
+      Params:         0       1       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0
       Totals:         0       1       0       0       0       0       0       0       0       0       0       0       0       0
 Total ram usage:        1 bytes
  Hardware stack levels used:    1
  This function calls:
 		Nothing
  This function is called by:
-		_i2c_int_handler
+		_uart_send
  This function uses a non-reentrant model
 
 
@@ -5934,9 +6118,38 @@ Total ram usage:        4 bytes
  This function uses a non-reentrant model
 
 
+ *************** function _ReadTimer0 *****************
+ Defined at:
+		line 17 in file "plib/Timers/t0read.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  timer           2    2[BANK0 ] struct Timers
+ Return value:  Size  Location     Type
+                  2    0[BANK0 ] unsigned int 
+ Registers used:
+		None
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
+      Params:         0       2       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       2       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         0       4       0       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        4 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_timer0_int_handler
+ This function uses a non-reentrant model
+
+
  *************** function i2_in_low_int *****************
  Defined at:
-		line 30 in file "../src/interrupts.c"
+		line 33 in file "../src/interrupts.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -5966,7 +6179,7 @@ Total ram usage:        2 bytes
 
  *************** function i2_in_high_int *****************
  Defined at:
-		line 22 in file "../src/interrupts.c"
+		line 25 in file "../src/interrupts.c"
  Parameters:    Size  Location     Type
 		None
  Auto vars:     Size  Location     Type
@@ -5994,45 +6207,6 @@ Total ram usage:        2 bytes
  This function uses a non-reentrant model
 
 
- *************** function i2_send_msg *****************
- Defined at:
-		line 24 in file "../src/messages.c"
- Parameters:    Size  Location     Type
-  send_msg        2   10[BANK0 ] PTR struct __msg_queue
-		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
-  send_msg        1   12[BANK0 ] unsigned char 
-  send_msg        1   13[BANK0 ] unsigned char 
-  send_msg        2   14[BANK0 ] PTR void 
-		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@val(2), NULL(0), 
-		 -> i2c_slave_int_handler@error_buf(3), main@msgbuffer(11), main@uc(5), 
- Auto vars:     Size  Location     Type
-  send_msg        2   20[BANK0 ] PTR struct __msg
-		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
-  send_msg        2   17[BANK0 ] unsigned int 
-  send_msg        1   19[BANK0 ] unsigned char 
- Return value:  Size  Location     Type
-                  1    wreg      char 
- Registers used:
-		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
- Tracked objects:
-		On entry : 
-		On exit  : 
-		Unchanged: 
- Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
-      Params:         0       6       0       0       0       0       0       0       0       0       0       0       0       0
-      Locals:         0       5       0       0       0       0       0       0       0       0       0       0       0       0
-      Temps:          0       1       0       0       0       0       0       0       0       0       0       0       0       0
-      Totals:         0      12       0       0       0       0       0       0       0       0       0       0       0       0
-Total ram usage:       12 bytes
- Hardware stack levels used:    1
- Hardware stack levels required when called:    1
- This function calls:
-		i2_memcpy
- This function is called by:
-		_ToMainHigh_sendmsg
- This function uses a non-reentrant model
-
-
  *************** function i2_recv_msg *****************
  Defined at:
 		line 63 in file "../src/messages.c"
@@ -6041,9 +6215,9 @@ Total ram usage:       12 bytes
 		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
   recv_msg        1   12[BANK0 ] unsigned char 
   recv_msg        2   13[BANK0 ] PTR unsigned char 
-		 -> RAM(3327), i2c_slave_int_handler@msgtype(1), main@msgtype(1), 
+		 -> i2c_slave_int_handler@msgtype(1), main@msgtype(1), 
   recv_msg        2   15[BANK0 ] PTR void 
-		 -> timer0_int_handler@val(2), i2c_slave_int_handler@data(10), main@msgbuffer(11), 
+		 -> i2c_slave_int_handler@data(10), main@msgbuffer(11), 
  Auto vars:     Size  Location     Type
   recv_msg        2   22[BANK0 ] PTR struct __msg
 		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
@@ -6069,7 +6243,82 @@ Total ram usage:       14 bytes
 		i2_memcpy
  This function is called by:
 		_FromMainLow_recvmsg
-		_FromMainHigh_recvmsg
+ This function uses a non-reentrant model
+
+
+ *************** function i2_ToMainHigh_sendmsg *****************
+ Defined at:
+		line 126 in file "../src/messages.c"
+ Parameters:    Size  Location     Type
+  ToMainHigh_s    1   22[BANK0 ] unsigned char 
+  ToMainHigh_s    1   23[BANK0 ] unsigned char 
+  ToMainHigh_s    2   24[BANK0 ] PTR void 
+		 -> timer0_int_handler@result(2), timer0_lthread@fakeData_83136(4), timer0_lthread@fakeData(4), i2c_slave_int_handler@error_buf(3), 
+		 -> NULL(0), main@ic(29), 
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+                  1    wreg      char 
+ Registers used:
+		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
+      Params:         0       4       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         0       4       0       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:        4 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		i2_send_msg
+ This function is called by:
+		_i2c_master_int_handler
+		_i2c_slave_int_handler
+		_timer0_int_handler
+ This function uses a non-reentrant model
+
+
+ *************** function i2_send_msg *****************
+ Defined at:
+		line 24 in file "../src/messages.c"
+ Parameters:    Size  Location     Type
+  send_msg        2   10[BANK0 ] PTR struct __msg_queue
+		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
+  send_msg        1   12[BANK0 ] unsigned char 
+  send_msg        1   13[BANK0 ] unsigned char 
+  send_msg        2   14[BANK0 ] PTR void 
+		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@result(2), timer1_lthread@msg(4), 
+		 -> timer0_lthread@fakeData_83136(4), timer0_lthread@fakeData(4), i2c_slave_int_handler@error_buf(3), NULL(0), 
+		 -> main@msgbuffer(11), main@ic(29), main@uc(5), 
+ Auto vars:     Size  Location     Type
+  send_msg        2   20[BANK0 ] PTR struct __msg
+		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
+  send_msg        2   17[BANK0 ] unsigned int 
+  send_msg        1   19[BANK0 ] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      char 
+ Registers used:
+		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7   BANK8   BANK9  BANK10  BANK11  BANK12
+      Params:         0       6       0       0       0       0       0       0       0       0       0       0       0       0
+      Locals:         0       5       0       0       0       0       0       0       0       0       0       0       0       0
+      Temps:          0       1       0       0       0       0       0       0       0       0       0       0       0       0
+      Totals:         0      12       0       0       0       0       0       0       0       0       0       0       0       0
+Total ram usage:       12 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		i2_memcpy
+ This function is called by:
+		i2_ToMainHigh_sendmsg
  This function uses a non-reentrant model
 
 
@@ -6108,21 +6357,23 @@ Total ram usage:        3 bytes
 		line 13 in file "/opt/microchip/xc8/v1.10/sources/memcpy.c"
  Parameters:    Size  Location     Type
   memcpy          2    0[BANK0 ] PTR void 
-		 -> timer0_int_handler@val(2), i2c_slave_int_handler@data(10), FromMainHigh_MQ(54), FromMainLow_MQ(54), 
-		 -> ToMainHigh_MQ(54), ToMainLow_MQ(54), main@msgbuffer(11), 
+		 -> i2c_slave_int_handler@data(10), FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), 
+		 -> ToMainLow_MQ(54), main@msgbuffer(11), 
   memcpy          2    2[BANK0 ] PTR const void 
-		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@val(2), NULL(0), 
-		 -> i2c_slave_int_handler@error_buf(3), FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), 
-		 -> ToMainLow_MQ(54), main@msgbuffer(11), main@uc(5), 
+		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@result(2), timer1_lthread@msg(4), 
+		 -> timer0_lthread@fakeData_83136(4), timer0_lthread@fakeData(4), i2c_slave_int_handler@error_buf(3), NULL(0), 
+		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
+		 -> main@msgbuffer(11), main@ic(29), main@uc(5), 
   memcpy          2    4[BANK0 ] unsigned int 
  Auto vars:     Size  Location     Type
   memcpy          2    8[BANK0 ] PTR const unsigned char 
-		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@val(2), NULL(0), 
-		 -> i2c_slave_int_handler@error_buf(3), FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), 
-		 -> ToMainLow_MQ(54), main@msgbuffer(11), main@uc(5), 
+		 -> adc_int_handler@message(4), timer1_int_handler@result(2), timer0_int_handler@result(2), timer1_lthread@msg(4), 
+		 -> timer0_lthread@fakeData_83136(4), timer0_lthread@fakeData(4), i2c_slave_int_handler@error_buf(3), NULL(0), 
+		 -> FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), ToMainLow_MQ(54), 
+		 -> main@msgbuffer(11), main@ic(29), main@uc(5), 
   memcpy          2    6[BANK0 ] PTR unsigned char 
-		 -> timer0_int_handler@val(2), i2c_slave_int_handler@data(10), FromMainHigh_MQ(54), FromMainLow_MQ(54), 
-		 -> ToMainHigh_MQ(54), ToMainLow_MQ(54), main@msgbuffer(11), 
+		 -> i2c_slave_int_handler@data(10), FromMainHigh_MQ(54), FromMainLow_MQ(54), ToMainHigh_MQ(54), 
+		 -> ToMainLow_MQ(54), main@msgbuffer(11), 
  Return value:  Size  Location     Type
                   2    0[BANK0 ] PTR void 
  Registers used:
@@ -6151,135 +6402,145 @@ MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 plib/Timers/t1open.c
-		_OpenTimer1    		CODE           	1E54	0000	62
+		_OpenTimer1    		CODE           	2400	0000	62
 
 plib/Timers/t1open.c estimated size: 62
 
 ../src/user_interrupts.c
-		_timer0_int_han		CODE           	157A	0000	200
-		_timer1_int_han		CODE           	1E92	0000	62
-		_adc_int_handle		CODE           	1E14	0000	64
+		_encoder_int_ha		CODE           	1F9A	0000	106
+		_get_right_enco		CODE           	27D8	0000	16
+		_timer0_int_han		CODE           	20CE	0000	96
+		_timer1_int_han		CODE           	243E	0000	62
+		_init_encoder_c		CODE           	237E	0000	66
+		_get_left_encod		CODE           	27C8	0000	16
+		_adc_int_handle		CODE           	23C0	0000	64
 
-../src/user_interrupts.c estimated size: 326
+../src/user_interrupts.c estimated size: 426
 
 plib/ADC/adcread.c
-		_ReadADC       		CODE           	2178	0000	12
+		_ReadADC       		CODE           	27E8	0000	12
 
 plib/ADC/adcread.c estimated size: 12
 
 ../src/timer0_thread.c
-		_timer0_lthread		CODE           	2184	0000	10
+		_timer0_lthread		CODE           	11B8	0000	436
 
-../src/timer0_thread.c estimated size: 10
+../src/timer0_thread.c estimated size: 436
 
 shared
-		i1_send_msg    		CODE           	17AC	0000	178
-		i2_send_msg    		CODE           	12BA	0000	262
-		i2_in_high_int 		CODE           	211C	0000	20
-		i2_recv_msg    		CODE           	0E58	0000	320
-		__initializatio		CODE           	1DD4	0000	58
-		i2_in_low_int  		CODE           	1B3A	0000	94
-		i1_memcpy      		CODE           	1D8C	0000	72
-		i2_memcpy      		CODE           	1C46	0000	86
-		i2_check_msg   		CODE           	1F40	0000	56
+		i1_send_msg    		CODE           	1C2E	0000	178
+		i2_send_msg    		CODE           	1804	0000	262
+		i2_ToMainHigh_s		CODE           	266E	0000	44
+		i2_in_high_int 		CODE           	276C	0000	20
+		i2_recv_msg    		CODE           	14AC	0000	320
+		__initializatio		CODE           	269A	0000	36
+		i2_in_low_int  		CODE           	218C	0000	94
+		i1_memcpy      		CODE           	2336	0000	72
+		i2_memcpy      		CODE           	2298	0000	86
+		i2_check_msg   		CODE           	24EC	0000	56
 
-shared estimated size: 1146
+shared estimated size: 1168
 
 plib/USART/uopen.c
-		_OpenUSART     		CODE           	16F8	0000	180
+		_OpenUSART     		CODE           	1B7A	0000	180
 
 plib/USART/uopen.c estimated size: 180
 
 ../src/my_i2c.c
-		_start_i2c_slav		CODE           	0F98	0000	274
-		_handle_start  		CODE           	14A0	0000	218
-		_i2c_master_sen		CODE           	10AA	0000	266
-		_i2c_configure_		CODE           	1CEE	0000	80
-		_i2c_master_int		CODE           	0BAC	0000	364
-		_i2c_slave_int_		CODE           	00D6	0000	2012
-		_init_i2c      		CODE           	1A7A	0000	98
-		_i2c_int_handle		CODE           	2090	0000	38
+		_start_i2c_slav		CODE           	15EC	0000	274
+		_handle_start  		CODE           	19EA	0000	218
+		_i2c_configure_		CODE           	22EE	0000	72
+		_i2c_master_int		CODE           	08D8	0000	1580
+		_i2c_configure_		CODE           	2524	0000	52
+		_i2c_slave_int_		CODE           	00E6	0000	2034
+		_init_i2c      		CODE           	206C	0000	98
+		_i2c_int_handle		CODE           	26C4	0000	38
 
-../src/my_i2c.c estimated size: 3350
+../src/my_i2c.c estimated size: 4366
 
 ../src/timer1_thread.c
-		_timer1_lthread		CODE           	1C9C	0000	82
-		_init_timer1_lt		CODE           	2130	0000	18
+		_timer1_lthread		CODE           	1CE0	0000	156
+		_init_timer1_lt		CODE           	25E8	0000	46
 
-../src/timer1_thread.c estimated size: 100
+../src/timer1_thread.c estimated size: 202
 
 plib/Timers/t0write.c
-		_WriteTimer0   		CODE           	2166	0000	18
+		_WriteTimer0   		CODE           	27A4	0000	18
 
 plib/Timers/t0write.c estimated size: 18
 
 plib/Timers/t1write.c
-		_WriteTimer1   		CODE           	2154	0000	18
+		_WriteTimer1   		CODE           	2792	0000	18
 
 plib/Timers/t1write.c estimated size: 18
 
-../src/uart_thread.c
-		_uart_lthread  		CODE           	1D3E	0000	78
-
-../src/uart_thread.c estimated size: 78
-
 ../common/d1ktcyx.c
-		_Delay1KTCYx   		CODE           	2108	0000	20
+		_Delay1KTCYx   		CODE           	2758	0000	20
 
 ../common/d1ktcyx.c estimated size: 20
 
 ../src/interrupts.c
-		_enable_interru		CODE           	218E	0000	8
-		_in_low_int    		CODE           	1ADC	0000	94
-		_in_main       		CODE           	1B98	0000	88
-		_in_high_int   		CODE           	20F4	0000	20
-		_InterruptHandl		CODE           	0018	0000	186
-		_InterruptHandl		CODE           	0008	0000	6522
+		_enable_interru		CODE           	27F4	0000	10
+		_in_low_int    		CODE           	212E	0000	94
+		_in_main       		CODE           	21EA	0000	88
+		_in_high_int   		CODE           	2744	0000	20
+		_InterruptHandl		CODE           	0018	0000	202
+		_InterruptHandl		CODE           	0008	0000	7834
 
-../src/interrupts.c estimated size: 6918
+../src/interrupts.c estimated size: 8248
+
+plib/Timers/t0read.c
+		_ReadTimer0    		CODE           	27B6	0000	18
+
+plib/Timers/t0read.c estimated size: 18
 
 plib/Timers/t1read.c
-		_ReadTimer1    		CODE           	2142	0000	18
+		_ReadTimer1    		CODE           	2780	0000	18
 
 plib/Timers/t1read.c estimated size: 18
 
 ../src/my_uart.c
-		_init_uart_recv		CODE           	20DA	0000	26
-		_uart_recv_int_		CODE           	1642	0000	182
+		_init_uart_recv		CODE           	272A	0000	26
+		_uart_recv_int_		CODE           	1AC4	0000	182
+		_uart_send     		CODE           	2004	0000	104
 
-../src/my_uart.c estimated size: 208
+../src/my_uart.c estimated size: 312
 
 ../src/messages.c
-		_ToMainHigh_sen		CODE           	2064	0000	44
-		_ToMainHigh_rec		CODE           	1F78	0000	48
-		_block_on_To_ms		CODE           	13C0	0000	224
-		_check_msg     		CODE           	1ED0	0000	56
-		_FromMainLow_se		CODE           	2038	0000	44
-		_ToMainLow_send		CODE           	20B6	0000	36
-		_ToMainLow_recv		CODE           	1FA8	0000	48
-		_FromMainLow_re		CODE           	2008	0000	48
-		_enter_sleep_mo		CODE           	2196	0000	6
-		_send_msg      		CODE           	11B4	0000	262
-		_FromMainHigh_r		CODE           	1FD8	0000	48
-		_init_queue    		CODE           	1982	0000	134
-		_init_queues   		CODE           	1A08	0000	114
-		_recv_msg      		CODE           	0D18	0000	320
-		_SleepIfOkay   		CODE           	185E	0000	154
+		_ToMainHigh_sen		CODE           	2642	0000	44
+		_ToMainHigh_rec		CODE           	2558	0000	48
+		_block_on_To_ms		CODE           	190A	0000	224
+		_check_msg     		CODE           	247C	0000	56
+		_FromMainLow_se		CODE           	2616	0000	44
+		_ToMainLow_send		CODE           	26EA	0000	36
+		_ToMainLow_recv		CODE           	2588	0000	48
+		_FromMainLow_re		CODE           	25B8	0000	48
+		_enter_sleep_mo		CODE           	27FE	0000	6
+		_send_msg      		CODE           	16FE	0000	262
+		_init_queue    		CODE           	1EA2	0000	134
+		_init_queues   		CODE           	1F28	0000	114
+		_recv_msg      		CODE           	136C	0000	320
+		_SleepIfOkay   		CODE           	1D7C	0000	154
 
-../src/messages.c estimated size: 1586
+../src/messages.c estimated size: 1538
 
 /opt/microchip/xc8/v1.10/sources/memcpy.c
-		_memcpy        		CODE           	1BF0	0000	86
+		_memcpy        		CODE           	2242	0000	86
 
 /opt/microchip/xc8/v1.10/sources/memcpy.c estimated size: 86
 
+plib/USART/uwrite.c
+		_WriteUSART    		CODE           	270E	0000	28
+
+plib/USART/uwrite.c estimated size: 28
+
 plib/USART/uread.c
-		_ReadUSART     		CODE           	1F08	0000	56
+		_ReadUSART     		CODE           	24B4	0000	56
 
 plib/USART/uread.c estimated size: 56
 
 ../src/main.c
-		_main          		CODE           	08B2	0000	762
+		_main          		CODE           	0F04	0000	692
 
-../src/main.c estimated size: 762
+../src/main.c estimated size: 692
 

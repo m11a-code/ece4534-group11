@@ -18657,6 +18657,14 @@ void timer0_int_handler(void);
 
 void timer1_int_handler(void);
 
+void init_encoder_counts(void);
+
+void encoder_int_handler(void);
+
+int get_right_encoder_count(void);
+
+int get_left_encoder_count(void);
+
 
 void adc_int_handler(void);
 
@@ -18709,11 +18717,13 @@ unsigned char buflen;
 
 void init_uart_recv(uart_comm *);
 void uart_recv_int_handler(void);
+void uart_send(unsigned char, unsigned char*);
 
 # 7 "../src/my_i2c.h"
 typedef struct __i2c_comm {
 unsigned char buffer[10];
 unsigned char buflen;
+unsigned char bufind;
 unsigned char event_count;
 unsigned char status;
 unsigned char error_code;
@@ -18724,7 +18734,7 @@ unsigned char outbufind;
 unsigned char slave_addr;
 } i2c_comm;
 
-# 34
+# 45
 void init_i2c(i2c_comm *);
 void i2c_int_handler(void);
 void i2c_slave_int_handler(void);
@@ -18733,27 +18743,73 @@ void start_i2c_slave_reply(unsigned char,unsigned char *);
 void i2c_configure_slave(unsigned char);
 void i2c_configure_master(unsigned char);
 unsigned char i2c_master_send(unsigned char,unsigned char *);
-unsigned char i2c_master_recv(unsigned char);
+unsigned char i2c_master_recv(unsigned char, unsigned char);
 
 # 24 "../src/debug.h"
 void sendValsToPins(char, char, char);
 
-# 17 "../src/user_interrupts.c"
+# 16 "../src/user_interrupts.c"
 static unsigned char adcMsgCount = 0;
 
+static unsigned char leftEncoderCount = 0;
+
+static unsigned char rightEncoderCount = 0;
+
+
+static unsigned char prevRA0, prevRA1, prevRA2, prevRA3;
+
+
+void init_encoder_counts(){
+
+leftEncoderCount = 0;
+rightEncoderCount = 0;
+prevRA0 = PORTAbits.RA0;
+prevRA1 = PORTAbits.RA1;
+prevRA2 = PORTAbits.RA2;
+prevRA3 = PORTAbits.RA3;
+
+}
+
+void encoder_int_handler(){
+
+if(prevRA0 == 0){
+if(PORTAbits.RA0 == 1){
+leftEncoderCount++;
+}
+}
+if(prevRA1 == 0){
+if(PORTAbits.RA1 == 1){
+leftEncoderCount++;
+}
+}
+if(prevRA2 == 0){
+if(PORTAbits.RA2 == 1){
+rightEncoderCount++;
+}
+}
+if(prevRA3 == 0){
+if(PORTAbits.RA3 == 1){
+rightEncoderCount++;
+}
+}
+
+}
+
+int get_right_encoder_count(){
+return rightEncoderCount;
+}
+
+int get_left_encoder_count(){
+return leftEncoderCount;
+}
+
 void timer0_int_handler() {
-unsigned int val;
-int length, msgtype;
-
-
-LATBbits.LATB0 = !LATBbits.LATB0;
 
 WriteTimer0(0);
 
-length = FromMainHigh_recvmsg(sizeof(val), (unsigned char *)(unsigned int)&msgtype, (void *) &val);
-if (length == sizeof (val)) {
-ToMainHigh_sendmsg(sizeof (val), 10, (void *) &val);
-}
+unsigned int result = ReadTimer0();
+
+ToMainHigh_sendmsg(sizeof(result),10,(void*) &result);
 }
 
 
@@ -18761,8 +18817,6 @@ ToMainHigh_sendmsg(sizeof (val), 10, (void *) &val);
 
 void timer1_int_handler() {
 unsigned int result;
-
-
 
 result = ReadTimer1();
 
@@ -18772,12 +18826,15 @@ ToMainLow_sendmsg(sizeof(result), 11, (void *) &result);
 }
 
 void adc_int_handler() {
+
 unsigned int value = ReadADC();
+value = 0x123;
 unsigned char message[4];
 message[2] = (unsigned char)(0xFF & value);
 message[3] = (unsigned char)(0xFF & (value>>8));
-message[0] = 0x10;
+
 message[1] = adcMsgCount;
 adcMsgCount++;
 ToMainLow_sendmsg(4,40,(void *) message);
+
 }

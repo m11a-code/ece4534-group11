@@ -15,10 +15,8 @@ static i2c_comm *ic_ptr;
 #define I2C_MASTER_MODE 2
 static unsigned char i2cMode = 0;
 
-#ifndef __SLAVE2680
+
 static unsigned char emptyMsgCount = 0; //Count for empty messages sent
-static unsigned char dataMsgCount = 0; //Count for data messages sent
-#endif
 
 // Configure for I2C Master mode -- the variable "slave_addr" should be stored in
 //   i2c_comm (as pointed to by ic_ptr) for later use.
@@ -468,10 +466,14 @@ void i2c_slave_int_handler() {
     //The master has sent us a command
     if (msg_ready) {
 #ifdef __SLAVE2680
-        uart_send(ic_ptr->buflen, ic_ptr->buffer);
+        if(ic_ptr->buffer[0] != 0xAA){
+            uart_send(ic_ptr->buflen, ic_ptr->buffer);
+        }
 #endif
 #ifdef __MOTOR2680
-        uart_send(ic_ptr->buflen, ic_ptr->buffer);
+        if(ic_ptr->buffer[0] == 0xBB){
+            uart_send(ic_ptr->buflen - 2, ic_ptr->buffer + 2);
+        }
 #endif
     } else if (ic_ptr->error_count >= I2C_ERR_THRESHOLD) {
         error_buf[0] = ic_ptr->error_count;
@@ -482,17 +484,6 @@ void i2c_slave_int_handler() {
     }
     //The master has requested data from us
     if (msg_to_send) {
-#ifdef __MOTOR2680
-        dataMsgCount++;
-        unsigned char encoderMsg[I2C_MSG_SIZE];
-        encoderMsg[0] = ENCODERS_MSG_TYPE;
-        encoderMsg[1] = dataMsgCount;
-        encoderMsg[2] = get_left_encoder_count();
-        encoderMsg[3] = get_right_encoder_count();
-        init_encoder_counts();
-        start_i2c_slave_reply(I2C_MSG_SIZE, encoderMsg);
-#endif
-#ifndef __MOTOR2680
         unsigned char data[MSGLEN];
         unsigned char msgtype;
         int length = FromMainLow_recvmsg(MSGLEN, &msgtype, (void *) data);
@@ -501,16 +492,22 @@ void i2c_slave_int_handler() {
         }
         else {
             //send empty message
-#ifdef __SLAVE2680
+            emptyMsgCount++;
             unsigned char empty[I2C_MSG_SIZE];
+#ifdef __MOTOR2680
+            empty[0] = ENCODERS_EMPTY_MSG_TYPE;
+#endif
+#ifdef __USE18F45J10
+            empty[0] = CAMERA_EMPTY_MSG_TYPE;
+#endif
+#ifdef __SLAVE2680
             empty[0] = GENERIC_EMPTY_MSG_TYPE;
-            empty[1] = 0x0;
+#endif
+            empty[1] = emptyMsgCount;
             empty[2] = 0x0;
             empty[3] = 0x0;
-            start_i2c_slave_reply(I2C_MSG_SIZE,empty);
-#endif
+            start_i2c_slave_reply(I2C_MSG_SIZE, empty);
         }
-#endif
         msg_to_send = 0;
     }
 }

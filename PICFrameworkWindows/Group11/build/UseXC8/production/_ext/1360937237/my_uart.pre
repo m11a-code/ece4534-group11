@@ -18731,5 +18731,11 @@ uc_ptr->buflen = 0;
 }
 
 void uart_send(unsigned char length, unsigned char* msg){
+unsigned char indx = 0;
+while(indx < length){
+WriteUSART(msg[indx]);
+while((!TXSTAbits.TRMT));
+indx++;
+}
 }
 

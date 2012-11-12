@@ -18701,6 +18701,7 @@ unsigned char buflen;
 
 void init_uart_recv(uart_comm *);
 void uart_recv_int_handler(void);
+void uart_send(unsigned char, unsigned char*);
 
 # 10 "../src/my_uart.c"
 static uart_comm *uc_ptr;
@@ -18727,5 +18728,14 @@ ToMainLow_sendmsg(0, 30, (void *) 0);
 void init_uart_recv(uart_comm *uc) {
 uc_ptr = uc;
 uc_ptr->buflen = 0;
+}
+
+void uart_send(unsigned char length, unsigned char* msg){
+unsigned char indx = 0;
+while(indx < length){
+WriteUSART(msg[indx]);
+while((!TXSTAbits.TRMT));
+indx++;
+}
 }
 

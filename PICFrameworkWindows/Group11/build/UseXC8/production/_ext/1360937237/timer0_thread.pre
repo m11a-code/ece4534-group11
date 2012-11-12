@@ -18793,42 +18793,44 @@ void i2c_configure_master(unsigned char);
 unsigned char i2c_master_send(unsigned char,unsigned char *);
 unsigned char i2c_master_recv(unsigned char, unsigned char);
 
-# 11 "../src/timer0_thread.c"
+# 10 "../src/user_interrupts.h"
+void timer0_int_handler(void);
+
+void timer1_int_handler(void);
+
+void init_encoder_counts(void);
+
+void encoder_int_handler(void);
+
+int get_right_encoder_count(void);
+
+int get_left_encoder_count(void);
+
+
+void adc_int_handler(void);
+
+# 10 "../src/my_uart.h"
+typedef struct __uart_comm {
+unsigned char buffer[4];
+unsigned char buflen;
+} uart_comm;
+
+void init_uart_recv(uart_comm *);
+void uart_recv_int_handler(void);
+void uart_send(unsigned char, unsigned char*);
+
+# 12 "../src/timer0_thread.c"
 static int sensorToPoll;
 static unsigned char sonarMsgCount;
 
 void init_timer0_lthread(timer0_thread_struct *tptr){
+
+# 23
 sensorToPoll = 1;
 sonarMsgCount = 0;
 }
 
 int timer0_lthread(timer0_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
-switch(sensorToPoll){
-case 1:
-{
-i2c_configure_master(0x9A);
 
-sonarMsgCount++;
-unsigned char fakeData[4];
-fakeData[0] = 0x10;
-fakeData[1] = sonarMsgCount;
-fakeData[2] = 0;
-fakeData[3] = 0;
-ToMainHigh_sendmsg(4,45, fakeData);
-sensorToPoll = 2;
-break;
-}
-case 2:
-{
-i2c_configure_master(0x9C);
-FromMainLow_sendmsg(0,42, (void*) msgbuffer);
-sensorToPoll = 3;
-break;
-}
-case 3:
-i2c_configure_master(0x9E);
-FromMainLow_sendmsg(0,42, (void*) msgbuffer);
-sensorToPoll = 1;
-break;
-}
+# 67
 }

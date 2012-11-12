@@ -108,11 +108,12 @@ void main(void) {
     init_i2c(&ic);
 
 #ifndef __SLAVE2680
-#ifndef __MOTOR2680
     // init the timer1 lthread
     init_timer1_lthread(&t1thread_data);
-#endif
 #ifdef __MASTER2680
+    init_timer0_lthread(&t0thread_data);
+#endif
+#ifdef __MOTOR2680
     init_timer0_lthread(&t0thread_data);
 #endif
 #endif
@@ -135,13 +136,13 @@ void main(void) {
     // initialize Timers
     //OpenTimer0(TIMER_INT_ON & T0_16BIT & T0_SOURCE_INT & T0_PS_1_128);
 #ifdef __USE18F2680
-#ifndef __SLAVE2680
-#ifndef __MOTOR2680
+#ifdef __MOTOR2680
+    OpenTimer0(TIMER_INT_ON & T0_PS_1_8 & T0_8BIT & T0_SOURCE_INT);
     OpenTimer1(TIMER_INT_ON & T1_PS_1_8 & T1_16BIT_RW & T1_SOURCE_INT & T1_OSC1EN_OFF & T1_SYNC_EXT_OFF);
 #endif
 #ifdef __MASTER2680
-    OpenTimer0(TIMER_INT_ON & T0_PS_1_8 & T0_16BIT & T0_SOURCE_INT);
-#endif
+    OpenTimer0(TIMER_INT_ON & T0_PS_1_2 & T0_16BIT & T0_SOURCE_INT);
+    OpenTimer1(TIMER_INT_ON & T1_PS_1_2 & T1_16BIT_RW & T1_SOURCE_INT & T1_OSC1EN_OFF & T1_SYNC_EXT_OFF);
 #endif
 #else
 #ifdef __USE18F45J10
@@ -176,12 +177,20 @@ void main(void) {
     i2c_configure_slave(CAMERA_ADDR);
 #endif
 
-    PIE1bits.SSPIE = 1;
+    PIE1bits.SSPIE = 1; //Enable interrupt for the MSSP (I2C module)
 
-#ifndef __USE18F45J10
+#ifdef __MOTOR2680
+    OpenUSART(USART_TX_INT_OFF & USART_RX_INT_ON & USART_ASYNCH_MODE & USART_EIGHT_BIT &
+            USART_CONT_RX & USART_BRGH_LOW, 0x1B);
+#endif
+#ifdef __SLAVE2680
     // configure the hardware USART device
     OpenUSART(USART_TX_INT_OFF & USART_RX_INT_ON & USART_ASYNCH_MODE & USART_EIGHT_BIT &
-            USART_CONT_RX & USART_BRGH_LOW, 0x19);
+            USART_CONT_RX & USART_BRGH_LOW, 0x33);
+#endif
+#ifdef __MASTER2680
+    OpenUSART(USART_TX_INT_OFF & USART_RX_INT_ON & USART_ASYNCH_MODE & USART_EIGHT_BIT &
+            USART_CONT_RX & USART_BRGH_LOW, 0x33);
 #endif
 
     // loop forever
@@ -219,7 +228,7 @@ void main(void) {
                 }
                 case MSGT_I2C_MASTER_RECV_COMPLETE:
                 {
-                    uart_lthread(&uthread_data, msgtype, length, msgbuffer);
+                    uart_lthread(&uthread_data, MSGT_UART_DATA, length, msgbuffer);
                     break;
                 }
                 case MSGT_TIMER0:

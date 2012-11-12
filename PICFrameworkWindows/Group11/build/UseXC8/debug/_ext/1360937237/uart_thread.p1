@@ -25454,36 +25454,62 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;uart_thread.h: 3: int data;
 [; ;uart_thread.h: 4: } uart_thread_struct;
 [; ;uart_thread.h: 6: int uart_lthread(uart_thread_struct *,int,int,unsigned char*);
-"9 ../src/uart_thread.c
+[; ;messages.h: 10: typedef struct __msg {
+[; ;messages.h: 11: unsigned char full;
+[; ;messages.h: 12: unsigned char length;
+[; ;messages.h: 13: unsigned char msgtype;
+[; ;messages.h: 14: unsigned char data[10];
+[; ;messages.h: 15: } msg;
+[; ;messages.h: 17: typedef struct __msg_queue {
+[; ;messages.h: 18: msg queue[4];
+[; ;messages.h: 19: unsigned char cur_write_ind;
+[; ;messages.h: 20: unsigned char cur_read_ind;
+[; ;messages.h: 21: } msg_queue;
+[; ;messages.h: 43: void init_queues(void);
+[; ;messages.h: 47: void SleepIfOkay(void);
+[; ;messages.h: 51: void block_on_To_msgqueues(void);
+[; ;messages.h: 57: signed char ToMainLow_sendmsg(unsigned char,unsigned char,void *);
+[; ;messages.h: 58: signed char ToMainLow_recvmsg(unsigned char,unsigned char *,void *);
+[; ;messages.h: 64: signed char ToMainHigh_sendmsg(unsigned char,unsigned char,void *);
+[; ;messages.h: 65: signed char ToMainHigh_recvmsg(unsigned char,unsigned char *,void *);
+[; ;messages.h: 71: signed char FromMainLow_sendmsg(unsigned char,unsigned char,void *);
+[; ;messages.h: 72: signed char FromMainLow_recvmsg(unsigned char,unsigned char *,void *);
+[; ;messages.h: 78: signed char FromMainHigh_sendmsg(unsigned char,unsigned char,void *);
+[; ;messages.h: 79: signed char FromMainHigh_recvmsg(unsigned char,unsigned char *,void *);
+[; ;my_uart.h: 10: typedef struct __uart_comm {
+[; ;my_uart.h: 11: unsigned char buffer[4];
+[; ;my_uart.h: 12: unsigned char buflen;
+[; ;my_uart.h: 13: } uart_comm;
+[; ;my_uart.h: 15: void init_uart_recv(uart_comm *);
+[; ;my_uart.h: 16: void uart_recv_int_handler(void);
+[; ;my_uart.h: 17: void uart_send(unsigned char, unsigned char*);
+"11 ../src/uart_thread.c
 [v _uart_lthread `(i ~T0 @X0 1 ef4`*S2088`i`i`*uc ]
 {
-[; ;uart_thread.c: 9: int uart_lthread(uart_thread_struct *uptr, int msgtype, int length, unsigned char *msgbuffer) {
+[; ;uart_thread.c: 11: int uart_lthread(uart_thread_struct *uptr, int msgtype, int length, unsigned char *msgbuffer) {
 [e :U _uart_lthread ]
 [v _uptr `*S2088 ~T0 @X0 1 r1 ]
 [v _msgtype `i ~T0 @X0 1 r2 ]
 [v _length `i ~T0 @X0 1 r3 ]
 [v _msgbuffer `*uc ~T0 @X0 1 r4 ]
 [f ]
-[; ;uart_thread.c: 10: if (msgtype == 30) {
-"10
-[e $ ! == _msgtype -> 30 `i 2090  ]
+[; ;uart_thread.c: 12: if (msgtype == 30) {
+"12
+[e $ ! == _msgtype -> 30 `i 2093  ]
 {
-"11
+"13
 }
-[; ;uart_thread.c: 11: } else if (msgtype == 31) {
-[e $U 2091  ]
-[e :U 2090 ]
-[e $ ! == _msgtype -> 31 `i 2092  ]
+[; ;uart_thread.c: 13: } else if (msgtype == 31) {
+[e $U 2094  ]
+[e :U 2093 ]
+[e $ ! == _msgtype -> 31 `i 2095  ]
 {
-[; ;uart_thread.c: 14: msgbuffer[length] = '\0';
-"14
-[e = *U + _msgbuffer * -> _length `x -> -> # *U _msgbuffer `i `x -> -> 0 `ui `uc ]
-"16
+"22
 }
-[e :U 2092 ]
-"17
-[e :U 2091 ]
-[; ;uart_thread.c: 16: }
-[; ;uart_thread.c: 17: }
-[e :UE 2089 ]
+[e :U 2095 ]
+"23
+[e :U 2094 ]
+[; ;uart_thread.c: 22: }
+[; ;uart_thread.c: 23: }
+[e :UE 2092 ]
 }

@@ -18659,9 +18659,7 @@ void timer1_int_handler(void);
 
 void init_encoder_counts(void);
 
-void left_encoder_int_handler(void);
-
-void right_encoder_int_handler(void);
+void encoder_int_handler(void);
 
 int get_right_encoder_count(void);
 
@@ -18757,17 +18755,15 @@ static unsigned char leftEncoderCount = 0;
 
 static unsigned char rightEncoderCount = 0;
 
+# 26
 void init_encoder_counts(){
-leftEncoderCount = 0;
-rightEncoderCount = 0;
+
+# 35
 }
 
-void left_encoder_int_handler(){
-leftEncoderCount++;
-}
+void encoder_int_handler(){
 
-void right_encoder_int_handler(){
-rightEncoderCount++;
+# 64
 }
 
 int get_right_encoder_count(){
@@ -18781,9 +18777,7 @@ return leftEncoderCount;
 void timer0_int_handler() {
 
 WriteTimer0(0);
-
 unsigned int result = ReadTimer0();
-
 ToMainHigh_sendmsg(sizeof(result),10,(void*) &result);
 }
 
@@ -18791,25 +18785,14 @@ ToMainHigh_sendmsg(sizeof(result),10,(void*) &result);
 
 
 void timer1_int_handler() {
-unsigned int result;
 
-result = ReadTimer1();
+unsigned int result = ReadTimer1();
 
-unsigned int temp = 0x1;
-WriteTimer1(temp);
+WriteTimer1(0);
 ToMainLow_sendmsg(sizeof(result), 11, (void *) &result);
 }
 
 void adc_int_handler() {
 
-unsigned int value = ReadADC();
-value = 0x123;
-unsigned char message[4];
-message[2] = (unsigned char)(0xFF & value);
-message[3] = (unsigned char)(0xFF & (value>>8));
-
-message[1] = adcMsgCount;
-adcMsgCount++;
-ToMainLow_sendmsg(4,40,(void *) message);
-
+# 104
 }

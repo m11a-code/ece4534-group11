@@ -18839,9 +18839,7 @@ void timer1_int_handler(void);
 
 void init_encoder_counts(void);
 
-void left_encoder_int_handler(void);
-
-void right_encoder_int_handler(void);
+void encoder_int_handler(void);
 
 int get_right_encoder_count(void);
 
@@ -18902,17 +18900,7 @@ init_uart_recv(&uc);
 
 init_i2c(&ic);
 
-
-
-
-init_timer1_lthread(&t1thread_data);
-
-
-init_timer0_lthread(&t0thread_data);
-
-
-
-
+# 122
 init_queues();
 
 
@@ -18927,13 +18915,7 @@ ADCON1 = 0x0F;
 
 TRISA = 0x0F;
 
-# 140
-OpenTimer1(0b11111111 & 0b11111111 & 0b11111111 & 0b11111101 & 0b11110111 & 0b11111111);
-
-
-OpenTimer0(0b11111111 & 0b11110010 & 0b10111111 & 0b11011111);
-
-# 156
+# 157
 enable_interrupts();
 
 IPR1bits.TMR1IP = 0;
@@ -18944,22 +18926,24 @@ IPR1bits.RCIP = 0;
 
 IPR1bits.SSPIP = 1;
 
-# 179
+
+i2c_configure_slave(0x9E);
+
+# 180
 PIE1bits.SSPIE = 1;
 
-
-
+# 188
 OpenUSART(0b01111111 & 0b11111111 & 0b11111110 & 0b11111101 &
-0b11111111 & 0b11101111, 0x19);
+0b11111111 & 0b11101111, 0x33);
 
-# 192
+# 201
 while (1) {
 
 
 
 block_on_To_msgqueues();
 
-# 203
+# 212
 length = ToMainHigh_recvmsg(10, &msgtype, (void *) msgbuffer);
 if (length < 0) {
 
@@ -18979,7 +18963,7 @@ break;
 }
 case 45:
 {
-uart_lthread(&uthread_data, msgtype, length, msgbuffer);
+uart_lthread(&uthread_data, 31, length, msgbuffer);
 break;
 }
 case 10:
@@ -19031,9 +19015,9 @@ case 30:
 case 31:
 {
 
-# 277
-FromMainLow_sendmsg(length, msgtype, (void*) msgbuffer);
+uart_lthread(&uthread_data, msgtype, length, msgbuffer);
 
+# 288
 break;
 };
 default:

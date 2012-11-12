@@ -18769,6 +18769,7 @@ int timer1_lthread(timer1_thread_struct *,int,int,unsigned char*);
 typedef struct __i2c_comm {
 unsigned char buffer[10];
 unsigned char buflen;
+unsigned char bufind;
 unsigned char event_count;
 unsigned char status;
 unsigned char error_code;
@@ -18779,7 +18780,7 @@ unsigned char outbufind;
 unsigned char slave_addr;
 } i2c_comm;
 
-# 34
+# 45
 void init_i2c(i2c_comm *);
 void i2c_int_handler(void);
 void i2c_slave_int_handler(void);
@@ -18788,22 +18789,66 @@ void start_i2c_slave_reply(unsigned char,unsigned char *);
 void i2c_configure_slave(unsigned char);
 void i2c_configure_master(unsigned char);
 unsigned char i2c_master_send(unsigned char,unsigned char *);
-unsigned char i2c_master_recv(unsigned char);
+unsigned char i2c_master_recv(unsigned char, unsigned char);
 
-# 9 "../src/timer1_thread.c"
+# 10 "../src/user_interrupts.h"
+void timer0_int_handler(void);
+
+void timer1_int_handler(void);
+
+void init_encoder_counts(void);
+
+void encoder_int_handler(void);
+
+int get_right_encoder_count(void);
+
+int get_left_encoder_count(void);
+
+
+void adc_int_handler(void);
+
+# 10 "../src/my_uart.h"
+typedef struct __uart_comm {
+unsigned char buffer[4];
+unsigned char buflen;
+} uart_comm;
+
+void init_uart_recv(uart_comm *);
+void uart_recv_int_handler(void);
+void uart_send(unsigned char, unsigned char*);
+
+# 10 "../src/timer1_thread.c"
+static unsigned char msgCount;
+
 void init_timer1_lthread(timer1_thread_struct *tptr) {
+msgCount = 0;
 
-# 18
+
+PORTA = 0x00;
+ADCON1 = 0xF;
+TRISA = 0xCF;
+
+# 30
 tptr->timerval = 0;
 }
 
-# 25
+# 37
+static unsigned char msgCount = 0;
+
 int timer1_lthread(timer1_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
 
 tptr->timerval = msgbuffer[0];
 
-# 34
-unsigned char temp[] = {0xEE,0xAA};
-i2c_master_send(2, temp);
+msgCount++;
 
+
+unsigned char msg[4];
+msg[0] = 0x11;
+msg[1] = msgCount;
+msg[2] = get_left_encoder_count();
+msg[3] = get_right_encoder_count();
+init_encoder_counts();
+FromMainLow_sendmsg(4, 40, (void*) msg);
+
+# 86
 }

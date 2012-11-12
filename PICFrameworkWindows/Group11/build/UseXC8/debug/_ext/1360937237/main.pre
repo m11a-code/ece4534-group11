@@ -18776,11 +18776,13 @@ unsigned char buflen;
 
 void init_uart_recv(uart_comm *);
 void uart_recv_int_handler(void);
+void uart_send(unsigned char, unsigned char*);
 
 # 7 "../src/my_i2c.h"
 typedef struct __i2c_comm {
 unsigned char buffer[10];
 unsigned char buflen;
+unsigned char bufind;
 unsigned char event_count;
 unsigned char status;
 unsigned char error_code;
@@ -18791,7 +18793,7 @@ unsigned char outbufind;
 unsigned char slave_addr;
 } i2c_comm;
 
-# 34
+# 45
 void init_i2c(i2c_comm *);
 void i2c_int_handler(void);
 void i2c_slave_int_handler(void);
@@ -18800,7 +18802,7 @@ void start_i2c_slave_reply(unsigned char,unsigned char *);
 void i2c_configure_slave(unsigned char);
 void i2c_configure_master(unsigned char);
 unsigned char i2c_master_send(unsigned char,unsigned char *);
-unsigned char i2c_master_recv(unsigned char);
+unsigned char i2c_master_recv(unsigned char, unsigned char);
 
 # 1 "../src/uart_thread.h"
 typedef struct __uart_thread_struct {
@@ -18825,10 +18827,29 @@ typedef struct __timer0_thread_struct {
 int data;
 } timer0_thread_struct;
 
+# 10
+void init_timer0_lthread(timer0_thread_struct *);
+
 int timer0_lthread(timer0_thread_struct *,int,int,unsigned char*);
 
+# 10 "../src/user_interrupts.h"
+void timer0_int_handler(void);
 
-# 48 "../src/main.c"
+void timer1_int_handler(void);
+
+void init_encoder_counts(void);
+
+void encoder_int_handler(void);
+
+int get_right_encoder_count(void);
+
+int get_left_encoder_count(void);
+
+
+void adc_int_handler(void);
+
+
+# 49 "../src/main.c"
 #pragma config OSC = IRCIO67
 #pragma config FCMEN = OFF
 #pragma config IESO = OFF
@@ -18852,7 +18873,7 @@ int timer0_lthread(timer0_thread_struct *,int,int,unsigned char*);
 #pragma config LVP = OFF
 #pragma config BBSIZ = 1024
 
-# 79
+# 80
 void main(void) {
 char c;
 signed char length;
@@ -18877,13 +18898,13 @@ OSCTUNEbits.PLLEN = 1;
 init_uart_recv(&uc);
 
 
-
 init_i2c(&ic);
+
 
 
 init_timer1_lthread(&t1thread_data);
 
-
+# 119
 init_queues();
 
 
@@ -18898,15 +18919,12 @@ ADCON1 = 0x0F;
 
 TRISA = 0x0F;
 
-
-
-
+# 137
 OpenTimer1(0b11111111 & 0b11111111 & 0b11111111 & 0b11111101 & 0b11110111 & 0b11111111);
 
-# 144
+# 152
 enable_interrupts();
 
-# 158
 IPR1bits.TMR1IP = 0;
 
 IPR1bits.ADIP = 0;
@@ -18915,26 +18933,26 @@ IPR1bits.RCIP = 0;
 
 IPR1bits.SSPIP = 1;
 
-# 179
-i2c_configure_master(0x9C);
+# 167
+i2c_configure_slave(0x9E);
+init_encoder_counts();
 
-# 199
+# 175
 PIE1bits.SSPIE = 1;
-
 
 
 
 OpenUSART(0b01111111 & 0b11111111 & 0b11111110 & 0b11111101 &
 0b11111111 & 0b11101111, 0x19);
 
-# 226
+# 188
 while (1) {
 
 
 
 block_on_To_msgqueues();
 
-# 237
+# 199
 length = ToMainHigh_recvmsg(10, &msgtype, (void *) msgbuffer);
 if (length < 0) {
 
@@ -18943,9 +18961,20 @@ if (length != -4) {
 }
 } else {
 switch (msgtype) {
+case 43:
+{
+break;
+}
+case 44:
+{
 
+break;
+}
+case 45:
+{
 
-
+break;
+}
 case 10:
 {
 timer0_lthread(&t0thread_data, msgtype, length, msgbuffer);
@@ -18962,20 +18991,6 @@ break;
 };
 case 42:
 {
-
-# 271
-switch (last_reg_recvd) {
-case 0xaa:
-{
-
-
-
-break;
-}
-
-# 291
-};
-
 break;
 };
 default:
@@ -19008,7 +19023,8 @@ FromMainLow_sendmsg(length, msgtype, (void *) msgbuffer);
 case 30:
 case 31:
 {
-uart_lthread(&uthread_data, msgtype, length, msgbuffer);
+
+# 275
 break;
 };
 default:

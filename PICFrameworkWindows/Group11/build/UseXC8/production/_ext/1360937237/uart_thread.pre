@@ -18779,8 +18779,9 @@ int uart_lthread(uart_thread_struct *uptr, int msgtype, int length, unsigned cha
 if (msgtype == 30) {
 } else if (msgtype == 31) {
 
-# 20
-uart_send(length, msgbuffer);
 
+ToMainLow_sendmsg(length, 40, (void *) msgbuffer);
+
+# 22
 }
 }
