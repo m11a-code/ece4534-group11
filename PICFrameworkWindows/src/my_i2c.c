@@ -212,8 +212,6 @@ void i2c_master_int_handler() {
             }
             else {
                 ToMainHigh_sendmsg(0, MSGT_I2C_MASTER_SEND_FAILED, 0);
-                ic_ptr->error_count++;
-                ic_ptr->error_code = I2C_ERR_NOACK;
                 ic_ptr->status = I2C_IDLE;
                 SSPCON2bits.PEN = 1;
             }
@@ -226,8 +224,6 @@ void i2c_master_int_handler() {
             }
             else {
                 ToMainHigh_sendmsg(0, MSGT_I2C_MASTER_RECV_FAILED, 0);
-                ic_ptr->error_count++;
-                ic_ptr->error_code = I2C_ERR_NOACK;
                 ic_ptr->status = I2C_IDLE;
                 SSPCON2bits.PEN = 1;
             }
@@ -241,8 +237,6 @@ void i2c_master_int_handler() {
             }
             else {
                 ToMainHigh_sendmsg(0, MSGT_I2C_MASTER_RECV_FAILED, 0);
-                ic_ptr->error_count++;
-                ic_ptr->error_code = I2C_ERR_NOACK;
                 ic_ptr->status = I2C_IDLE;
                 SSPCON2bits.PEN = 1;
             }
@@ -255,8 +249,6 @@ void i2c_master_int_handler() {
             }
             else {
                 ToMainHigh_sendmsg(0, MSGT_I2C_MASTER_RECV_FAILED, 0);
-                ic_ptr->error_count++;
-                ic_ptr->error_code = I2C_ERR_NOACK;
                 ic_ptr->status = I2C_IDLE;
                 SSPCON2bits.PEN = 1;
             }
@@ -274,8 +266,6 @@ void i2c_master_int_handler() {
             }
             else {
                 ToMainHigh_sendmsg(0, MSGT_I2C_MASTER_RECV_FAILED, 0);
-                ic_ptr->error_count++;
-                ic_ptr->error_code = I2C_ERR_NOACK;
                 ic_ptr->status = I2C_IDLE;
                 SSPCON2bits.PEN = 1;
             }

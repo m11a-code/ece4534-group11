@@ -18814,7 +18814,9 @@ unsigned char buflen;
 } uart_comm;
 
 void init_uart_recv(uart_comm *);
+void init_uart_send(uart_comm *);
 void uart_recv_int_handler(void);
+void uart_send_int_handler(void);
 void uart_send(unsigned char, unsigned char*);
 
 # 10 "../src/timer1_thread.c"
@@ -18823,17 +18825,58 @@ static unsigned char goFlag;
 
 void init_timer1_lthread(timer1_thread_struct *tptr) {
 msgCount = 0;
+goFlag = 0;
 
-# 25
+# 26
 tptr->timerval = 0;
 }
 
-# 32
+# 33
 int timer1_lthread(timer1_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
 
 tptr->timerval = msgbuffer[0];
 
-msgCount++;
+# 61
+unsigned char type;
+length = FromMainLow_recvmsg(10, &type, (void*) msgbuffer);
+if(length > 0){
+switch(type){
+case 42:
+{
 
-# 79
+i2c_master_recv(0xAA, 4);
+break;
+}
+case 31:
+{
+i2c_configure_master(0x9E);
+i2c_master_send(length, msgbuffer);
+break;
+}
+case 47:
+{
+i2c_configure_master(0xE0);
+unsigned char rangeCommand[4];
+
+rangeCommand[0] = 0x00;
+rangeCommand[1] = 0x51;
+i2c_master_send(2, rangeCommand);
+break;
+}
+case 48:
+{
+i2c_configure_master(0xE0);
+
+
+
+i2c_master_recv(0x01,3);
+break;
+}
+}
+}else{
+
+}
+
+
+
 }

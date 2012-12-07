@@ -633,28 +633,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _RCSTAbits `VS1892 ~T0 @X0 0 e@4011 ]
 "597 /opt/microchip/xc8/v1.10/include/plib/usart.h
 [v _WriteUSART `(v ~T0 @X0 0 ef1`uc ]
-[s S1901 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1901 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
-[s S1902 :2 `uc 1 :1 `uc 1 ]
-[n S1902 . . BRGH1 ]
-[s S1903 :7 `uc 1 :1 `uc 1 ]
-[n S1903 . . CSRC1 ]
-[s S1904 :3 `uc 1 :1 `uc 1 ]
-[n S1904 . . SENDB1 ]
-[s S1905 :4 `uc 1 :1 `uc 1 ]
-[n S1905 . . SYNC1 ]
-[s S1906 :1 `uc 1 :1 `uc 1 ]
-[n S1906 . . TRMT1 ]
-[s S1907 :6 `uc 1 :1 `uc 1 ]
-[n S1907 . . TX91 ]
-[s S1908 :1 `uc 1 ]
-[n S1908 . TX9D1 ]
-[s S1909 :5 `uc 1 :1 `uc 1 ]
-[n S1909 . . TXEN1 ]
-[u S1900 `S1901 1 `S1902 1 `S1903 1 `S1904 1 `S1905 1 `S1906 1 `S1907 1 `S1908 1 `S1909 1 ]
-[n S1900 . . . . . . . . . . ]
-"30907 /opt/microchip/xc8/v1.10/include/pic18f2680.h
-[v _TXSTAbits `VS1900 ~T0 @X0 0 e@4012 ]
+[s S1852 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1852 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE ]
+[s S1853 :5 `uc 1 :1 `uc 1 ]
+[n S1853 . . RC1IE ]
+[s S1854 :4 `uc 1 :1 `uc 1 ]
+[n S1854 . . TX1IE ]
+[u S1851 `S1852 1 `S1853 1 `S1854 1 ]
+[n S1851 . . . . ]
+"29934 /opt/microchip/xc8/v1.10/include/pic18f2680.h
+[v _PIE1bits `VS1851 ~T0 @X0 0 e@3997 ]
 [s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2 . SID3 SID4 SID5 SID6 SID7 SID8 SID9 SID10 ]
 [s S3 :7 `uc 1 :1 `uc 1 ]
@@ -4977,16 +4965,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S1848 . . . ]
 "29861
 [v _OSCTUNEbits `VS1848 ~T0 @X0 0 e@3995 ]
-[s S1852 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1852 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE ]
-[s S1853 :5 `uc 1 :1 `uc 1 ]
-[n S1853 . . RC1IE ]
-[s S1854 :4 `uc 1 :1 `uc 1 ]
-[n S1854 . . TX1IE ]
-[u S1851 `S1852 1 `S1853 1 `S1854 1 ]
-[n S1851 . . . . ]
-"29934
-[v _PIE1bits `VS1851 ~T0 @X0 0 e@3997 ]
 [s S1860 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1860 . TMR1IP TMR2IP CCP1IP SSPIP TXIP RCIP ADIP ]
 [s S1861 :4 `uc 1 :1 `uc 1 ]
@@ -5091,6 +5069,28 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _RCSTA1bits `VS1896 ~T0 @X0 0 e@4011 ]
 "30859
 [v _TXSTA1 `Vuc ~T0 @X0 0 e@4012 ]
+[s S1901 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1901 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
+[s S1902 :2 `uc 1 :1 `uc 1 ]
+[n S1902 . . BRGH1 ]
+[s S1903 :7 `uc 1 :1 `uc 1 ]
+[n S1903 . . CSRC1 ]
+[s S1904 :3 `uc 1 :1 `uc 1 ]
+[n S1904 . . SENDB1 ]
+[s S1905 :4 `uc 1 :1 `uc 1 ]
+[n S1905 . . SYNC1 ]
+[s S1906 :1 `uc 1 :1 `uc 1 ]
+[n S1906 . . TRMT1 ]
+[s S1907 :6 `uc 1 :1 `uc 1 ]
+[n S1907 . . TX91 ]
+[s S1908 :1 `uc 1 ]
+[n S1908 . TX9D1 ]
+[s S1909 :5 `uc 1 :1 `uc 1 ]
+[n S1909 . . TXEN1 ]
+[u S1900 `S1901 1 `S1902 1 `S1903 1 `S1904 1 `S1905 1 `S1906 1 `S1907 1 `S1908 1 `S1909 1 ]
+[n S1900 . . . . . . . . . . ]
+"30907
+[v _TXSTAbits `VS1900 ~T0 @X0 0 e@4012 ]
 [s S1911 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1911 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
 [s S1912 :2 `uc 1 :1 `uc 1 ]
@@ -25453,11 +25453,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;my_uart.h: 12: unsigned char buflen;
 [; ;my_uart.h: 13: } uart_comm;
 [; ;my_uart.h: 15: void init_uart_recv(uart_comm *);
-[; ;my_uart.h: 16: void uart_recv_int_handler(void);
-[; ;my_uart.h: 17: void uart_send(unsigned char, unsigned char*);
+[; ;my_uart.h: 16: void init_uart_send(uart_comm *);
+[; ;my_uart.h: 17: void uart_recv_int_handler(void);
+[; ;my_uart.h: 18: void uart_send_int_handler(void);
+[; ;my_uart.h: 19: void uart_send(unsigned char, unsigned char*);
 "10 ../src/my_uart.c
 [v _uc_ptr `*S2089 ~T0 @X0 1 s ]
-[; ;my_uart.c: 10: static uart_comm *uc_ptr;
+[v _uc_ptr2 `*S2089 ~T0 @X0 1 s ]
+[; ;my_uart.c: 10: static uart_comm *uc_ptr, *uc_ptr2;
 "12
 [v _uart_recv_int_handler `(v ~T0 @X0 1 ef ]
 {
@@ -25531,43 +25534,95 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :UE 2094 ]
 }
 "36
+[v _init_uart_send `(v ~T0 @X0 1 ef1`*S2089 ]
+{
+[; ;my_uart.c: 36: void init_uart_send(uart_comm *uc) {
+[e :U _init_uart_send ]
+[v _uc `*S2089 ~T0 @X0 1 r1 ]
+[f ]
+[; ;my_uart.c: 37: uc_ptr2 = uc;
+"37
+[e = _uc_ptr2 _uc ]
+[; ;my_uart.c: 38: }
+"38
+[e :UE 2095 ]
+}
+"40
 [v _uart_send `(v ~T0 @X0 1 ef2`uc`*uc ]
 {
-[; ;my_uart.c: 36: void uart_send(unsigned char length, unsigned char* msg){
+[; ;my_uart.c: 40: void uart_send(unsigned char length, unsigned char* msg){
 [e :U _uart_send ]
 [v _length `uc ~T0 @X0 1 r1 ]
 [v _msg `*uc ~T0 @X0 1 r2 ]
 [f ]
-"37
+[; ;my_uart.c: 49: uc_ptr2->buflen = length;
+"49
+[e = . *U _uc_ptr2 1 _length ]
+"50
 [v _indx `uc ~T0 @X0 1 a ]
-[; ;my_uart.c: 37: unsigned char indx = 0;
+[; ;my_uart.c: 50: unsigned char indx = 0;
 [e = _indx -> -> 0 `i `uc ]
-[; ;my_uart.c: 38: while(indx < length){
-"38
-[e $U 2096  ]
-[e :U 2097 ]
-{
-[; ;my_uart.c: 39: WriteUSART(msg[indx]);
-"39
-[e ( _WriteUSART (1 *U + _msg * -> _indx `ux -> -> # *U _msg `ui `ux ]
-[; ;my_uart.c: 40: while((!TXSTAbits.TRMT));
-"40
-[e $U 2099  ]
-[e :U 2100 ]
-[e :U 2099 ]
-[e $ ! != -> . . _TXSTAbits 0 1 `i -> -> -> 0 `i `Vuc `i 2100  ]
-[e :U 2101 ]
-[; ;my_uart.c: 41: indx++;
-"41
-[e ++ _indx -> -> 1 `i `uc ]
-"42
-}
-[e :U 2096 ]
-"38
-[e $ < -> _indx `i -> _length `i 2097  ]
+[; ;my_uart.c: 51: while(indx < length){
+"51
+[e $U 2097  ]
 [e :U 2098 ]
-[; ;my_uart.c: 42: }
-[; ;my_uart.c: 43: }
-"43
-[e :UE 2095 ]
+{
+[; ;my_uart.c: 52: uc_ptr2->buffer[indx] = msg[indx];
+"52
+[e = *U + &U . *U _uc_ptr2 0 * -> _indx `ux -> -> # *U &U . *U _uc_ptr2 0 `ui `ux *U + _msg * -> _indx `ux -> -> # *U _msg `ui `ux ]
+[; ;my_uart.c: 53: indx++;
+"53
+[e ++ _indx -> -> 1 `i `uc ]
+"54
+}
+[e :U 2097 ]
+"51
+[e $ < -> _indx `i -> _length `i 2098  ]
+[e :U 2099 ]
+[; ;my_uart.c: 54: }
+[; ;my_uart.c: 55: WriteUSART(uc_ptr2->buffer[0]);
+"55
+[e ( _WriteUSART (1 *U + &U . *U _uc_ptr2 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . *U _uc_ptr2 0 `ui `ux ]
+[; ;my_uart.c: 56: uc_ptr2->buflen--;
+"56
+[e -- . *U _uc_ptr2 1 -> -> 1 `i `uc ]
+[; ;my_uart.c: 57: PIE1bits.TXIE = 1;
+"57
+[e = . . _PIE1bits 0 4 -> -> 1 `i `uc ]
+[; ;my_uart.c: 59: }
+"59
+[e :UE 2096 ]
+}
+"61
+[v _uart_send_int_handler `(v ~T0 @X0 1 ef ]
+{
+[; ;my_uart.c: 61: void uart_send_int_handler(){
+[e :U _uart_send_int_handler ]
+[f ]
+[; ;my_uart.c: 62: if(uc_ptr2->buflen > 0){
+"62
+[e $ ! > -> . *U _uc_ptr2 1 `i -> 0 `i 2101  ]
+{
+[; ;my_uart.c: 63: WriteUSART(uc_ptr2->buffer[4 - uc_ptr2->buflen]);
+"63
+[e ( _WriteUSART (1 *U + &U . *U _uc_ptr2 0 * -> -> - -> 4 `i -> . *U _uc_ptr2 1 `i `ui `ux -> -> # *U &U . *U _uc_ptr2 0 `ui `ux ]
+[; ;my_uart.c: 64: uc_ptr2->buflen--;
+"64
+[e -- . *U _uc_ptr2 1 -> -> 1 `i `uc ]
+"65
+}
+[; ;my_uart.c: 65: }else{
+[e $U 2102  ]
+[e :U 2101 ]
+{
+[; ;my_uart.c: 66: PIE1bits.TXIE = 0;
+"66
+[e = . . _PIE1bits 0 4 -> -> 0 `i `uc ]
+"67
+}
+[e :U 2102 ]
+[; ;my_uart.c: 67: }
+[; ;my_uart.c: 68: }
+"68
+[e :UE 2100 ]
 }

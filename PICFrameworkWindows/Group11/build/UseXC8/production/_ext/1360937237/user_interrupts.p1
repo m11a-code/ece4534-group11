@@ -611,6 +611,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _WriteTimer1 `(v ~T0 @X0 0 ef1`ui ]
 "57 ../src/messages.h
 [v _ToMainLow_sendmsg `(c ~T0 @X0 0 ef3`uc`uc`*v ]
+"1994 /opt/microchip/xc8/v1.10/include/plib/adc.h
+[v _ReadADC `(i ~T0 @X0 0 ef ]
 [s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2 . SID3 SID4 SID5 SID6 SID7 SID8 SID9 SID10 ]
 [s S3 :7 `uc 1 :1 `uc 1 ]
@@ -25464,8 +25466,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;my_uart.h: 12: unsigned char buflen;
 [; ;my_uart.h: 13: } uart_comm;
 [; ;my_uart.h: 15: void init_uart_recv(uart_comm *);
-[; ;my_uart.h: 16: void uart_recv_int_handler(void);
-[; ;my_uart.h: 17: void uart_send(unsigned char, unsigned char*);
+[; ;my_uart.h: 16: void init_uart_send(uart_comm *);
+[; ;my_uart.h: 17: void uart_recv_int_handler(void);
+[; ;my_uart.h: 18: void uart_send_int_handler(void);
+[; ;my_uart.h: 19: void uart_send(unsigned char, unsigned char*);
 [; ;my_i2c.h: 7: typedef struct __i2c_comm {
 [; ;my_i2c.h: 8: unsigned char buffer[10];
 [; ;my_i2c.h: 9: unsigned char buflen;
@@ -25601,6 +25605,31 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;user_interrupts.c: 92: void adc_int_handler() {
 [e :U _adc_int_handler ]
 [f ]
+"94
+[v _value `ui ~T0 @X0 1 a ]
+[; ;user_interrupts.c: 94: unsigned int value = ReadADC();
+[e = _value -> ( _ReadADC ..  `ui ]
+[; ;user_interrupts.c: 95: value = 0x123;
+"95
+[e = _value -> -> 291 `i `ui ]
+"96
+[v _message `uc ~T0 @X0 -> 4 `i a ]
+[; ;user_interrupts.c: 96: unsigned char message[4];
+[; ;user_interrupts.c: 97: message[2] = (unsigned char)(0xFF & value);
+"97
+[e = *U + &U _message * -> -> -> 2 `i `ui `ux -> -> # *U &U _message `ui `ux -> & -> -> 255 `i `ui _value `uc ]
+[; ;user_interrupts.c: 98: message[3] = (unsigned char)(0xFF & (value>>8));
+"98
+[e = *U + &U _message * -> -> -> 3 `i `ui `ux -> -> # *U &U _message `ui `ux -> & -> -> 255 `i `ui >> _value -> 8 `i `uc ]
+[; ;user_interrupts.c: 100: message[1] = adcMsgCount;
+"100
+[e = *U + &U _message * -> -> -> 1 `i `ui `ux -> -> # *U &U _message `ui `ux _adcMsgCount ]
+[; ;user_interrupts.c: 101: adcMsgCount++;
+"101
+[e ++ _adcMsgCount -> -> 1 `i `uc ]
+[; ;user_interrupts.c: 102: ToMainLow_sendmsg(4,40,(void *) message);
+"102
+[e ( _ToMainLow_sendmsg (3 , , -> -> 4 `i `uc -> -> 40 `i `uc -> &U _message `*v ]
 [; ;user_interrupts.c: 104: }
 "104
 [e :UE 2097 ]

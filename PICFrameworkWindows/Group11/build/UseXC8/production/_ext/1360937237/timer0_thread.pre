@@ -18721,7 +18721,7 @@ typedef struct __timer0_thread_struct {
 int data;
 } timer0_thread_struct;
 
-# 10
+# 11
 void init_timer0_lthread(timer0_thread_struct *);
 
 int timer0_lthread(timer0_thread_struct *,int,int,unsigned char*);
@@ -18816,7 +18816,9 @@ unsigned char buflen;
 } uart_comm;
 
 void init_uart_recv(uart_comm *);
+void init_uart_send(uart_comm *);
 void uart_recv_int_handler(void);
+void uart_send_int_handler(void);
 void uart_send(unsigned char, unsigned char*);
 
 # 12 "../src/timer0_thread.c"
@@ -18832,5 +18834,38 @@ sonarMsgCount = 0;
 
 int timer0_lthread(timer0_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
 
-# 67
+switch(sensorToPoll){
+case 1:
+{
+FromMainLow_sendmsg(1,47, (void*) msgbuffer);
+sensorToPoll = 2;
+break;
+}
+case 2:
+{
+FromMainLow_sendmsg(1,48, (void*) msgbuffer);
+sensorToPoll = 3;
+break;
+}
+case 3:
+{
+i2c_configure_master(0x9C);
+
+unsigned char fakeData[4];
+fakeData[0] = 0x12;
+fakeData[1] = sonarMsgCount;
+fakeData[2] = 0;
+fakeData[3] = 0;
+
+sensorToPoll = 4;
+break;
+}
+case 4:
+i2c_configure_master(0x9E);
+FromMainLow_sendmsg(1,42, (void*) msgbuffer);
+sensorToPoll = 1;
+break;
+}
+
+# 65
 }

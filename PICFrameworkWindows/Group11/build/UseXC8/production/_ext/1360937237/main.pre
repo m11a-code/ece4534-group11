@@ -18775,7 +18775,9 @@ unsigned char buflen;
 } uart_comm;
 
 void init_uart_recv(uart_comm *);
+void init_uart_send(uart_comm *);
 void uart_recv_int_handler(void);
+void uart_send_int_handler(void);
 void uart_send(unsigned char, unsigned char*);
 
 # 7 "../src/my_i2c.h"
@@ -18827,7 +18829,7 @@ typedef struct __timer0_thread_struct {
 int data;
 } timer0_thread_struct;
 
-# 10
+# 11
 void init_timer0_lthread(timer0_thread_struct *);
 
 int timer0_lthread(timer0_thread_struct *,int,int,unsigned char*);
@@ -18879,7 +18881,7 @@ char c;
 signed char length;
 unsigned char msgtype;
 unsigned char last_reg_recvd;
-uart_comm uc;
+uart_comm uc, uc2;
 i2c_comm ic;
 unsigned char msgbuffer[10 + 1];
 unsigned char i;
@@ -18896,11 +18898,18 @@ OSCTUNEbits.PLLEN = 1;
 
 # 105
 init_uart_recv(&uc);
+init_uart_send(&uc2);
 
 
 init_i2c(&ic);
 
-# 122
+
+
+init_timer1_lthread(&t1thread_data);
+
+init_timer0_lthread(&t0thread_data);
+
+# 123
 init_queues();
 
 
@@ -18915,7 +18924,11 @@ ADCON1 = 0x0F;
 
 TRISA = 0x0F;
 
-# 157
+# 145
+OpenTimer0(0b11111111 & 0b11110000 & 0b10111111 & 0b11011111);
+OpenTimer1(0b11111111 & 0b11011111 & 0b11111111 & 0b11111101 & 0b11110111 & 0b11111111);
+
+# 158
 enable_interrupts();
 
 IPR1bits.TMR1IP = 0;
@@ -18926,24 +18939,23 @@ IPR1bits.RCIP = 0;
 
 IPR1bits.SSPIP = 1;
 
-
-i2c_configure_slave(0x9E);
-
-# 180
+# 181
 PIE1bits.SSPIE = 1;
 
-# 188
+# 193
 OpenUSART(0b01111111 & 0b11111111 & 0b11111110 & 0b11111101 &
 0b11111111 & 0b11101111, 0x33);
 
-# 201
+# 203
+unsigned char sonarMsgCount = 0;
+
 while (1) {
 
 
 
 block_on_To_msgqueues();
 
-# 212
+# 216
 length = ToMainHigh_recvmsg(10, &msgtype, (void *) msgbuffer);
 if (length < 0) {
 
@@ -18963,7 +18975,21 @@ break;
 }
 case 45:
 {
+
+if(length == 3) {
+sonarMsgCount++;
+unsigned char sonarData[4];
+sonarData[0] = 0x10;
+sonarData[1] = sonarMsgCount;
+sonarData[2] = msgbuffer[1];
+sonarData[3] = msgbuffer[2];
+uart_lthread(&uthread_data, 31, 4, sonarData);
+}
+else{
 uart_lthread(&uthread_data, 31, length, msgbuffer);
+}
+
+
 break;
 }
 case 10:
@@ -19015,9 +19041,9 @@ case 30:
 case 31:
 {
 
-uart_lthread(&uthread_data, msgtype, length, msgbuffer);
+# 304
+FromMainLow_sendmsg(length, msgtype, (void*) msgbuffer);
 
-# 288
 break;
 };
 default:

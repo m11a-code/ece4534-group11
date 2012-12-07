@@ -18726,7 +18726,9 @@ unsigned char buflen;
 } uart_comm;
 
 void init_uart_recv(uart_comm *);
+void init_uart_send(uart_comm *);
 void uart_recv_int_handler(void);
+void uart_send_int_handler(void);
 void uart_send(unsigned char, unsigned char*);
 
 # 10 "../src/user_interrupts.h"
@@ -19163,10 +19165,6 @@ ic_ptr->error_code = 0x7;
 
 if (msg_ready) {
 
-if(ic_ptr->buffer[0] != 0xAA){
-uart_send(ic_ptr->buflen, ic_ptr->buffer);
-}
-
 # 478
 } else if (ic_ptr->error_count >= 1) {
 error_buf[0] = ic_ptr->error_count;
@@ -19188,9 +19186,7 @@ else {
 emptyMsgCount++;
 unsigned char empty[4];
 
-# 504
-empty[0] = 0x53;
-
+# 506
 empty[1] = emptyMsgCount;
 empty[2] = 0x0;
 empty[3] = 0x0;

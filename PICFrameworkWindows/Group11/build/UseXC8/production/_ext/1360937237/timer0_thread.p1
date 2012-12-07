@@ -601,6 +601,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TXB2SIDH `Vuc ~T0 @X0 0 e@3873 ]
 [s S2088 `i 1 ]
 [n S2088 __timer0_thread_struct data ]
+"71 ../src/messages.h
+[v _FromMainLow_sendmsg `(c ~T0 @X0 0 ef3`uc`uc`*v ]
+"51 ../src/my_i2c.h
+[v _i2c_configure_master `(v ~T0 @X0 0 ef1`uc ]
 [s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2 . SID3 SID4 SID5 SID6 SID7 SID8 SID9 SID10 ]
 [s S3 :7 `uc 1 :1 `uc 1 ]
@@ -621,7 +625,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S10 . . RXF6SID9 ]
 [u S1 `S2 1 `S3 1 `S4 1 `S5 1 `S6 1 `S7 1 `S8 1 `S9 1 `S10 1 ]
 [n S1 . . . . . . . . . . ]
-"92
+"92 /opt/microchip/xc8/v1.10/include/pic18f2680.h
 [v _RXF6SIDHbits `VS1 ~T0 @X0 0 e@3424 ]
 [s S12 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S12 . EID16 EID17 . EXIDEN . SID0 SID1 SID2 ]
@@ -25453,8 +25457,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;timer0_thread.h: 1: typedef struct __timer0_thread_struct {
 [; ;timer0_thread.h: 3: int data;
 [; ;timer0_thread.h: 4: } timer0_thread_struct;
-[; ;timer0_thread.h: 10: void init_timer0_lthread(timer0_thread_struct *);
-[; ;timer0_thread.h: 12: int timer0_lthread(timer0_thread_struct *,int,int,unsigned char*);
+[; ;timer0_thread.h: 11: void init_timer0_lthread(timer0_thread_struct *);
+[; ;timer0_thread.h: 13: int timer0_lthread(timer0_thread_struct *,int,int,unsigned char*);
 [; ;messages.h: 10: typedef struct __msg {
 [; ;messages.h: 11: unsigned char full;
 [; ;messages.h: 12: unsigned char length;
@@ -25511,8 +25515,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;my_uart.h: 12: unsigned char buflen;
 [; ;my_uart.h: 13: } uart_comm;
 [; ;my_uart.h: 15: void init_uart_recv(uart_comm *);
-[; ;my_uart.h: 16: void uart_recv_int_handler(void);
-[; ;my_uart.h: 17: void uart_send(unsigned char, unsigned char*);
+[; ;my_uart.h: 16: void init_uart_send(uart_comm *);
+[; ;my_uart.h: 17: void uart_recv_int_handler(void);
+[; ;my_uart.h: 18: void uart_send_int_handler(void);
+[; ;my_uart.h: 19: void uart_send(unsigned char, unsigned char*);
 "12 ../src/timer0_thread.c
 [v _sensorToPoll `i ~T0 @X0 1 s ]
 [; ;timer0_thread.c: 12: static int sensorToPoll;
@@ -25546,7 +25552,108 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _length `i ~T0 @X0 1 r3 ]
 [v _msgbuffer `*uc ~T0 @X0 1 r4 ]
 [f ]
-[; ;timer0_thread.c: 67: }
-"67
+[; ;timer0_thread.c: 29: switch(sensorToPoll){
+"29
+[e $U 2096  ]
+{
+[; ;timer0_thread.c: 30: case 1:
+"30
+[e :U 2097 ]
+[; ;timer0_thread.c: 31: {
+"31
+{
+[; ;timer0_thread.c: 32: FromMainLow_sendmsg(1,47, (void*) msgbuffer);
+"32
+[e ( _FromMainLow_sendmsg (3 , , -> -> 1 `i `uc -> -> 47 `i `uc -> _msgbuffer `*v ]
+[; ;timer0_thread.c: 33: sensorToPoll = 2;
+"33
+[e = _sensorToPoll -> 2 `i ]
+[; ;timer0_thread.c: 34: break;
+"34
+[e $U 2095  ]
+"35
+}
+[; ;timer0_thread.c: 35: }
+[; ;timer0_thread.c: 36: case 2:
+"36
+[e :U 2098 ]
+[; ;timer0_thread.c: 37: {
+"37
+{
+[; ;timer0_thread.c: 38: FromMainLow_sendmsg(1,48, (void*) msgbuffer);
+"38
+[e ( _FromMainLow_sendmsg (3 , , -> -> 1 `i `uc -> -> 48 `i `uc -> _msgbuffer `*v ]
+[; ;timer0_thread.c: 39: sensorToPoll = 3;
+"39
+[e = _sensorToPoll -> 3 `i ]
+[; ;timer0_thread.c: 40: break;
+"40
+[e $U 2095  ]
+"41
+}
+[; ;timer0_thread.c: 41: }
+[; ;timer0_thread.c: 42: case 3:
+"42
+[e :U 2099 ]
+[; ;timer0_thread.c: 43: {
+"43
+{
+[; ;timer0_thread.c: 44: i2c_configure_master(0x9C);
+"44
+[e ( _i2c_configure_master (1 -> -> 156 `i `uc ]
+"46
+[v _fakeData `uc ~T0 @X0 -> 4 `i a ]
+[; ;timer0_thread.c: 46: unsigned char fakeData[4];
+[; ;timer0_thread.c: 47: fakeData[0] = 0x12;
+"47
+[e = *U + &U _fakeData * -> -> -> 0 `i `ui `ux -> -> # *U &U _fakeData `ui `ux -> -> 18 `i `uc ]
+[; ;timer0_thread.c: 48: fakeData[1] = sonarMsgCount;
+"48
+[e = *U + &U _fakeData * -> -> -> 1 `i `ui `ux -> -> # *U &U _fakeData `ui `ux _sonarMsgCount ]
+[; ;timer0_thread.c: 49: fakeData[2] = 0;
+"49
+[e = *U + &U _fakeData * -> -> -> 2 `i `ui `ux -> -> # *U &U _fakeData `ui `ux -> -> 0 `i `uc ]
+[; ;timer0_thread.c: 50: fakeData[3] = 0;
+"50
+[e = *U + &U _fakeData * -> -> -> 3 `i `ui `ux -> -> # *U &U _fakeData `ui `ux -> -> 0 `i `uc ]
+[; ;timer0_thread.c: 52: sensorToPoll = 4;
+"52
+[e = _sensorToPoll -> 4 `i ]
+[; ;timer0_thread.c: 53: break;
+"53
+[e $U 2095  ]
+"54
+}
+[; ;timer0_thread.c: 54: }
+[; ;timer0_thread.c: 55: case 4:
+"55
+[e :U 2100 ]
+[; ;timer0_thread.c: 56: i2c_configure_master(0x9E);
+"56
+[e ( _i2c_configure_master (1 -> -> 158 `i `uc ]
+[; ;timer0_thread.c: 57: FromMainLow_sendmsg(1,42, (void*) msgbuffer);
+"57
+[e ( _FromMainLow_sendmsg (3 , , -> -> 1 `i `uc -> -> 42 `i `uc -> _msgbuffer `*v ]
+[; ;timer0_thread.c: 58: sensorToPoll = 1;
+"58
+[e = _sensorToPoll -> 1 `i ]
+[; ;timer0_thread.c: 59: break;
+"59
+[e $U 2095  ]
+"60
+}
+[; ;timer0_thread.c: 60: }
+[e $U 2095  ]
+"29
+[e :U 2096 ]
+[e [\ _sensorToPoll , $ -> 1 `i 2097
+ , $ -> 2 `i 2098
+ , $ -> 3 `i 2099
+ , $ -> 4 `i 2100
+ 2095 ]
+"60
+[e :U 2095 ]
+[; ;timer0_thread.c: 65: }
+"65
 [e :UE 2094 ]
 }

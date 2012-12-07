@@ -82,9 +82,10 @@ void main(void) {
     signed char length;
     unsigned char msgtype;
     unsigned char last_reg_recvd;
-    uart_comm uc;
+    uart_comm uc, uc2;
     i2c_comm ic;
     unsigned char msgbuffer[MSGLEN + 1];
+    unsigned char sonarData[I2C_MSG_SIZE];
     unsigned char i;
     uart_thread_struct uthread_data; // info for uart_lthread
 
@@ -103,6 +104,7 @@ void main(void) {
 
     // initialize my uart recv handling code
     init_uart_recv(&uc);
+    init_uart_send(&uc2);
 
     // initialize the i2c code
     init_i2c(&ic);
@@ -181,7 +183,7 @@ void main(void) {
 
 #ifdef __MOTOR2680
     OpenUSART(USART_TX_INT_OFF & USART_RX_INT_ON & USART_ASYNCH_MODE & USART_EIGHT_BIT &
-            USART_CONT_RX & USART_BRGH_LOW, 0x1B);
+            USART_CONT_RX & USART_BRGH_LOW, 0x1A);
 #endif
 #ifdef __SLAVE2680
     // configure the hardware USART device
@@ -198,6 +200,9 @@ void main(void) {
     // that should get them.  Although the subroutines are not threads, but
     // they can be equated with the tasks in your task diagram if you
     // structure them properly.
+#ifdef __MASTER2680
+    unsigned char sonarMsgCount = 0;
+#endif
     while (1) {
         // Call a routine that blocks until either on the incoming
         // messages queues has a message (this may put the processor into
@@ -228,7 +233,20 @@ void main(void) {
                 }
                 case MSGT_I2C_MASTER_RECV_COMPLETE:
                 {
-                    uart_lthread(&uthread_data, MSGT_UART_DATA, length, msgbuffer);
+#ifdef __MASTER2680
+                    if(length == 3) {
+                        sonarMsgCount++;
+                        sonarData[0] = SONAR_MSG_TYPE;
+                        sonarData[1] = sonarMsgCount;
+                        sonarData[2] = msgbuffer[1];
+                        sonarData[3] = msgbuffer[2];
+                        uart_lthread(&uthread_data, MSGT_UART_DATA, 4, sonarData);
+                    }
+                    else{
+                        uart_lthread(&uthread_data, MSGT_UART_DATA, length, msgbuffer);
+                    }
+
+#endif
                     break;
                 }
                 case MSGT_TIMER0:

@@ -601,8 +601,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _TXB2SIDH `Vuc ~T0 @X0 0 e@3873 ]
 [s S2088 `i 1 ]
 [n S2088 __uart_thread_struct data ]
-"57 ../src/messages.h
-[v _ToMainLow_sendmsg `(c ~T0 @X0 0 ef3`uc`uc`*v ]
+"19 ../src/my_uart.h
+[v _uart_send `(v ~T0 @X0 0 ef2`uc`*uc ]
 [s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2 . SID3 SID4 SID5 SID6 SID7 SID8 SID9 SID10 ]
 [s S3 :7 `uc 1 :1 `uc 1 ]
@@ -25483,8 +25483,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;my_uart.h: 12: unsigned char buflen;
 [; ;my_uart.h: 13: } uart_comm;
 [; ;my_uart.h: 15: void init_uart_recv(uart_comm *);
-[; ;my_uart.h: 16: void uart_recv_int_handler(void);
-[; ;my_uart.h: 17: void uart_send(unsigned char, unsigned char*);
+[; ;my_uart.h: 16: void init_uart_send(uart_comm *);
+[; ;my_uart.h: 17: void uart_recv_int_handler(void);
+[; ;my_uart.h: 18: void uart_send_int_handler(void);
+[; ;my_uart.h: 19: void uart_send(unsigned char, unsigned char*);
 "11 ../src/uart_thread.c
 [v _uart_lthread `(i ~T0 @X0 1 ef4`*S2088`i`i`*uc ]
 {
@@ -25506,9 +25508,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e :U 2093 ]
 [e $ ! == _msgtype -> 31 `i 2095  ]
 {
-[; ;uart_thread.c: 16: ToMainLow_sendmsg(length, 40, (void *) msgbuffer);
-"16
-[e ( _ToMainLow_sendmsg (3 , , -> _length `uc -> -> 40 `i `uc -> _msgbuffer `*v ]
+[; ;uart_thread.c: 20: uart_send(length, msgbuffer);
+"20
+[e ( _uart_send (2 , -> _length `uc _msgbuffer ]
 "22
 }
 [e :U 2095 ]

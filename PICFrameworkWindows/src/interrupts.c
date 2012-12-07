@@ -19,6 +19,9 @@ void enable_interrupts() {
     RCONbits.IPEN = 1;
     INTCONbits.GIEH = 1;
     INTCONbits.GIEL = 1;
+#ifdef __MASTER2680
+    INTCON2bits.TMR0IP = 0; //Timer 0 low priority
+#endif
 }
 
 int in_high_int() {
@@ -107,6 +110,12 @@ void InterruptHandlerHigh() {
         timer0_int_handler();
     }
 
+    // check to see if we have an interrupt on USART TX
+    if (PIR1bits.TXIF) {
+        PIR1bits.TXIF = 0; //clear interrupt flag
+        uart_send_int_handler();
+    }
+
     // here is where you would check other interrupt flags.
 
     // The *last* thing I do here is check to see if we can
@@ -145,5 +154,20 @@ void InterruptHandlerLow() {
         PIR1bits.RCIF = 0; //clear interrupt flag
         uart_recv_int_handler();
     }
+
+    // check to see if we have an interrupt on USART TX
+    if (PIR1bits.TXIF) {
+        PIR1bits.TXIF = 0; //clear interrupt flag
+        uart_send_int_handler();
+    }
+
+#ifdef __MASTER2680
+    // check to see if we have an interrupt on timer 0
+    if (INTCONbits.TMR0IF) {
+        INTCONbits.TMR0IF = 0; // clear this interrupt flag
+        // call whatever handler you want (this is "user" defined)
+        timer0_int_handler();
+    }
+#endif
 }
 

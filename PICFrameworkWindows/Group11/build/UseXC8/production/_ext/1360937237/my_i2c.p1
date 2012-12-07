@@ -697,9 +697,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _i2c_master_int_handler `(v ~T0 @X0 0 ef ]
 "64 ../src/messages.h
 [v _ToMainHigh_sendmsg `(c ~T0 @X0 0 ef3`uc`uc`*v ]
-"17 ../src/my_uart.h
-[v _uart_send `(v ~T0 @X0 0 ef2`uc`*uc ]
-"72 ../src/messages.h
+"72
 [v _FromMainLow_recvmsg `(c ~T0 @X0 0 ef3`uc`*uc`*v ]
 [s S2 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S2 . SID3 SID4 SID5 SID6 SID7 SID8 SID9 SID10 ]
@@ -25479,8 +25477,10 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;my_uart.h: 12: unsigned char buflen;
 [; ;my_uart.h: 13: } uart_comm;
 [; ;my_uart.h: 15: void init_uart_recv(uart_comm *);
-[; ;my_uart.h: 16: void uart_recv_int_handler(void);
-[; ;my_uart.h: 17: void uart_send(unsigned char, unsigned char*);
+[; ;my_uart.h: 16: void init_uart_send(uart_comm *);
+[; ;my_uart.h: 17: void uart_recv_int_handler(void);
+[; ;my_uart.h: 18: void uart_send_int_handler(void);
+[; ;my_uart.h: 19: void uart_send(unsigned char, unsigned char*);
 [; ;user_interrupts.h: 10: void timer0_int_handler(void);
 [; ;user_interrupts.h: 12: void timer1_int_handler(void);
 [; ;user_interrupts.h: 14: void init_encoder_counts(void);
@@ -26741,23 +26741,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 "467
 [e $ ! != -> _msg_ready `i -> -> -> 0 `i `uc `i 2185  ]
 {
-[; ;my_i2c.c: 469: if(ic_ptr->buffer[0] != 0xAA){
-"469
-[e $ ! != -> *U + &U . *U _ic_ptr 0 * -> -> -> 0 `i `ui `ux -> -> # *U &U . *U _ic_ptr 0 `ui `ux `i -> 170 `i 2186  ]
-{
-[; ;my_i2c.c: 470: uart_send(ic_ptr->buflen, ic_ptr->buffer);
-"470
-[e ( _uart_send (2 , . *U _ic_ptr 1 &U . *U _ic_ptr 0 ]
-"471
-}
-[e :U 2186 ]
 "478
 }
-[; ;my_i2c.c: 471: }
 [; ;my_i2c.c: 478: } else if (ic_ptr->error_count >= 1) {
-[e $U 2187  ]
+[e $U 2186  ]
 [e :U 2185 ]
-[e $ ! >= -> . *U _ic_ptr 6 `i -> 1 `i 2188  ]
+[e $ ! >= -> . *U _ic_ptr 6 `i -> 1 `i 2187  ]
 {
 [; ;my_i2c.c: 479: error_buf[0] = ic_ptr->error_count;
 "479
@@ -26776,12 +26765,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . *U _ic_ptr 6 -> -> 0 `i `uc ]
 "484
 }
-[e :U 2188 ]
-"486
 [e :U 2187 ]
+"486
+[e :U 2186 ]
 [; ;my_i2c.c: 484: }
 [; ;my_i2c.c: 486: if (msg_to_send) {
-[e $ ! != -> _msg_to_send `i -> -> -> 0 `i `uc `i 2189  ]
+[e $ ! != -> _msg_to_send `i -> -> -> 0 `i `uc `i 2188  ]
 {
 "487
 [v _data `uc ~T0 @X0 -> 10 `i a ]
@@ -26795,7 +26784,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = _length -> ( _FromMainLow_recvmsg (3 , , -> -> 10 `i `uc &U _msgtype -> &U _data `*v `i ]
 [; ;my_i2c.c: 490: if(length > 0){
 "490
-[e $ ! > _length -> 0 `i 2190  ]
+[e $ ! > _length -> 0 `i 2189  ]
 {
 [; ;my_i2c.c: 491: start_i2c_slave_reply(length, data);
 "491
@@ -26803,9 +26792,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 "492
 }
 [; ;my_i2c.c: 492: }
-[e $U 2191  ]
+[e $U 2190  ]
 "493
-[e :U 2190 ]
+[e :U 2189 ]
 [; ;my_i2c.c: 493: else {
 {
 [; ;my_i2c.c: 495: emptyMsgCount++;
@@ -26814,9 +26803,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 "496
 [v _empty `uc ~T0 @X0 -> 4 `i a ]
 [; ;my_i2c.c: 496: unsigned char empty[4];
-[; ;my_i2c.c: 504: empty[0] = 0x53;
-"504
-[e = *U + &U _empty * -> -> -> 0 `i `ui `ux -> -> # *U &U _empty `ui `ux -> -> 83 `i `uc ]
 [; ;my_i2c.c: 506: empty[1] = emptyMsgCount;
 "506
 [e = *U + &U _empty * -> -> -> 1 `i `ui `ux -> -> # *U &U _empty `ui `ux _emptyMsgCount ]
@@ -26831,14 +26817,14 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e ( _start_i2c_slave_reply (2 , -> -> 4 `i `uc &U _empty ]
 "510
 }
-[e :U 2191 ]
+[e :U 2190 ]
 [; ;my_i2c.c: 510: }
 [; ;my_i2c.c: 511: msg_to_send = 0;
 "511
 [e = _msg_to_send -> -> 0 `i `uc ]
 "512
 }
-[e :U 2189 ]
+[e :U 2188 ]
 [; ;my_i2c.c: 512: }
 [; ;my_i2c.c: 513: }
 "513
@@ -26868,7 +26854,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e = . *U _ic_ptr 6 -> -> 0 `i `uc ]
 [; ;my_i2c.c: 524: }
 "524
-[e :UE 2192 ]
+[e :UE 2191 ]
 }
 "529
 [v _i2c_configure_slave `(v ~T0 @X0 1 ef1`uc ]
@@ -26918,5 +26904,5 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e =| _SSPCON1 -> -> 32 `i `uc ]
 [; ;my_i2c.c: 558: }
 "558
-[e :UE 2193 ]
+[e :UE 2192 ]
 }

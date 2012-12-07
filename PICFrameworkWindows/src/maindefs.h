@@ -7,8 +7,8 @@
 #define __USE18F45J10 1
 #else
 #ifdef _18F2680
-//#define __MASTER2680
-#define __SLAVE2680
+#define __MASTER2680
+//#define __SLAVE2680
 //#define __MOTOR2680
 #define __USE18F2680 
 #else
@@ -41,6 +41,8 @@
 #define MSGT_I2C_MASTER_SEND_FAILED 44
 #define MSGT_I2C_MASTER_RECV_COMPLETE 45
 #define MSGT_I2C_MASTER_RECV_FAILED 46
+#define MSGT_SONAR_SEND 47
+#define MSGT_SONAR_RECV 48
 
 //I2C bus message parameters
 #define I2C_MSG_SIZE 4
@@ -53,7 +55,7 @@
 #define GENERIC_EMPTY_MSG_TYPE 0x53
 
 //I2C slave addresses
-#define SONAR_ADDR 0x9A
+#define SONAR_ADDR 0xE0
 #define CAMERA_ADDR 0x9C
 #define ENCODERS_ADDR 0x9E
 

@@ -18716,7 +18716,9 @@ unsigned char buflen;
 } uart_comm;
 
 void init_uart_recv(uart_comm *);
+void init_uart_send(uart_comm *);
 void uart_recv_int_handler(void);
+void uart_send_int_handler(void);
 void uart_send(unsigned char, unsigned char*);
 
 # 7 "../src/my_i2c.h"
@@ -18794,5 +18796,14 @@ ToMainLow_sendmsg(sizeof(result), 11, (void *) &result);
 
 void adc_int_handler() {
 
-# 104
+unsigned int value = ReadADC();
+value = 0x123;
+unsigned char message[4];
+message[2] = (unsigned char)(0xFF & value);
+message[3] = (unsigned char)(0xFF & (value>>8));
+
+message[1] = adcMsgCount;
+adcMsgCount++;
+ToMainLow_sendmsg(4,40,(void *) message);
+
 }

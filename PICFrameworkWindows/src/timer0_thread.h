@@ -3,9 +3,10 @@ typedef struct __timer0_thread_struct {
 	int	data;
 } timer0_thread_struct;
 
-#define SONAR 1
-#define CAMERA 2
-#define ENCODERS 3
+#define SONAR_SEND 1
+#define SONAR_RECV 2
+#define CAMERA 3
+#define ENCODERS 4
 
 void init_timer0_lthread(timer0_thread_struct *);
 

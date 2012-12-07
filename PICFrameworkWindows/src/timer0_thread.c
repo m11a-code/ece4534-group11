@@ -20,24 +20,22 @@ void init_timer0_lthread(timer0_thread_struct *tptr){
     TRISA = 0xCF;
 #endif
 
-    sensorToPoll = SONAR;
+    sensorToPoll = SONAR_SEND;
     sonarMsgCount = 0;
 }
 
 int timer0_lthread(timer0_thread_struct *tptr, int msgtype, int length, unsigned char *msgbuffer) {
 #ifdef __MASTER2680
     switch(sensorToPoll){
-        case SONAR:
+        case SONAR_SEND:
         {
-            i2c_configure_master(SONAR_ADDR);
-            //Do what you gotta do to poll the sonar
-            sonarMsgCount++;
-            unsigned char fakeData[I2C_MSG_SIZE];
-            fakeData[0] = SONAR_MSG_TYPE;
-            fakeData[1] = sonarMsgCount;
-            fakeData[2] = 0;
-            fakeData[3] = 0;
-            //ToMainHigh_sendmsg(4,MSGT_I2C_MASTER_RECV_COMPLETE, fakeData);
+            FromMainLow_sendmsg(1,MSGT_SONAR_SEND, (void*) msgbuffer);
+            sensorToPoll = SONAR_RECV;
+            break;
+        }
+	    case SONAR_RECV:
+        {
+            FromMainLow_sendmsg(1,MSGT_SONAR_RECV, (void*) msgbuffer);
             sensorToPoll = CAMERA;
             break;
         }
@@ -57,7 +55,7 @@ int timer0_lthread(timer0_thread_struct *tptr, int msgtype, int length, unsigned
         case ENCODERS:
             i2c_configure_master(ENCODERS_ADDR);
             FromMainLow_sendmsg(1,MSGT_I2C_RQST, (void*) msgbuffer);
-            sensorToPoll = SONAR;
+            sensorToPoll = SONAR_SEND;
             break;
     }
 #endif
